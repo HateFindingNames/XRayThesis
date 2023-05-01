@@ -1,0 +1,1 @@
+[DATASHEET_TUB00154-SA-W06](docs\Paper\DATASHEET_TUB00154-SA-W06) and [DATASHEET_TUB00154-SA-W06](docs\Paper\MANUAL_TUB00154-SA-W06) contain photographs of the X-ray sources datasheet and manual respectivelly. There is also a datasheet to be found online and is archived [here](docs\Online\TUB-DATA-1013-MAGPRO.pdf).
