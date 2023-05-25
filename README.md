@@ -51,6 +51,11 @@ In no particular order:
   * [ ] Interior modification?
 * [ ] Interlock
 * [ ] Pb-Shielding
-  * [ ] Make measurements
+  * [ ] Determine necessity
   * [ ] Find distributor => pre-order
 * [ ] Make CAD-Model
+* [ ] Detector (check [*Amptek*](https://www.amptek.com/products/x-ray-detectors/x-ray-detector-selection-guide))
+  * Options:
+    * **Si**licon **P**ositive **I**ntrinsic **N**egative Diode (Si-PIN Diode) (Wiki: [de](https://de.wikipedia.org/wiki/Pin-Diode),[en](https://en.wikipedia.org/wiki/PIN_diode))
+    * **S**ilicone **D**rift **D**etector (SDD) (Wiki: [de](https://de.wikipedia.org/wiki/Siliziumdriftdetektor),[en](https://en.wikipedia.org/wiki/Silicon_drift_detector))
+    * **Ca**dmium **Te**lluride Schottky Diode (CdTe-Schottky)
