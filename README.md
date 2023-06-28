@@ -19,14 +19,14 @@ Made by [Moxtec](https://moxtek.com/) and distributed (EU) by [Quantum Design](h
 ## Detector
 
 SDD Detector made by *PN Detector* -- presumably this one: [XRS-A (All-in-One)](https://pndetector.de/products-applications/the-xrf-spectrometer-all-in-one/)
-![SDD Detector](https://github.com/HateFindingNames/XRayThesis/blob/0f46c242783dfc9b472f105924520494e5bc9efe/docs/OnPaper/MANUAL_TUB-MAN-1007/2023-04-17-14-57-03-905.jpg)
+![SDD Detector](pictures/detector.jpg)
 ## 📜 Documentation
 
 Available documentation can be found inside this repo:
 
 * [DATASHEET_TUB00154-SA-W06.pdf](docs/OnPaper/DATASHEET_TUB00154-SA-W06/DATASHEET_TUB00154-SA-W06.pdf)
-* [MANUAL_TUB-MAN-1007.pdf](docs\OnPaper\MANUAL_TUB-MAN-1007\MANUAL_TUB-MAN-1007.pdf)
-* [TUB-DATA-1013-MAGPRO.pdf](docs\Online\TUB-DATA-1013-MAGPRO.pdf)
+* [MANUAL_TUB-MAN-1007.pdf](docs/OnPaper/MANUAL_TUB-MAN-1007/MANUAL_TUB-MAN-1007.pdf)
+* [TUB-DATA-1013-MAGPRO.pdf](docs/Online/TUB-DATA-1013-MAGPRO.pdf)
 
 and on my OneDrive:
 
