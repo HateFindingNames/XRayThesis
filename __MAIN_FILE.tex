@@ -1,0 +1,47 @@
+\documentclass[paper=a4,11pt,titlepage,twoside=false,headings=normal,numbers=noenddot,captions=tableabove,listof=totoc,index=totoc,bibliography=totoc]{scrreprt}
+%-----------------------------------------------------------------
+\usepackage{etoolbox}
+\newbool{deutsch}
+% \booltrue{deutsch}	% comment out to switch document to english
+%-----------------------------------------------------------------
+\newcommand{\mytitle}{Setup, test and characterization of an XRF system in a DIY approach}
+\input{pre-packages}
+\input{pre-variables}
+\input{pre-page-layout}
+\input{pre-header-footer-2010}
+\input{pre-header-footer-text-report}
+% \input{pre-listings-layouts}
+\input{pre-nomenclature-layout}
+\DeclareNameAlias{author}{family-given}
+\DeclareNameAlias{editor}{family-given}
+\DeclareNameAlias{translator}{family-given}
+\addbibresource{lib/literature.bib}
+%------DEBUGGING--------------------------------------------------
+% \usepackage[showframe]{geometry} % comment for live version
+% \usepackage{layout}
+% \usepackage{showframe}
+%-----------------------------------------------------------------
+\begin{document}
+%-----------------------------------------------------------------
+\input{chapters/0_top}
+\clearpage\pagenumbering{Roman}
+\tableofcontents
+\listoffigures
+\listoftables
+\printnomenclature[5cm]
+%-----------------------------------------------------------------
+\clearpage\pagenumbering{arabic}
+\include{chapters/motivation}
+\include{chapters/background}
+\include{chapters/theory}
+\include{chapters/methodology}
+\include{chapters/testing_and_characterization}
+\include{chapters/conclusions}
+%-----------------------------------------------------------------
+\newpage
+% \appendix
+\input{chapters/appendixA}
+\input{chapters/appendixB}
+\printbibliography%
+%=================================================================
+\end{document}

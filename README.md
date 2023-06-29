@@ -14,7 +14,7 @@
 
 **W06** => Tungsten target (transmition lines provided by [NIST](https://physics.nist.gov/cgi-bin/XrayTrans/search.pl?element=W&lower=&upper=&units=eV))
 
-Made by [Moxtec](https://moxtek.com/) and distributed (EU) by [Quantum Design](https://qd-europe.com/de/de/)
+Made by [Moxtek](https://moxtek.com/) and distributed (EU) by [Quantum Design](https://qd-europe.com/de/de/)
 
 ## Detector
 
