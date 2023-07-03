@@ -115,7 +115,7 @@
             "args": [
                 "buildfiles/%DOCFILE%.nlo",
                 "-s",
-                "nomentbl.ist",
+                "nomencl.ist",
                 "-o",
                 "buildfiles/%DOCFILE%.nls"
                 // "buildfiles/%DOCFILE%.nlo"

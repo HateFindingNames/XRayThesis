@@ -16,11 +16,7 @@
 
 Made by [Moxtek](https://moxtek.com/) and distributed (EU) by [Quantum Design](https://qd-europe.com/de/de/)
 
-## Detector
-
-SDD Detector made by *PN Detector* -- presumably this one: [XRS-A (All-in-One)](https://pndetector.de/products-applications/the-xrf-spectrometer-all-in-one/)
-![SDD Detector](pictures/detector.jpg)
-## 📜 Documentation
+### 📜 Documentation
 
 Available documentation can be found inside this repo:
 
@@ -32,6 +28,17 @@ and on my OneDrive:
 
 * [🔒 Moxtek MagPro 70kV  XRF Source (TUB00154-XX-XXX  TUB00155-XX-XXX) Product Specification (TUB-SPEC-1033) Rev H.pdf](https://hsrheinmain-my.sharepoint.com/:b:/g/personal/lmy9f42u92_hsrheinmain_onmicrosoft_com/EV1KUsbPE4NGpiN00cES0QcBQOVuTafLMZQphgjChVBe-A?email=daniel.muenstermann%40hs-rm.de&e=YY6j7k)
 * [🔒 TUB00154-XX-XXX Mechanical Drawing.pdf](https://hsrheinmain-my.sharepoint.com/:b:/g/personal/lmy9f42u92_hsrheinmain_onmicrosoft_com/Eb5gZbNKkz1OtNJbWsKaR_sB0skO_YVYC2-HvIApNUwNWA?email=daniel.muenstermann%40hs-rm.de&e=mrExvE)
+
+## Detector
+
+SDD Detector made by *PN Detector*: [XRS-A (All-in-One)](https://pndetector.de/products-applications/the-xrf-spectrometer-all-in-one/)
+![SDD Detector](pictures/detector.jpg)
+
+### 📜 Documentation
+
+OneDrive:
+
+* [🔒 User Manual - XRS-A-30-128-200-MLC+GUI 0.1.1 -3006007.pdf](https://hsrheinmain-my.sharepoint.com/:b:/g/personal/lmy9f42u92_hsrheinmain_onmicrosoft_com/EWPr4Hw9F3tDvXxqMdxp95wBGIPgKuyxWKV6rSSlt5RyFA?email=daniel.muenstermann%40hs-rm.de&e=1WMr1p)
 
 # 👀 Stuff to do
 
@@ -62,9 +69,9 @@ In no particular order:
       * [ ] Determine necessity
       * [ ] Find distributor => pre-order
 * [ ] Make CAD-Model
-* [ ] Detector (check [*Amptek*](https://www.amptek.com/products/x-ray-detectors/x-ray-detector-selection-guide))
+* [x] Detector (check [*Amptek*](https://www.amptek.com/products/x-ray-detectors/x-ray-detector-selection-guide))
   * Options:
-    * **Si**licon **P**ositive **I**ntrinsic **N**egative Diode (Si-PIN Diode) (Wiki: [de](https://de.wikipedia.org/wiki/Pin-Diode),[en](https://en.wikipedia.org/wiki/PIN_diode))
-    * **S**ilicone **D**rift **D**etector (SDD) (Wiki: [de](https://de.wikipedia.org/wiki/Siliziumdriftdetektor),[en](https://en.wikipedia.org/wiki/Silicon_drift_detector))
-    * **Ca**dmium **Te**lluride Schottky Diode (CdTe-Schottky)
+    * ~~**Si**licon **P**ositive **I**ntrinsic **N**egative Diode (Si-PIN Diode) (Wiki: [de](https://de.wikipedia.org/wiki/Pin-Diode),[en](https://en.wikipedia.org/wiki/PIN_diode))~~
+    * 👉 **S**ilicone **D**rift **D**etector (SDD) (Wiki: [de](https://de.wikipedia.org/wiki/Siliziumdriftdetektor),[en](https://en.wikipedia.org/wiki/Silicon_drift_detector))
+    * ~~**Ca**dmium **Te**lluride Schottky Diode (CdTe-Schottky)~~
 * [ ] X-Ray optics
