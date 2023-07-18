@@ -1,7 +1,15 @@
 <!-- LTeX: language=en-EN -->
-# 🔩 Hardware At Hand
+- [1. 🔩 Hardware At Hand](#1--hardware-at-hand)
+  - [1.1. Source](#11-source)
+    - [1.1.1. 📜 Documentation](#111--documentation)
+  - [1.2. Detector](#12-detector)
+    - [1.2.1. 📜 Documentation](#121--documentation)
+- [2. 👀 Stuff to do](#2--stuff-to-do)
+- [3. 💸 Shopping List](#3--shopping-list)
 
-## Source
+# 1. 🔩 Hardware At Hand
+
+## 1.1. Source
 
 **Magpro TUB00154-SA-W06:**
 
@@ -16,7 +24,7 @@
 
 Made by [Moxtek](https://moxtek.com/) and distributed (EU) by [Quantum Design](https://qd-europe.com/de/de/)
 
-### 📜 Documentation
+### 1.1.1. 📜 Documentation
 
 Available documentation can be found inside this repo:
 
@@ -29,18 +37,18 @@ and on my OneDrive:
 * [🔒 Moxtek MagPro 70kV  XRF Source (TUB00154-XX-XXX  TUB00155-XX-XXX) Product Specification (TUB-SPEC-1033) Rev H.pdf](https://hsrheinmain-my.sharepoint.com/:b:/g/personal/lmy9f42u92_hsrheinmain_onmicrosoft_com/EV1KUsbPE4NGpiN00cES0QcBQOVuTafLMZQphgjChVBe-A?email=daniel.muenstermann%40hs-rm.de&e=YY6j7k)
 * [🔒 TUB00154-XX-XXX Mechanical Drawing.pdf](https://hsrheinmain-my.sharepoint.com/:b:/g/personal/lmy9f42u92_hsrheinmain_onmicrosoft_com/Eb5gZbNKkz1OtNJbWsKaR_sB0skO_YVYC2-HvIApNUwNWA?email=daniel.muenstermann%40hs-rm.de&e=mrExvE)
 
-## Detector
+## 1.2. Detector
 
 SDD Detector made by *PN Detector*: [XRS-A (All-in-One)](https://pndetector.de/products-applications/the-xrf-spectrometer-all-in-one/)
 ![SDD Detector](pictures/detector.jpg)
 
-### 📜 Documentation
+### 1.2.1. 📜 Documentation
 
 OneDrive:
 
 * [🔒 User Manual - XRS-A-30-128-200-MLC+GUI 0.1.1 -3006007.pdf](https://hsrheinmain-my.sharepoint.com/:b:/g/personal/lmy9f42u92_hsrheinmain_onmicrosoft_com/EWPr4Hw9F3tDvXxqMdxp95wBGIPgKuyxWKV6rSSlt5RyFA?email=daniel.muenstermann%40hs-rm.de&e=1WMr1p)
 
-# 👀 Stuff to do
+# 2. 👀 Stuff to do
 
 In no particular order:
 
@@ -75,3 +83,11 @@ In no particular order:
     * 👉 **S**ilicone **D**rift **D**etector (SDD) (Wiki: [de](https://de.wikipedia.org/wiki/Siliziumdriftdetektor),[en](https://en.wikipedia.org/wiki/Silicon_drift_detector))
     * ~~**Ca**dmium **Te**lluride Schottky Diode (CdTe-Schottky)~~
 * [ ] X-Ray optics
+
+# 3. 💸 Shopping List
+
+* Bearings (Turntable Bearing?)
+  * [Rillenkugellager 16009 2RS 45x75x10 mm](https://www.kugellager-express.de/rillenkugellager-16009-2rs-45x75x10-mm)
+* Motors (Stepper, Servo)
+* PSU
+* Filament
