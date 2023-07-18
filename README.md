@@ -87,7 +87,8 @@ In no particular order:
 # 3. 💸 Shopping List
 
 * Bearings (Turntable Bearing?)
-  * [Rillenkugellager 16009 2RS 45x75x10 mm](https://www.kugellager-express.de/rillenkugellager-16009-2rs-45x75x10-mm)
+  * Sample Platform: [Ball bearing 6809 / 61809 2RS 45x58x7 mm](https://www.kugellager-express.de/rillenkugellager-6809-61809-2rs-45x58x7-mm)
+  * Detector Ring: [Ball bearing 6814 / 61814 2RS 70x90x10 mm](https://www.kugellager-express.de/rillenkugellager-6814-61814-2rs-70x90x10-mm)
 * Motors (Stepper, Servo)
 * PSU
-* Filament
+* Filament [eSun ASA](https://www.3djake.de/esun/easa-schwarz)
