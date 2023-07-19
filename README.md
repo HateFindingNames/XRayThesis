@@ -106,4 +106,4 @@ In no particular order:
 
 # 4. Drafting Area
 
-![Rotary stage WIP](pictures/rot stage draft.gif)
+![Rotary stage WIP](pictures\rot_stage_draft.gif)
