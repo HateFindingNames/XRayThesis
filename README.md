@@ -96,14 +96,15 @@ In no particular order:
 
 | Items                   	| Moneys     	|
 |-------------------------	|------------	|
-| [Ball bearing 6809](https://www.kugellager-express.de/rillenkugellager-6809-61809-2rs-45x58x7-mm)<br>(Sample platform)                                         	| 2 x 4,89€  	|
-| [Ball bearing 6814](https://www.kugellager-express.de/rillenkugellager-6814-61814-2rs-70x90x10-mm)<br>(Detector platform)                                        	| 2 x 12,39€ 	|
-| [Stepper Motors](https://www.sorotec.de/shop/JMC-Closed-Loop-Schrittmotor-mit-integriertem-Treiber-0-48-Nm.html)<br>Closed Loop                       	| 2 x 104,9€ 	|
-| *[Stepper Motors](https://www.reichelt.de/schrittmotor-hoch-drehmoment-hybrid-2-phasen-nema17-01-p219027.html?&trstct=pol_7&nbc=1)*<br>Open Loop, alternative 	| *2 x 25,8€*  	|
-| [PSU 5V](https://www.digikey.de/de/products/detail/mean-well-usa-inc/RS-25-5/7706180)                                                     	| 12,1€      	|
-| [PSU 24V](https://www.digikey.de/de/products/detail/delta-electronics/PMH-24V200WCBA/5818890)                                             	| 59,56€     	|
-| **Total**                   	| **316,02€** (*157,82€*)           	|
+| [Ball bearing 61708](https://www.kugellager-express.de/rillenkugellager-6708-61708-2rs-40x50x6-mm)<br>(Sample platform)                                         	| 2 x 8.2€  	|
+| [Slewing Bearing](https://www.igus.de/product/iglidur_PRT_01_AL_J?artnr=PRT-01-60)<br>(Detector platform)                                        	| 174.78€ 	|
+| [Stepper Motors](https://www.sorotec.de/shop/JMC-Closed-Loop-Schrittmotor-mit-integriertem-Treiber-0-48-Nm.html)<br>Closed Loop                       	| 2 x 104.9€ 	|
+| *[Stepper Motors](https://www.reichelt.de/schrittmotor-hoch-drehmoment-hybrid-2-phasen-nema17-01-p219027.html?&trstct=pol_7&nbc=1)*<br>Open Loop, alternative 	| *2 x 25.8€*  	|
+| [PSU 5V](https://www.digikey.de/de/products/detail/mean-well-usa-inc/RS-25-5/7706180)                                                     	| 12.1€      	|
+| [PSU 24V](https://www.digikey.de/de/products/detail/delta-electronics/PMH-24V200WCBA/5818890)                                             	| 59.56€     	|
+| **Total**                   	| **472.64€** (*314.44€*)           	|
 
 # 4. Drafting Area
 
 ![Rotary stage WIP](https://github.com/HateFindingNames/XRayThesis/blob/main/pictures/rot_stage_draft.gif)
+![Alt text](pictures/rot_stage_parts.jpg)
