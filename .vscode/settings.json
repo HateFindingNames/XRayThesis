@@ -204,5 +204,6 @@
     ],
     "latex-workshop.view.pdf.viewer": "browser",
     "latex-workshop.synctex.synctexjs.enabled": true,
-    "latex-workshop.synctex.afterBuild.enabled": true
+    "latex-workshop.synctex.afterBuild.enabled": true,
+    "markdown-preview-enhanced.previewTheme": "github-dark.css"
 }
