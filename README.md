@@ -7,6 +7,7 @@
     - [1.2.1. 📜 Documentation](#121--documentation)
 - [2. 👀 Stuff to do](#2--stuff-to-do)
 - [3. 💸 Shopping List](#3--shopping-list)
+  - [Fasteners](#fasteners)
 - [4. Drafting Area](#4-drafting-area)
 
 # 1. 🔩 Hardware At Hand
@@ -104,6 +105,16 @@ In no particular order:
 | [PSU 24V](https://www.digikey.de/de/products/detail/delta-electronics/PMH-24V200WCBA/5818890)                                                                                                                                                        |            59.56€ | Digikey.de                 |        :x:         |                    |
 | [Zarges K470](https://www.rueger-industriebedarf.com/Kiste-K470-Innenmasse-600x430x450mm-Vol-116l-Alu-ZARGES-15244128.html)                                                                                                                          |           456.96€ | rueger-industriebedarf.com |        :x:         |                    |
 | **Total**                                                                                                                                                                                                                                            |       **841.64€** |                            |        :x:         |                    |
+
+## Fasteners
+
+| **Items**                                                                                     | **Moneys** | **Vendor**   | **Ordered** | **Arrived** |
+| --------------------------------------------------------------------------------------------- | ---------- | ------------ | ----------- | ----------- |
+| [M5x25 DIN912](https://de.rs-online.com/web/p/innensechskantschrauben/4915259?gb=b)           | 27.72€     | rs-online.de |             |             |
+| [M5x50 DIN912](https://de.rs-online.com/web/p/innensechskantschrauben/4838297?gb=b)           | 34.49€     | rs-online.de |             |             |
+| [M5x20 DIN-EN-ISO 10642](https://de.rs-online.com/web/p/innensechskantschrauben/4839852?gb=b) | 28.36€     | rs-online.de |             |             |
+| [M5 Hex Nut](https://de.rs-online.com/web/p/sechskantmuttern/2010851?gb=b)                    | 2.90€      | rs-online.de |             |             |
+| **Total**                                                                                     |            |              |             |             |
 
 # 4. Drafting Area
 
