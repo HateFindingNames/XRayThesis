@@ -108,13 +108,14 @@ In no particular order:
 
 ## Fasteners
 
-| **Items**                                                                                     | **Moneys** | **Vendor**   | **Ordered** | **Arrived** |
-| --------------------------------------------------------------------------------------------- | ---------- | ------------ | ----------- | ----------- |
-| [M5x25 DIN912](https://de.rs-online.com/web/p/innensechskantschrauben/4915259?gb=b)           | 27.72€     | rs-online.de |             |             |
-| [M5x50 DIN912](https://de.rs-online.com/web/p/innensechskantschrauben/4838297?gb=b)           | 34.49€     | rs-online.de |             |             |
-| [M5x20 DIN-EN-ISO 10642](https://de.rs-online.com/web/p/innensechskantschrauben/4839852?gb=b) | 28.36€     | rs-online.de |             |             |
-| [M5 Hex Nut](https://de.rs-online.com/web/p/sechskantmuttern/2010851?gb=b)                    | 2.90€      | rs-online.de |             |             |
-| **Total**                                                                                     |            |              |             |             |
+| **Items**                                                                                                | **Moneys** | **Vendor**        | **Ordered** | **Arrived** |
+| -------------------------------------------------------------------------------------------------------- | ---------: | ----------------- | ----------- | ----------- |
+| [M5x25 DIN912](https://www.schraubenluchs.de/100-Stueck-Zylinderschrauben-ISO-4762-DIN-912-A2-70-M-5x25) |      5.75€ | schraubenluchs.de |             |             |
+| [M5x50 DIN912](https://www.schraubenluchs.de/100-Stueck-Zylinderschrauben-ISO-4762-DIN-912-A2-70-M-5x50) |      9.04€ | schraubenluchs.de |             |             |
+| ~~[M5x20 DIN-EN-ISO 10642](https://de.rs-online.com/web/p/innensechskantschrauben/4839852?gb=b)~~        |     28.36€ | rs-online.de      |             |             |
+| [M5 Hex Nut](https://www.schraubenluchs.de/200-Stueck-Sechskantmuttern-DIN-934-A2-M5)                    |      2.50€ | schraubenluchs.de |             |             |
+| [M5 Washer DIN 125](https://www.schraubenluchs.de/250-Stueck-Unterlegscheiben-DIN-125-Edelstahl-A2-53)   |      1.12€ | schraubenluchs.de |             |             |
+| **Total**                                                                                                |            |                   |             |             |
 
 # 4. Drafting Area
 
