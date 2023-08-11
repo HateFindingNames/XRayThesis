@@ -6,8 +6,9 @@
   - [1.2. Detector](#12-detector)
     - [1.2.1. 📜 Documentation](#121--documentation)
 - [2. 👀 Stuff to do](#2--stuff-to-do)
-- [3. 💸 Shopping List](#3--shopping-list)
-  - [Fasteners](#fasteners)
+- [3. 💸 Shopping Lists](#3--shopping-lists)
+  - [3.1. Hardware](#31-hardware)
+  - [3.2. Fasteners](#32-fasteners)
 - [4. Drafting Area](#4-drafting-area)
 
 # 1. 🔩 Hardware At Hand
@@ -87,35 +88,36 @@ In no particular order:
     * ~~**Ca**dmium **Te**lluride Schottky Diode (CdTe-Schottky)~~
 * [ ] X-Ray optics
 
-# 3. 💸 Shopping List
+# 3. 💸 Shopping Lists
 
-| **Items**                                                                                                                                                                                                                                            |        **Moneys** | **Vendors**                |    **Ordered**     |    **Arrived**     |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------: | -------------------------- | :----------------: | :----------------: |
-| [Ball Bearing 635-2RS](https://www.kugellager-express.de/miniatur-kugellager-635-2rs-5x19x6-mm)                                                                                                                                                      |        10 x 0.79€ | Kugellager-Express.de      | :heavy_check_mark: |                    |
-| [Ball Bearing 61708](https://www.kugellager-express.de/rillenkugellager-6708-61708-2rs-40x50x6-mm)                                                                                                                                                   |         2 x 8.20€ | Kugellager-Express.de      | :heavy_check_mark: |                    |
-| [PRT-01-60](https://www.igus.de/product/iglidur_PRT_01_AL_J?artnr=PRT-01-60) (Slewing Bearing)                                                                                                                                                       |           174.78€ | Igus.de                    | :heavy_check_mark: | :heavy_check_mark: |
-| Drag Chain                                                                                                                                                                                                                                           | For free :muscle: | Igus.de                    | :heavy_check_mark: | :heavy_check_mark: |
-| [~~Pulley 60T~~](https://www.amazon.de/Saipor-Zahnriemenrad-Riemenscheibe-Synchronrad-Zahnriemenscheibe/dp/B08ZSL7BH9/ref=sr_1_2?keywords=pulley%2B60t&sr=8-2&th=1)                                                                                  |         ~~9.79€~~ | ~~Amazon.de~~              |        :x:         |                    |
-| [Pulley 20T](https://www.kris3d.de/products/pulley-20t-2gt-w9-b5-black)                                                                                                                                                                              |         2 x 3.99€ | kris3d.de                  |        :x:         |                    |
-| [Belt 342-2MGT3-9](https://www.keilriemenexpress.de/zahnflachriemen-zahnriemen-shop/gates-zahnriemen-powergrip-gt3/zahnflachriemen-2m-gt3/zahnflachriemen-2m-gt3-9-mm/2mgt3-342-lw-9-mm-powergripr-gt3.html) (Sample)                                |            13.45€ | KeilriemenExpress.de       | :heavy_check_mark: | :heavy_check_mark: |
-| [Belt 600-2MGT3-9](https://www.keilriemenexpress.de/zahnflachriemen-zahnriemen-shop/gates-zahnriemen-powergrip-gt3/zahnflachriemen-2m-gt3/zahnflachriemen-2m-gt3-9-mm/2mgt3-600-lw-9-mm-powergripr-gt3.html) (Detector)                              |            16.55€ | KeilriemenExpress.de       | :heavy_check_mark: | :heavy_check_mark: |
-| [Filament eSun ASA 1kg](https://www.3djake.de/esun/easa-schwarz)                                                                                                                                                                                     |        2 x 26.99€ | 3DJake.de                  | :heavy_check_mark: | :heavy_check_mark: |
-| [Stepper Motors](https://www.amazon.de/STEPPERONLINE-Schrittmotor-55Ncm-Meter-3D-Drucker/dp/B0B93HTR87/ref=sr_1_6?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2FD8SIDGO2PCX&keywords=stepperonline&sprefix=stepperonline%2Caps%2C98&sr=8-6&th=1) |        2 x 10.99€ | Amazon.de                  |        :x:         |                    |
-| [PSU 5V](https://www.digikey.de/de/products/detail/mean-well-usa-inc/RS-25-5/7706180)                                                                                                                                                                |            12.10€ | Digikey.de                 |        :x:         |                    |
-| [PSU 24V](https://www.digikey.de/de/products/detail/delta-electronics/PMH-24V200WCBA/5818890)                                                                                                                                                        |            59.56€ | Digikey.de                 |        :x:         |                    |
-| [Zarges K470](https://www.rueger-industriebedarf.com/Kiste-K470-Innenmasse-600x430x450mm-Vol-116l-Alu-ZARGES-15244128.html)                                                                                                                          |           456.96€ | rueger-industriebedarf.com |        :x:         |                    |
-| **Total**                                                                                                                                                                                                                                            |       **841.64€** |                            |        :x:         |                    |
+## 3.1. Hardware
 
-## Fasteners
+| **Items**                                                                                                                                                                                                                                                              |        **Moneys** | **Vendors**                |    **Ordered**     |    **Arrived**     |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------: | -------------------------- | :----------------: | :----------------: |
+| [Ball Bearing 635-2RS](https://www.kugellager-express.de/miniatur-kugellager-635-2rs-5x19x6-mm)                                                                                                                                                                        |        10 x 0.79€ | Kugellager-Express.de      | :heavy_check_mark: | :heavy_check_mark: |
+| [Ball Bearing 61708](https://www.kugellager-express.de/rillenkugellager-6708-61708-2rs-40x50x6-mm)                                                                                                                                                                     |         2 x 8.20€ | Kugellager-Express.de      | :heavy_check_mark: | :heavy_check_mark: |
+| [PRT-01-60](https://www.igus.de/product/iglidur_PRT_01_AL_J?artnr=PRT-01-60) (Slewing Bearing)                                                                                                                                                                         |           174.78€ | Igus.de                    | :heavy_check_mark: | :heavy_check_mark: |
+| Drag Chain                                                                                                                                                                                                                                                             | For free :muscle: | Igus.de                    | :heavy_check_mark: | :heavy_check_mark: |
+| [~~Pulley 60T~~](https://www.amazon.de/Saipor-Zahnriemenrad-Riemenscheibe-Synchronrad-Zahnriemenscheibe/dp/B08ZSL7BH9/ref=sr_1_2?keywords=pulley%2B60t&sr=8-2&th=1) printed                                                                                            |         ~~9.79€~~ | ~~Amazon.de~~              |        :x:         |                    |
+| [Pulley 20T](https://www.kris3d.de/products/pulley-20t-2gt-w9-b5-black)                                                                                                                                                                                                |         2 x 3.99€ | kris3d.de                  |        :x:         |                    |
+| [Belt 342-2MGT3-9](https://www.keilriemenexpress.de/zahnflachriemen-zahnriemen-shop/gates-zahnriemen-powergrip-gt3/zahnflachriemen-2m-gt3/zahnflachriemen-2m-gt3-9-mm/2mgt3-342-lw-9-mm-powergripr-gt3.html) (Sample)                                                  |            13.45€ | KeilriemenExpress.de       | :heavy_check_mark: | :heavy_check_mark: |
+| [Belt 600-2MGT3-9](https://www.keilriemenexpress.de/zahnflachriemen-zahnriemen-shop/gates-zahnriemen-powergrip-gt3/zahnflachriemen-2m-gt3/zahnflachriemen-2m-gt3-9-mm/2mgt3-600-lw-9-mm-powergripr-gt3.html) (Detector)                                                |            16.55€ | KeilriemenExpress.de       | :heavy_check_mark: | :heavy_check_mark: |
+| [Filament eSun ASA 1kg](https://www.3djake.de/esun/easa-schwarz)                                                                                                                                                                                                       |        2 x 26.99€ | 3DJake.de                  | :heavy_check_mark: | :heavy_check_mark: |
+| ~~[Stepper Motors](https://www.amazon.de/STEPPERONLINE-Schrittmotor-55Ncm-Meter-3D-Drucker/dp/B0B93HTR87/ref=sr_1_6?__mk_de_DE=%C3%85M%C3%85%C5%BD%C3%95%C3%91&crid=2FD8SIDGO2PCX&keywords=stepperonline&sprefix=stepperonline%2Caps%2C98&sr=8-6&th=1)~~ self supplied |    ~~2 x 10.99€~~ | ~~Amazon.de~~              |        :x:         |                    |
+| [PSU 5V](https://www.digikey.de/en/products/detail/mean-well-usa-inc/RS-25-5/7706180)                                                                                                                                                                                  |            14.23€ | Digikey.de                 |        :x:         |                    |
+| [PSU 24V](https://www.digikey.de/en/products/detail/mean-well-usa-inc/LRS-150-24/7705015)                                                                                                                                                                              |            26.54€ | Digikey.de                 |        :x:         |                    |
+| [Zarges Box/K470](https://www.rueger-industriebedarf.com/Kiste-K470-Innenmasse-600x430x450mm-Vol-116l-Alu-ZARGES-15244128.html)                                                                                                                                        |           456.96€ | rueger-industriebedarf.com |        :x:         |                    |
+| **Total**                                                                                                                                                                                                                                                              |       **788.77€** |                            |        :x:         |                    |
 
-| **Items**                                                                                                | **Moneys** | **Vendor**        | **Ordered** | **Arrived** |
-| -------------------------------------------------------------------------------------------------------- | ---------: | ----------------- | ----------- | ----------- |
-| [M5x25 DIN912](https://www.schraubenluchs.de/100-Stueck-Zylinderschrauben-ISO-4762-DIN-912-A2-70-M-5x25) |      5.75€ | schraubenluchs.de |             |             |
-| [M5x50 DIN912](https://www.schraubenluchs.de/100-Stueck-Zylinderschrauben-ISO-4762-DIN-912-A2-70-M-5x50) |      9.04€ | schraubenluchs.de |             |             |
-| ~~[M5x20 DIN-EN-ISO 10642](https://de.rs-online.com/web/p/innensechskantschrauben/4839852?gb=b)~~        |     28.36€ | rs-online.de      |             |             |
-| [M5 Hex Nut](https://www.schraubenluchs.de/200-Stueck-Sechskantmuttern-DIN-934-A2-M5)                    |      2.50€ | schraubenluchs.de |             |             |
-| [M5 Washer DIN 125](https://www.schraubenluchs.de/250-Stueck-Unterlegscheiben-DIN-125-Edelstahl-A2-53)   |      1.12€ | schraubenluchs.de |             |             |
-| **Total**                                                                                                |            |                   |             |             |
+## 3.2. Fasteners
+
+| **Items**                                                                                                | **Moneys** | **Vendor**        |    **Ordered**     | **Arrived** |
+| -------------------------------------------------------------------------------------------------------- | ---------: | ----------------- | :----------------: | :---------: |
+| [M5x25 DIN912](https://www.schraubenluchs.de/100-Stueck-Zylinderschrauben-ISO-4762-DIN-912-A2-70-M-5x25) |      5.75€ | schraubenluchs.de | :heavy_check_mark: |             |
+| [M5x50 DIN912](https://www.schraubenluchs.de/100-Stueck-Zylinderschrauben-ISO-4762-DIN-912-A2-70-M-5x50) |     14.65€ | schraubenluchs.de | :heavy_check_mark: |             |
+| [M5x20 DIN912](https://www.schraubenluchs.de/100-Stueck-Zylinderschrauben-ISO-4762-DIN-912-A2-70-M-5x20) |      4.82€ | schraubenluchs.de | :heavy_check_mark: |             |
+| [M5 Hex Nut](https://www.schraubenluchs.de/200-Stueck-Sechskantmuttern-DIN-934-A2-M5)                    |      2.50€ | schraubenluchs.de | :heavy_check_mark: |             |
+| **Total**                                                                                                | **27.72€** |                   |                    |             |
 
 # 4. Drafting Area
 
