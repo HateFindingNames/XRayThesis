@@ -4,30 +4,14 @@
             "name": "latexmk 🔃 no GS",
             "tools": [
                 "latexmk"
-                // "latexmk"
             ]
         },
-        // {
-        //     "name": "latexmk 🔃",
-        //     "tools": [
-        //         "latexmk",
-        //         "latexmk",
-        //         "ghostscript"
-        //     ]
-        // },
         {
             "name": "Makeindex only",
             "tools": [
                 "makeindex"
             ]
         },
-        // {
-        //     "name": "lualatex",
-        //     "tools": [
-        //         "lualatexmk",
-        //         "ghostscript"
-        //     ]
-        // },
         {
             "name": "latexmk ➞ biber ➞ latexmk × 2",
             "tools": [
@@ -39,12 +23,6 @@
                 "ghostscript"
             ]
         },
-        // {
-        //     "name": "texify",
-        //     "tools": [
-        //       "texify"
-        //     ]
-        // },
         {
             "name": "Ghostscript only",
             "tools": [
@@ -205,5 +183,6 @@
     "latex-workshop.view.pdf.viewer": "browser",
     "latex-workshop.synctex.synctexjs.enabled": true,
     "latex-workshop.synctex.afterBuild.enabled": true,
-    "markdown-preview-enhanced.previewTheme": "github-dark.css"
+    "markdown-preview-enhanced.previewTheme": "github-dark.css",
+    "editor.acceptSuggestionOnEnter": "off"
 }
