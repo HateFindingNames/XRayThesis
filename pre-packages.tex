@@ -70,9 +70,10 @@
 \usepackage[numbered]{bookmark} % A new bookmark (outline) organization for hyperref https://www.ctan.org/pkg/bookmark
 % ---------- Make floats stay within the chapter/section/subsection they got placed ------------------
 \usepackage{placeins} % Control float placement https://www.ctan.org/pkg/placeins
-\let\Oldsection\section
+\let\Oldsection\section%
 \renewcommand{\section}[1]{\FloatBarrier\Oldsection{#1}}
-\let\Oldsubsection\subsection
+\let\Oldsubsection\subsection%
 \renewcommand{\subsection}[1]{\FloatBarrier\Oldsubsection{#1}}
-\let\Oldsubsubsection\subsubsection
+\let\Oldsubsubsection\subsubsection%
 \renewcommand{\subsubsection}[1]{\FloatBarrier\Oldsubsubsection{#1}}
+\usepackage{lipsum}

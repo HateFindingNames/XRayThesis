@@ -184,5 +184,6 @@
     "latex-workshop.synctex.synctexjs.enabled": true,
     "latex-workshop.synctex.afterBuild.enabled": true,
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
-    "editor.acceptSuggestionOnEnter": "off"
+    "editor.acceptSuggestionOnEnter": "on",
+    "editor.wordWrap": "off"
 }
