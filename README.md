@@ -1,25 +1,32 @@
 <!-- LTeX: language=en-EN -->
 
-- [1. 🔩 Hardware At Hand](#1--hardware-at-hand)
-  - [1.1. Source](#11-source)
-    - [1.1.1. 📜 Documentation](#111--documentation)
-  - [1.2. Detector](#12-detector)
-    - [1.2.1. 📜 Documentation](#121--documentation)
-- [2. 👀 Stuff to do](#2--stuff-to-do)
-- [3. 💸 Shopping Lists](#3--shopping-lists)
-  - [3.1. Hardware](#31-hardware)
-  - [3.2. Fasteners](#32-fasteners)
-- [4. Drafting Area](#4-drafting-area)
+- [1. :construction: Main Document](#1-construction-main-document)
+- [2. 🔩 Hardware At Hand](#2--hardware-at-hand)
+  - [2.1. Source](#21-source)
+    - [2.1.1. 📜 Documentation](#211--documentation)
+  - [2.2. Detector](#22-detector)
+    - [2.2.1. 📜 Documentation](#221--documentation)
+- [3. 👀 Stuff to do](#3--stuff-to-do)
+- [4. 💸 Shopping Lists](#4--shopping-lists)
+  - [4.1. Hardware](#41-hardware)
+  - [4.2. Fasteners](#42-fasteners)
+- [5. Drafting Area](#5-drafting-area)
 
-# 1. 🔩 Hardware At Hand
 
-## 1.1. Source
+# 1. :construction: Main Document
+
+Since there is no reasonable way to track updated PDFs in git I will place them on [my Onedrive :globe_with_meridians:](https://hsrheinmain-my.sharepoint.com/:b:/g/personal/lmy9f42u92_hsrheinmain_onmicrosoft_com/EdXuY1hF2GhHoTZ-xGF3LT8B4NocIp0KUSrm5S4OvCQvuw?e=4TwyDO) until it is somewhat ready to publish.
+
+# 2. 🔩 Hardware At Hand
+
+## 2.1. Source
 
 **Magpro TUB00154-SA-W06:**
 
 * XRF and X-ray imaging
 * 60kV (70 keV?)
 * Spot size (.25 x 1.07)mm
+* Cone divergence 48°
 * ~17.6e3cps @ 16.4uA (40kV)
 
 **SA** => SPI (**S**) and Analog (**A**) control type
@@ -28,7 +35,7 @@
 
 Made by [Moxtek](https://moxtek.com/) and distributed (EU) by [Quantum Design](https://qd-europe.com/de/de/)
 
-### 1.1.1. 📜 Documentation
+### 2.1.1. 📜 Documentation
 
 Available documentation can be found inside this repo:
 
@@ -41,18 +48,18 @@ and on my OneDrive:
 * [🔒 Moxtek MagPro 70kV  XRF Source (TUB00154-XX-XXX  TUB00155-XX-XXX) Product Specification (TUB-SPEC-1033) Rev H.pdf](https://hsrheinmain-my.sharepoint.com/:b:/g/personal/lmy9f42u92_hsrheinmain_onmicrosoft_com/EV1KUsbPE4NGpiN00cES0QcBQOVuTafLMZQphgjChVBe-A?email=daniel.muenstermann%40hs-rm.de&e=YY6j7k)
 * [🔒 TUB00154-XX-XXX Mechanical Drawing.pdf](https://hsrheinmain-my.sharepoint.com/:b:/g/personal/lmy9f42u92_hsrheinmain_onmicrosoft_com/Eb5gZbNKkz1OtNJbWsKaR_sB0skO_YVYC2-HvIApNUwNWA?email=daniel.muenstermann%40hs-rm.de&e=mrExvE)
 
-## 1.2. Detector
+## 2.2. Detector
 
 SDD Detector made by *PN Detector*: [XRS-A (All-in-One)](https://pndetector.de/products-applications/the-xrf-spectrometer-all-in-one/)
 ![SDD Detector](pictures/detector.jpg)
 
-### 1.2.1. 📜 Documentation
+### 2.2.1. 📜 Documentation
 
 OneDrive:
 
 * [🔒 User Manual - XRS-A-30-128-200-MLC+GUI 0.1.1 -3006007.pdf](https://hsrheinmain-my.sharepoint.com/:b:/g/personal/lmy9f42u92_hsrheinmain_onmicrosoft_com/EWPr4Hw9F3tDvXxqMdxp95wBGIPgKuyxWKV6rSSlt5RyFA?email=daniel.muenstermann%40hs-rm.de&e=1WMr1p)
 
-# 2. 👀 Stuff to do
+# 3. 👀 Stuff to do
 
 In no particular order:
 
@@ -88,9 +95,9 @@ In no particular order:
     * ~~**Ca**dmium **Te**lluride Schottky Diode (CdTe-Schottky)~~
 * [ ] X-Ray optics
 
-# 3. 💸 Shopping Lists
+# 4. 💸 Shopping Lists
 
-## 3.1. Hardware
+## 4.1. Hardware
 
 | **Items**                                                                                                                                                                                                                                                              |        **Moneys** | **Vendors**           |    **Ordered**     |    **Arrived**     |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------: | --------------------- | :----------------: | :----------------: |
@@ -118,7 +125,7 @@ In no particular order:
 | ~~**Total**~~          |   ~~**637.73€**~~ |                       |        :x:         |                    |
 | **Total**              |       **718.25€** |                       |        :x:         |                    |
 
-## 3.2. Fasteners
+## 4.2. Fasteners
 
 | **Items**                                                                                                | **Moneys** | **Vendor**        |    **Ordered**     |    **Arrived**     |
 | -------------------------------------------------------------------------------------------------------- | ---------: | ----------------- | :----------------: | :----------------: |
@@ -128,7 +135,7 @@ In no particular order:
 | [M5 Hex Nut](https://www.schraubenluchs.de/200-Stueck-Sechskantmuttern-DIN-934-A2-M5)                    |      2.50€ | schraubenluchs.de | :heavy_check_mark: | :heavy_check_mark: |
 | **Total**                                                                                                | **27.72€** |                   |                    |                    |
 
-# 4. Drafting Area
+# 5. Drafting Area
 
 ![Rotary stage WIP](pictures/rot_stage_draft.gif)
 ![Alt text](pictures/rot_stage_parts.jpg)
