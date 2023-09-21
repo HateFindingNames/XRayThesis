@@ -1,23 +1,55 @@
 \chapter{Hardware}
+    The hardware side consists of two mechanically connected but kinematically independent goniometer stages, static mounting components and an electrical part.
+    The electronics are subdivided into the power supply, motion and logic handling and an interface between XRS/detector/motion system and the logic.
+
     \section{Mechanics}
+        Mechanically the main challenge is to build two co-axial and co-planar but kinematically independent operating goniometer stages.
+        One to move the detector and one to move the specimen about there mutual center of rotation as shown in~\cref{fig:rough sketch of the motion system}.
+        \begin{figure}[h]
+            \centering
+            \includesvg[width=.6\textwidth]{drawings/sketch_stages}%
+            \label{fig:rough sketch of the motion system}
+            \caption[Rough sketch of the motion system.]{Rough sketch of the motion system.}
+        \end{figure}
+        The Bulb depicted in~\cref{fig:rough sketch of the motion system} represents the XRS, the eye represents the detector and the specimen to analyze is positioned in the center\footnote{Clearly, an X-Ray source most likely will not be found in the fashion of an actual incandescent light bulb. Here, it merely serves as a visual shortcut representing a photon source. Furthermore, an actual eye performs rather poor at detecting \(\gamma\)-radiation. Thus, it, as well, shall serve the purpose of representation.}.
+        The center stage varies the angle~\(\theta\) which is the angle spun between the incident beam path and the plane of the specimen.
+        The detector stage~-~the outer circle in~\cref{fig:rough sketch of the motion system}~-~gets positioned along an angle~\(\varphi\).\par\medskip
+
+        While both stages need to be capable of accurate and repeatable positioning, the detector stage needs to move and carry the weight of the actual detector and its supporting structure.
+        
+
         \subsection{Sample Stage}
             \begin{figure}[t]
                 \centering
-                \includesvg[height=.5\textheight, inkscapelatex=false]{drawings/sample_stage_-_exploded}
+                \includesvg[width=.8\textwidth]{drawings/X-MAGIX_full_sample}
+                \label{fig:xmagix full sample highlightes}
+                \caption[Full motion system. Sample stage blue highlighted.]{Full motion system. Sample stage blue highlighted.}
+            \end{figure}
+            \lipsum
+            \begin{figure}[t]
+                \centering
+                \includesvg[height=.5\textheight]{drawings/sample_stage_-_exploded}
                 \label{fig:sample stage exploded}%
                 \caption[Sample stage exploded view.]{Sample stage exploded view.}
             \end{figure}
             \lipsum
             \begin{figure}[t]
                 \centering
-                \includesvg[height=.5\textheight, inkscapelatex=false]{drawings/sample_stage_-_exploded_section}
+                \includesvg[height=.5\textheight]{drawings/sample_stage_-_exploded_section}
                 \label{fig:sample stage exploded section}%
                 \caption[Sample stage exploded view -- sectioned.]{Sample stage exploded view -- sectioned.}
             \end{figure}
         \subsection{Detector Stage}
+            \begin{figure}[h]
+                \centering
+                \includesvg[width=.8\textwidth]{drawings/X-MAGIX_full_detector}
+                \label{fig:xmagix full detector highlightes}
+                \caption[Full motion system. Detector stage blue highlighted.]{Full motion system. Detector stage blue highlighted.}
+            \end{figure}
+            \lipsum
             \begin{figure}[t]
                 \centering
-                \includesvg[height=.5\textheight, inkscapelatex=false]{drawings/detector_stage_-_exploded}
+                \includesvg[height=.5\textheight]{drawings/detector_stage_-_exploded}
                 \label{fig:detector stage exploded section}%
                 \caption[Detector stage exploded view.]{Detector stage exploded view.}
             \end{figure}
