@@ -49,7 +49,7 @@
             "args": [
                 "-sDEVICE=pdfwrite",
                 "-dCompatibilityLevel=1.5",
-                "-dPDFSETTINGS=/printer",
+                "-dPDFSETTINGS=/prepress",
                 "-dQUIET",
                 "-o%DOCFILE%_compressed.pdf",
                 "%OUTDIR%/%DOCFILE%.pdf"
@@ -185,5 +185,9 @@
     "latex-workshop.synctex.afterBuild.enabled": true,
     "markdown-preview-enhanced.previewTheme": "github-dark.css",
     "editor.acceptSuggestionOnEnter": "on",
-    "editor.wordWrap": "off"
+    "editor.wordWrap": "off",
+    "latex-workshop.view.pdf.color.dark.pageColorsBackground": "#ffffff",
+    "latex-workshop.view.pdf.color.dark.pageColorsForeground": "#000000",
+    "latex-workshop.view.pdf.color.light.pageColorsBackground": "#ffffff",
+    "latex-workshop.view.pdf.color.light.pageColorsForeground": "#000000"
 }
