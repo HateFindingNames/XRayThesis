@@ -8,7 +8,7 @@
     (title "X-MAGIX Peripheral Circuitry")
     (date "2023-09-13")
     (rev "0")
-    (company "Hochschule RheinMain")
+    (company "RheinMain University of Applied Sciences")
     (comment 1 "by Dennis Hunter")
     (comment 2 "!!WIP!!")
   )
@@ -629,276 +629,59 @@
         )
       )
     )
-    (symbol "Sensor_Proximity:SFH900" (pin_names (offset 1.016) hide) (in_bom yes) (on_board yes)
-      (property "Reference" "U" (at -5.08 5.08 0)
+    (symbol "Switch:SW_SPDT" (pin_names (offset 0) hide) (in_bom yes) (on_board yes)
+      (property "Reference" "SW" (at 0 4.318 0)
         (effects (font (size 1.27 1.27)))
       )
-      (property "Value" "SFH900" (at 6.35 5.08 0)
-        (effects (font (size 1.27 1.27)) (justify right))
+      (property "Value" "SW_SPDT" (at 0 -5.08 0)
+        (effects (font (size 1.27 1.27)))
       )
-      (property "Footprint" "OptoDevice:Siemens_SFH900" (at 1.27 -5.08 0)
-        (effects (font (size 1.27 1.27)) (justify left) hide)
-      )
-      (property "Datasheet" "https://www.batronix.com/pdf/sfh900.pdf" (at 0 2.54 0)
+      (property "Footprint" "" (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
       )
-      (property "ki_keywords" "Reflective Optical Sensor Opto" (at 0 0 0)
+      (property "Datasheet" "~" (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
       )
-      (property "ki_description" "Miniature Light Reflection Switches" (at 0 0 0)
+      (property "ki_keywords" "switch single-pole double-throw spdt ON-ON" (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
       )
-      (property "ki_fp_filters" "Siemens*SFH900*" (at 0 0 0)
+      (property "ki_description" "Switch, single pole double throw" (at 0 0 0)
         (effects (font (size 1.27 1.27)) hide)
       )
-      (symbol "SFH900_0_1"
-        (circle (center 0 -2.54) (radius 0.3556)
-          (stroke (width 0) (type default))
-          (fill (type outline))
-        )
-        (polyline
-          (pts
-            (xy -3.81 -0.635)
-            (xy -2.54 -0.635)
-          )
-          (stroke (width 0.254) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -2.286 2.921)
-            (xy -2.032 3.175)
-          )
+      (symbol "SW_SPDT_0_0"
+        (circle (center -2.032 0) (radius 0.508)
           (stroke (width 0) (type default))
           (fill (type none))
         )
-        (polyline
-          (pts
-            (xy -1.778 2.921)
-            (xy -1.524 3.175)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -1.524 2.667)
-            (xy -1.651 2.159)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -1.27 2.921)
-            (xy -1.016 3.175)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -1.143 1.905)
-            (xy -1.27 1.397)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -0.762 2.921)
-            (xy -0.508 3.175)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -0.254 2.921)
-            (xy 0 3.175)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 0 -2.54)
-            (xy 0 -5.08)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 0.254 2.921)
-            (xy 0.508 3.175)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 0.762 2.921)
-            (xy 1.016 3.175)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 1.27 2.921)
-            (xy 1.524 3.175)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 1.651 0.889)
-            (xy 1.143 1.016)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 1.778 2.921)
-            (xy -2.413 2.921)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 2.032 1.651)
-            (xy 1.524 1.778)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 2.667 -0.127)
-            (xy 3.81 -1.27)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 2.667 0.127)
-            (xy 3.81 1.27)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -2.54 1.651)
-            (xy -1.524 2.667)
-            (xy -2.032 2.54)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -2.159 0.889)
-            (xy -1.143 1.905)
-            (xy -1.651 1.778)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 0.635 1.905)
-            (xy 1.651 0.889)
-            (xy 1.524 1.397)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 1.016 2.667)
-            (xy 2.032 1.651)
-            (xy 1.905 2.159)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 2.667 1.016)
-            (xy 2.667 -1.016)
-            (xy 2.667 -1.016)
-          )
-          (stroke (width 0.3556) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 3.81 1.27)
-            (xy 3.81 2.54)
-            (xy 5.08 2.54)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -3.175 -0.635)
-            (xy -3.81 0.635)
-            (xy -2.54 0.635)
-            (xy -3.175 -0.635)
-          )
-          (stroke (width 0.254) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy 3.683 -1.143)
-            (xy 3.429 -0.635)
-            (xy 3.175 -0.889)
-            (xy 3.683 -1.143)
-          )
-          (stroke (width 0) (type default))
-          (fill (type none))
-        )
-        (polyline
-          (pts
-            (xy -5.08 -3.81)
-            (xy 5.08 -3.81)
-            (xy 5.08 3.81)
-            (xy -5.08 3.81)
-            (xy -5.08 -3.81)
-          )
-          (stroke (width 0.254) (type default))
-          (fill (type background))
-        )
-        (polyline
-          (pts
-            (xy -5.08 2.54)
-            (xy -3.175 2.54)
-            (xy -3.175 -2.54)
-            (xy 3.81 -2.54)
-            (xy 3.81 -1.27)
-          )
+        (circle (center 2.032 -2.54) (radius 0.508)
           (stroke (width 0) (type default))
           (fill (type none))
         )
       )
-      (symbol "SFH900_1_1"
-        (pin passive line (at -7.62 2.54 0) (length 2.54)
+      (symbol "SW_SPDT_0_1"
+        (polyline
+          (pts
+            (xy -1.524 0.254)
+            (xy 1.651 2.286)
+          )
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+        (circle (center 2.032 2.54) (radius 0.508)
+          (stroke (width 0) (type default))
+          (fill (type none))
+        )
+      )
+      (symbol "SW_SPDT_1_1"
+        (pin passive line (at 5.08 2.54 180) (length 2.54)
           (name "A" (effects (font (size 1.27 1.27))))
           (number "1" (effects (font (size 1.27 1.27))))
         )
-        (pin passive line (at 0 -7.62 90) (length 2.54)
-          (name "K" (effects (font (size 1.27 1.27))))
+        (pin passive line (at -5.08 0 0) (length 2.54)
+          (name "B" (effects (font (size 1.27 1.27))))
           (number "2" (effects (font (size 1.27 1.27))))
         )
-        (pin open_collector line (at 7.62 2.54 180) (length 2.54)
+        (pin passive line (at 5.08 -2.54 180) (length 2.54)
           (name "C" (effects (font (size 1.27 1.27))))
           (number "3" (effects (font (size 1.27 1.27))))
         )
@@ -1154,8 +937,8 @@
   (junction (at 207.01 50.8) (diameter 0) (color 0 0 0 0)
     (uuid 7093a4d7-a854-4709-b085-22d8324a1df9)
   )
-  (junction (at 138.43 138.43) (diameter 0) (color 0 0 0 0)
-    (uuid 80822fa2-01e9-43f8-bff8-7095c72d22ea)
+  (junction (at 134.62 138.43) (diameter 0) (color 0 0 0 0)
+    (uuid 79f6a595-7beb-40af-89e7-1aba88f568ea)
   )
   (junction (at 257.81 53.34) (diameter 0) (color 0 0 0 0)
     (uuid 856c75c4-f8e7-44c3-90a6-71df5a5dc011)
@@ -1166,17 +949,13 @@
   (junction (at 134.62 74.93) (diameter 0) (color 0 0 0 0)
     (uuid bc283170-13bf-402c-ad7a-a8f68a9f8600)
   )
-  (junction (at 134.62 138.43) (diameter 0) (color 0 0 0 0)
-    (uuid c0e06852-24b8-4a14-b71d-3332de3a6850)
-  )
   (junction (at 257.81 60.96) (diameter 0) (color 0 0 0 0)
     (uuid d98b425b-7bfa-499a-a611-dd9a01b890eb)
   )
 
-  (wire (pts (xy 245.11 132.08) (xy 245.11 133.35))
-    (stroke (width 0) (type default))
-    (uuid 006a8184-f443-44e1-8d10-b92b3c709636)
-  )
+  (no_connect (at 205.74 137.795) (uuid c58979c6-9e52-4a45-9cf6-e99561bb6993))
+  (no_connect (at 239.395 137.795) (uuid dd048695-b677-4cf3-b5b5-be8a17d188c2))
+
   (wire (pts (xy 46.99 187.325) (xy 46.99 184.785))
     (stroke (width 0) (type default))
     (uuid 108b9076-08f6-4a1e-8b15-59a8262ff7ac)
@@ -1210,11 +989,11 @@
     (stroke (width 0) (type default))
     (uuid 24d97d7d-a9a0-4133-80be-0b4a6d483c6d)
   )
-  (wire (pts (xy 213.36 123.19) (xy 213.36 124.46))
+  (wire (pts (xy 208.28 126.365) (xy 208.28 127.635))
     (stroke (width 0) (type default))
     (uuid 2868ae5e-fcac-48dc-b782-3512730febcb)
   )
-  (wire (pts (xy 256.54 116.84) (xy 256.54 118.11))
+  (wire (pts (xy 241.935 120.015) (xy 241.935 121.285))
     (stroke (width 0) (type default))
     (uuid 2907c7bc-0ab5-4aa5-a250-3c860d8f99b1)
   )
@@ -1230,15 +1009,19 @@
     (stroke (width 0) (type default))
     (uuid 2bd5e936-00e7-4a42-8d21-5968dd86e8a4)
   )
+  (wire (pts (xy 121.92 138.43) (xy 121.92 141.605))
+    (stroke (width 0) (type default))
+    (uuid 2e73938e-428a-49f6-84e9-d6bbce248b19)
+  )
   (wire (pts (xy 250.19 53.34) (xy 257.81 53.34))
     (stroke (width 0) (type default))
     (uuid 313a1c71-50e7-448e-ba07-5903be616107)
   )
-  (wire (pts (xy 213.36 139.7) (xy 213.36 142.24))
+  (wire (pts (xy 210.82 137.795) (xy 210.82 140.335))
     (stroke (width 0) (type default))
     (uuid 31b2fad0-dc80-420d-89c8-6f0af397b47a)
   )
-  (wire (pts (xy 214.63 142.24) (xy 213.36 142.24))
+  (wire (pts (xy 212.09 140.335) (xy 210.82 140.335))
     (stroke (width 0) (type default))
     (uuid 32f76a68-45e0-490a-bbc4-20cb6121a94a)
   )
@@ -1263,10 +1046,6 @@
     (uuid 4f306a17-4b3d-40c0-ab25-932d638f99bc)
   )
 
-  (wire (pts (xy 134.62 138.43) (xy 134.62 143.51))
-    (stroke (width 0) (type default))
-    (uuid 5123c092-0535-47b3-8c4f-f7350578eb8c)
-  )
   (wire (pts (xy 31.115 138.43) (xy 31.115 135.89))
     (stroke (width 0) (type default))
     (uuid 5884a2bb-9218-4d77-b7d2-7d65ee5cb14a)
@@ -1305,17 +1084,9 @@
     (stroke (width 0) (type default))
     (uuid 6e7693f0-efff-4d25-8247-a788803cdb7e)
   )
-  (wire (pts (xy 138.43 138.43) (xy 140.97 138.43))
-    (stroke (width 0) (type default))
-    (uuid 717695a6-fc46-4ece-b56d-d256275123bb)
-  )
   (wire (pts (xy 257.81 44.45) (xy 257.81 45.72))
     (stroke (width 0) (type default))
     (uuid 7e1cd342-1d9e-40a4-82d4-d58d31bf7b62)
-  )
-  (wire (pts (xy 246.38 132.08) (xy 245.11 132.08))
-    (stroke (width 0) (type default))
-    (uuid 86421932-aa85-4c02-b1ca-f7a6f3f1ce96)
   )
   (wire (pts (xy 31.115 135.89) (xy 33.655 135.89))
     (stroke (width 0) (type default))
@@ -1347,7 +1118,7 @@
     (uuid 91ff9fba-8e97-49da-91c5-7ec4ecc72ab7)
   )
 
-  (wire (pts (xy 256.54 123.19) (xy 256.54 124.46))
+  (wire (pts (xy 241.935 126.365) (xy 241.935 127.635))
     (stroke (width 0) (type default))
     (uuid 96912715-87fe-4ab8-a875-42cab8c29cc0)
   )
@@ -1367,17 +1138,21 @@
     (stroke (width 0) (type default))
     (uuid aa5577f8-1b4a-4f2b-bf79-53a9cea8209f)
   )
-  (wire (pts (xy 134.62 138.43) (xy 138.43 138.43))
+  (wire (pts (xy 134.62 138.43) (xy 140.97 138.43))
     (stroke (width 0) (type default))
     (uuid aa639892-b84e-417c-9d8c-bd93b60e5470)
   )
-  (wire (pts (xy 257.81 142.24) (xy 256.54 142.24))
+  (wire (pts (xy 245.745 140.335) (xy 244.475 140.335))
     (stroke (width 0) (type default))
     (uuid ad455225-87d6-4e53-9da2-1dc28b22dc2e)
   )
   (wire (pts (xy 33.655 133.35) (xy 31.115 133.35))
     (stroke (width 0) (type default))
     (uuid ae9ab556-7f6b-4933-ac1f-3b7a4e64bd3f)
+  )
+  (wire (pts (xy 115.57 141.605) (xy 121.92 141.605))
+    (stroke (width 0) (type default))
+    (uuid b0c760e1-7935-4717-84c0-af61b200d4d7)
   )
   (polyline (pts (xy 285.017 89.7847) (xy 285.017 89.7909))
     (stroke (width 0) (type default))
@@ -1388,15 +1163,7 @@
     (stroke (width 0) (type default))
     (uuid b33cc50b-b9da-4e58-884f-07a37c2471bc)
   )
-  (wire (pts (xy 203.2 132.08) (xy 201.93 132.08))
-    (stroke (width 0) (type default))
-    (uuid b5b3492c-c166-499a-be14-756b67e74143)
-  )
-  (wire (pts (xy 121.92 138.43) (xy 121.92 143.51))
-    (stroke (width 0) (type default))
-    (uuid b72723da-ab78-4c4d-bef7-661678408e1b)
-  )
-  (wire (pts (xy 213.36 116.84) (xy 213.36 118.11))
+  (wire (pts (xy 208.28 120.015) (xy 208.28 121.285))
     (stroke (width 0) (type default))
     (uuid bacc3acd-a56e-49c1-9a4a-20c34241980a)
   )
@@ -1445,7 +1212,7 @@
     (stroke (width 0) (type default))
     (uuid d12453b6-fef8-4081-bac6-e63075f823e3)
   )
-  (wire (pts (xy 140.97 140.97) (xy 138.43 140.97))
+  (wire (pts (xy 140.97 141.605) (xy 134.62 141.605))
     (stroke (width 0) (type default))
     (uuid d2912952-f545-4327-90ae-f115c7735e9e)
   )
@@ -1458,10 +1225,6 @@
     (uuid d9f4eaf0-9b86-4251-9e15-4246e69d6f08)
   )
 
-  (wire (pts (xy 201.93 132.08) (xy 201.93 133.35))
-    (stroke (width 0) (type default))
-    (uuid dc8f556e-ad75-4b6c-8e50-0fa70bd762af)
-  )
   (wire (pts (xy 133.35 74.93) (xy 134.62 74.93))
     (stroke (width 0) (type default))
     (uuid e310655b-ff2d-49ec-aa0e-254d22e2d1ae)
@@ -1479,7 +1242,7 @@
     (stroke (width 0) (type default))
     (uuid f4f5ef2b-62e9-40fc-926d-409f856c0ef1)
   )
-  (wire (pts (xy 138.43 140.97) (xy 138.43 138.43))
+  (wire (pts (xy 134.62 141.605) (xy 134.62 138.43))
     (stroke (width 0) (type default))
     (uuid f552e987-083e-4b25-8eac-d9b367cceb52)
   )
@@ -1488,7 +1251,7 @@
     (uuid f624e46a-a986-4dc1-8d8b-f050c2ac7975)
   )
 
-  (wire (pts (xy 256.54 139.7) (xy 256.54 142.24))
+  (wire (pts (xy 244.475 137.795) (xy 244.475 140.335))
     (stroke (width 0) (type default))
     (uuid f672f26d-9be6-46f8-95c2-7b52edb0a666)
   )
@@ -1547,7 +1310,7 @@
     (effects (font (size 1 1)) (justify left bottom))
     (uuid e16e7be4-efaf-46ee-bfe4-5cb3e74844a2)
   )
-  (text "Pin	Function		I/O Value\n1	HV Enable		0.0 or +5.0 Volts (Input Z = 10k)\n2	Filament Ready	0.0 or +5.0 Volts (Output Z =1k)\n3	HV Control		2.667 to +4.667 Volts (Input Z = 100k)\n4	HV Monitor		2.667 to +4.667 Volts (Output Z = 100Ω)\n5	Current Control	0.04 to +1.2 Volts (Input Z = 100k)\n6	Current Monitor	0.0 to +1.2 Volts (Output Z = 100Ω)\n7	Ground			GND\n8	Ground			GND\n9	Filament Enable	0.0 or +5.0 Volts (Input Z = 10k)\n10	Input Power		+24 Volts DC ± 5%"
+  (text "Pin	Function		I/O Value\n1	HV Enable		0.0 or +5.0 Volts (Input Z = 10k)\n2	Filament Ready	0.0 or +5.0 Volts (Output Z =1k)\n3	HV Control		0.27 to +4.0 Volts (Input Z = 100k)\n4	HV Monitor		0.27 to +4.0 Volts (Output Z = 100Ω)\n5	Current Control	0.04 to +4.0 Volts (Input Z = 100k)\n6	Current Monitor	0.0 to +4.0 Volts (Output Z = 100Ω)\n7	Ground			GND\n8	Ground			GND\n9	Filament Enable	0.0 or +5.0 Volts (Input Z = 10k)\n10	Input Power		+24 Volts DC ± 5%"
     (at 94.615 189.865 0)
     (effects (font (size 1 1)) (justify left bottom))
     (uuid ecaf77dc-c351-4b8d-b7ea-e3447287b48f)
@@ -1557,13 +1320,13 @@
     (uuid f36ea1c4-e251-4708-a619-341327187b39)
   )
 
-  (label "GPIO25" (at 134.62 143.51 0) (fields_autoplaced)
+  (label "GPIO24" (at 116.205 141.605 0) (fields_autoplaced)
     (effects (font (size 1 1)) (justify left bottom))
-    (uuid 5d691aab-d490-495e-926f-0f3cdbdf30cf)
+    (uuid 3b3897b9-1725-4523-8d0a-3e5228c6cec0)
   )
-  (label "GPIO24" (at 121.92 143.51 180) (fields_autoplaced)
-    (effects (font (size 1 1)) (justify right bottom))
-    (uuid 62dd19b4-da40-457c-9706-74a6f044231c)
+  (label "GPIO25" (at 135.255 141.605 0) (fields_autoplaced)
+    (effects (font (size 1 1)) (justify left bottom))
+    (uuid f66a81b5-2177-45ce-a4aa-cc6c31c786e0)
   )
 
   (global_label "HV Monitor" (shape output) (at 59.055 182.245 180) (fields_autoplaced)
@@ -1636,6 +1399,13 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
+  (global_label "GPIO24" (shape output) (at 115.57 141.605 180) (fields_autoplaced)
+    (effects (font (size 1 1)) (justify right))
+    (uuid 480e97d6-85d1-4c05-9fc5-28970dc87615)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 107.7911 141.605 0)
+      (effects (font (size 1.27 1.27)) (justify right) hide)
+    )
+  )
   (global_label "MISO" (shape output) (at 31.75 74.93 180) (fields_autoplaced)
     (effects (font (size 1 1)) (justify right))
     (uuid 4b5e4f4b-7337-46b0-b09d-25bc8ff62967)
@@ -1671,10 +1441,10 @@
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
-  (global_label "Endstop Smpl" (shape output) (at 257.81 142.24 0) (fields_autoplaced)
+  (global_label "Endstop Smpl" (shape output) (at 245.745 140.335 0) (fields_autoplaced)
     (effects (font (size 1 1)) (justify left))
     (uuid 8d4bed94-2d33-4f3f-b349-6f23bbe3e11e)
-    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 270.5414 142.24 0)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 258.4764 140.335 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
@@ -1685,10 +1455,10 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "Endstop Det" (shape output) (at 214.63 142.24 0) (fields_autoplaced)
+  (global_label "Endstop Det" (shape output) (at 212.09 140.335 0) (fields_autoplaced)
     (effects (font (size 1 1)) (justify left))
     (uuid 946094cb-382f-4251-8b88-4fef43abd949)
-    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 226.0756 142.24 0)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 223.5356 140.335 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
@@ -1706,10 +1476,10 @@
       (effects (font (size 1.27 1.27)) (justify right) hide)
     )
   )
-  (global_label "Filament Enable" (shape input) (at 140.97 140.97 0) (fields_autoplaced)
+  (global_label "Filament Enable" (shape input) (at 140.97 141.605 0) (fields_autoplaced)
     (effects (font (size 1 1)) (justify left))
     (uuid ab2c0af8-109e-4c77-ba48-e85d78fb94e8)
-    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 155.5108 140.97 0)
+    (property "Intersheetrefs" "${INTERSHEET_REFS}" (at 155.5108 141.605 0)
       (effects (font (size 1.27 1.27)) (justify left) hide)
     )
   )
@@ -1778,13 +1548,40 @@
     (property "Datasheet" "https://www.analog.com/media/en/technical-documentation/data-sheets/LT1009.pdf" (at 246.38 55.88 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 48735f37-a6c6-4be4-b750-8124250cb44e))
-    (pin "2" (uuid 897a64b8-5a57-4aa4-b0d2-acde40984ef5))
-    (pin "3" (uuid 32cccefc-2399-483d-9195-7ccbe71ad07a))
+    (pin "1" (uuid 5b34e4be-f256-4bdc-9f49-0bc15e087c64))
+    (pin "2" (uuid c712a1e4-36c3-4291-9927-ab3b1e781bf3))
+    (pin "3" (uuid 87d51c0c-00d5-4b22-8523-64dc1022be4d))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "U1") (unit 1)
+        )
+      )
+    )
+  )
+
+  (symbol (lib_id "Switch:SW_SPDT") (at 241.935 132.715 270) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 17216b41-23dc-4c9e-a4e2-4b63d0379fb0)
+    (property "Reference" "SW1" (at 246.38 131.445 90)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "SW_SPDT" (at 246.38 133.985 90)
+      (effects (font (size 1.27 1.27)) (justify left) hide)
+    )
+    (property "Footprint" "" (at 241.935 132.715 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 241.935 132.715 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid d8f911e1-3248-45f3-885c-243031b44101))
+    (pin "2" (uuid 93ee340f-0301-4e46-b875-c78f18437012))
+    (pin "3" (uuid 2dd15505-1077-47dd-8745-1fb0368c21c4))
+    (instances
+      (project "raspberry"
+        (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
+          (reference "SW1") (unit 1)
         )
       )
     )
@@ -1900,6 +1697,33 @@
     )
   )
 
+  (symbol (lib_id "Switch:SW_SPDT") (at 208.28 132.715 270) (unit 1)
+    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
+    (uuid 31712b45-ef4d-449d-ad0c-a52e3afc8438)
+    (property "Reference" "SW2" (at 212.725 131.445 90)
+      (effects (font (size 1.27 1.27)) (justify left))
+    )
+    (property "Value" "SW_SPDT" (at 212.725 133.985 90)
+      (effects (font (size 1.27 1.27)) (justify left) hide)
+    )
+    (property "Footprint" "" (at 208.28 132.715 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (property "Datasheet" "~" (at 208.28 132.715 0)
+      (effects (font (size 1.27 1.27)) hide)
+    )
+    (pin "1" (uuid a262d4cb-d5fe-4feb-ba56-639b6a699e2a))
+    (pin "2" (uuid 3adb0c23-4061-47a3-8d1f-85f20b2ae88f))
+    (pin "3" (uuid d89ba9b1-467e-496c-8134-1f8b829f21c4))
+    (instances
+      (project "raspberry"
+        (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
+          (reference "SW2") (unit 1)
+        )
+      )
+    )
+  )
+
   (symbol (lib_id "power:GNDA") (at 57.785 133.985 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 363d8a4a-1d7a-4250-8f8f-b815f42a3921)
@@ -1925,31 +1749,6 @@
     )
   )
 
-  (symbol (lib_id "power:GND") (at 245.11 133.35 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 3a410bf6-3148-4b47-b1c2-d22516123b2e)
-    (property "Reference" "#PWR010" (at 245.11 139.7 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 245.11 138.43 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 245.11 133.35 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 245.11 133.35 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid fff65e96-39d6-442e-a876-a9e2f89e3cbf))
-    (instances
-      (project "raspberry"
-        (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
-          (reference "#PWR010") (unit 1)
-        )
-      )
-    )
-  )
-
   (symbol (lib_id "Device:C_Small") (at 55.88 53.34 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no)
     (uuid 3b12c7e5-4ed6-4ad3-a9ab-29e4b717a851)
@@ -1965,8 +1764,8 @@
     (property "Datasheet" "~" (at 55.88 53.34 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 2c03dc3b-fbad-45d9-95b5-192a18db59b2))
-    (pin "2" (uuid 4716ac6d-186e-4ee4-a300-037999f5237d))
+    (pin "1" (uuid 93b6f99f-da38-49e6-b9bd-ea5f84167ad1))
+    (pin "2" (uuid b29ea9d5-a959-46c2-b42e-dbc14fc33cc0))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -1991,45 +1790,18 @@
     (property "Datasheet" "https://www.ti.com/lit/ds/symlink/tlv5618a.pdf" (at 124.46 49.53 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 01c66941-1098-46bf-9727-3d9c47b18e89))
-    (pin "2" (uuid e070dfc7-722f-462d-a6b7-280d6a1f17b6))
-    (pin "3" (uuid 99cb0502-a73a-4027-95ef-01c9488ab9ff))
-    (pin "4" (uuid 3bd5feed-4325-40ff-acf0-239f8fca8cd2))
-    (pin "5" (uuid c50c0b49-e29e-46b1-9ce4-be060c529376))
-    (pin "6" (uuid 9488595a-97ce-4f7f-841f-78d38e73b331))
-    (pin "7" (uuid 54fee9eb-38ae-45c9-a8c8-88e8fd49589b))
-    (pin "8" (uuid 40818ff0-0d98-42be-80cf-5727ca3b4946))
+    (pin "1" (uuid 817c84c6-59a3-498b-b747-1dd1c2446950))
+    (pin "2" (uuid d2518f2f-87a8-41e3-940d-5b6f9b670086))
+    (pin "3" (uuid b6acf01d-0ba5-4aad-b033-fadaad5a3870))
+    (pin "4" (uuid 63448215-f8cd-4404-b3d0-675fcaec92a2))
+    (pin "5" (uuid 539df90d-fea0-4ed5-9e19-a7c32891ee55))
+    (pin "6" (uuid 798f5f6d-2bc7-41f8-923a-f33d32d50b8a))
+    (pin "7" (uuid 91eec061-b042-402a-a3d4-44bb2179867b))
+    (pin "8" (uuid 4f155ebe-1cf8-4e9c-8e9b-d1fb7d48d565))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "U2") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Sensor_Proximity:SFH900") (at 210.82 132.08 270) (unit 1)
-    (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
-    (uuid 40449538-2bd7-4bf2-8b6c-b039c48ebcc6)
-    (property "Reference" "U3" (at 215.9 130.81 90)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "SFH900" (at 215.9 133.35 90)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "OptoDevice:Siemens_SFH900" (at 205.74 133.35 0)
-      (effects (font (size 1.27 1.27)) (justify left) hide)
-    )
-    (property "Datasheet" "https://www.batronix.com/pdf/sfh900.pdf" (at 213.36 132.08 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 2485b92f-5866-4fff-8b37-dac46cc18131))
-    (pin "2" (uuid 6c2b4f44-b629-4ada-8c86-8a23d6b307ed))
-    (pin "3" (uuid 1f5b2854-68e3-41aa-ba01-7f73771ceaf5))
-    (instances
-      (project "raspberry"
-        (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
-          (reference "U3") (unit 1)
         )
       )
     )
@@ -2125,7 +1897,7 @@
     (property "Datasheet" "" (at 207.01 63.5 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 1075e1c1-2566-4d5f-9299-df61d35daa8b))
+    (pin "1" (uuid 40a7b9c6-28ef-4054-b9d8-5cc89d91c5b3))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2175,7 +1947,7 @@
     (property "Datasheet" "" (at 55.88 55.88 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 3b8a8525-c300-42fd-b677-0d24e38e37f9))
+    (pin "1" (uuid 63d2f2db-8a85-42a4-b84e-9ba44c663016))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2200,8 +1972,8 @@
     (property "Datasheet" "~" (at 134.62 78.74 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid f0973f35-c033-4b04-be79-1fc64ebacc1e))
-    (pin "2" (uuid ff4ae4ba-896b-42a5-b247-9a7d0308ce2f))
+    (pin "1" (uuid a834c139-a61a-4869-8d0b-0b4fa6eab99c))
+    (pin "2" (uuid 00bc3227-0a67-4082-b105-c28a8f108993))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2226,7 +1998,7 @@
     (property "Datasheet" "" (at 250.19 52.07 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 534a3eeb-5937-431b-a8d2-2f6d6e953558))
+    (pin "1" (uuid 3ca070a1-ad15-40f6-ae18-55199c07f196))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2251,7 +2023,7 @@
     (property "Datasheet" "" (at 257.81 63.5 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 7e977045-e220-46af-bb0e-fdcffd079bfd))
+    (pin "1" (uuid d252f9b2-e597-4958-8101-fbdd2aa494db))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2276,7 +2048,7 @@
     (property "Datasheet" "" (at 207.01 44.45 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid d6a8a699-86f8-4c03-9aea-3fd61513f9d7))
+    (pin "1" (uuid 59af02a4-c752-4265-b266-0852b720cb19))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2286,22 +2058,22 @@
     )
   )
 
-  (symbol (lib_id "power:+5V") (at 256.54 116.84 0) (unit 1)
+  (symbol (lib_id "power:+5V") (at 241.935 120.015 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid 90c5f0fb-79ef-4415-b7d3-ae07f1f5a6c9)
-    (property "Reference" "#PWR011" (at 256.54 120.65 0)
+    (property "Reference" "#PWR011" (at 241.935 123.825 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "+5V" (at 256.54 111.76 0)
+    (property "Value" "+5V" (at 241.935 114.935 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 256.54 116.84 0)
+    (property "Footprint" "" (at 241.935 120.015 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 256.54 116.84 0)
+    (property "Datasheet" "" (at 241.935 120.015 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 869fde58-ad28-44ac-82b4-4c1a67da51b7))
+    (pin "1" (uuid 00356f28-14b4-48d5-90dc-c25fbb8a3cfb))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2326,7 +2098,7 @@
     (property "Datasheet" "" (at 121.92 81.28 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 1e27c957-6dbd-4b1b-ad93-b0321e8caab5))
+    (pin "1" (uuid d501daf9-be70-4d64-bee1-9b5d09a2d378))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2351,37 +2123,12 @@
     (property "Datasheet" "~" (at 257.81 48.26 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 0cd1d489-b76f-4897-a590-54e3940f1407))
-    (pin "2" (uuid 1e21f6f7-ab4c-406e-bf57-0302a6c0b65c))
+    (pin "1" (uuid 3a1aa102-9b74-4ae2-8f58-041265f49ec3))
+    (pin "2" (uuid f5143a70-653a-408a-9867-47861cf1d83e))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "R1") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "power:GND") (at 201.93 133.35 0) (unit 1)
-    (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
-    (uuid 990d6c3e-a5bc-4397-aeec-b51dc80ac5e5)
-    (property "Reference" "#PWR09" (at 201.93 139.7 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Value" "GND" (at 201.93 138.43 0)
-      (effects (font (size 1.27 1.27)))
-    )
-    (property "Footprint" "" (at 201.93 133.35 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (property "Datasheet" "" (at 201.93 133.35 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 73c050e9-5247-40e8-8de5-670879cdadbc))
-    (instances
-      (project "raspberry"
-        (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
-          (reference "#PWR09") (unit 1)
         )
       )
     )
@@ -2461,7 +2208,7 @@
     (property "Datasheet" "" (at 121.92 60.96 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 6c52d184-4243-44a8-a07f-13c5113cc4bd))
+    (pin "1" (uuid f0760856-6aba-44f4-884a-d49deb6f7329))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2486,7 +2233,7 @@
     (property "Datasheet" "" (at 49.53 48.26 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 3d96a6e8-06be-441e-8802-2f78aebdf19a))
+    (pin "1" (uuid 7a8cb14b-78d4-4702-90d8-ffed5f5aba48))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2511,7 +2258,7 @@
     (property "Datasheet" "" (at 151.13 73.66 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 15bc6697-5cd1-41dc-830d-802f9b58fdfe))
+    (pin "1" (uuid 36d8b647-4e2c-46cd-b93b-2f913a00b121))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2536,8 +2283,8 @@
     (property "Datasheet" "~" (at 204.47 48.26 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 849f2322-7b6c-4017-80e1-a4ed3c728685))
-    (pin "2" (uuid 8e0b12e3-02dd-4a44-bfcb-e96c06af7a75))
+    (pin "1" (uuid 738f9627-d3e2-478a-bf71-e03344ae7c1b))
+    (pin "2" (uuid df557340-2b3c-4b83-ac3c-aeb2fed389ea))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2562,7 +2309,7 @@
     (property "Datasheet" "" (at 134.62 81.28 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid f0e7ab09-c330-4b6a-b4ce-9def35e3249d))
+    (pin "1" (uuid 6af1c07a-2086-4fd6-823a-e6df5a0c063b))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2587,14 +2334,14 @@
     (property "Datasheet" "http://ww1.microchip.com/downloads/en/DeviceDoc/21034D.pdf" (at 49.53 67.31 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid f1b6381e-fa49-477c-ae05-046e068af01a))
-    (pin "2" (uuid 229dcd4f-f78f-4fdb-bf8d-e5831c4aaaac))
-    (pin "3" (uuid 66f90bf9-d14f-4da9-bbc4-896b0bba2d91))
-    (pin "4" (uuid 540c8292-fdbc-440a-baae-e0f6a264ce82))
-    (pin "5" (uuid 323bc228-194b-404d-b3bd-3f3b460f601b))
-    (pin "6" (uuid 2e720490-9284-45c8-b5b3-d99e1e0ab86c))
-    (pin "7" (uuid 95875b57-7576-4c51-a269-8d337de1e5e4))
-    (pin "8" (uuid 47e5ffc1-7b67-44a6-a272-019b226100b5))
+    (pin "1" (uuid 4eb31324-b8b1-41e0-8205-48b87a4675e3))
+    (pin "2" (uuid 3d447c93-b1cd-4970-8d65-d15d2720e7db))
+    (pin "3" (uuid eb3929c5-17d3-46ba-a572-26a90f731352))
+    (pin "4" (uuid fcb1dd2b-b118-4c7f-a0a7-1a0b53169a6c))
+    (pin "5" (uuid d2cc8712-e473-443b-9320-6eb9b21ae940))
+    (pin "6" (uuid e4c4e74b-2796-46fd-9b08-1270a2542786))
+    (pin "7" (uuid 84eadaec-92b3-430f-b1e1-a0791b2b8754))
+    (pin "8" (uuid fe2562a4-8f75-4674-8ed4-e1a7c59491d9))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2619,8 +2366,8 @@
     (property "Datasheet" "~" (at 209.55 48.26 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 2afd6178-537a-45b5-bf23-f84512454a41))
-    (pin "2" (uuid 13d0fba2-b092-4410-a5b3-3b32ccbdc447))
+    (pin "1" (uuid 01769f53-c592-4ea9-a22f-e8bb297de231))
+    (pin "2" (uuid 9e2a2612-1844-40e5-b425-3feafaaf49c8))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2645,7 +2392,7 @@
     (property "Datasheet" "" (at 49.53 85.09 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid ca7e3d23-09c8-469e-8ccb-dd08672a9307))
+    (pin "1" (uuid 08ea15a4-0bab-4e97-8a97-cc45d2467803))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2670,7 +2417,7 @@
     (property "Datasheet" "" (at 193.04 52.07 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 69c82f84-8f0e-4d2e-885c-fcfec15e4993))
+    (pin "1" (uuid 5a820da8-c481-4479-9fee-32338da72139))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2695,7 +2442,7 @@
     (property "Datasheet" "" (at 257.81 44.45 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid 8de96aa9-92d8-48cc-8fd4-6673bfcbe378))
+    (pin "1" (uuid e13da092-9d35-42f8-b2bf-c28f187e3f4f))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2730,50 +2477,23 @@
     )
   )
 
-  (symbol (lib_id "Sensor_Proximity:SFH900") (at 254 132.08 270) (unit 1)
-    (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
-    (uuid e6946c47-8b4d-4b8b-ab0c-ac1a0a2c0153)
-    (property "Reference" "U4" (at 259.08 130.81 90)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Value" "SFH900" (at 259.08 133.35 90)
-      (effects (font (size 1.27 1.27)) (justify left))
-    )
-    (property "Footprint" "OptoDevice:Siemens_SFH900" (at 248.92 133.35 0)
-      (effects (font (size 1.27 1.27)) (justify left) hide)
-    )
-    (property "Datasheet" "https://www.batronix.com/pdf/sfh900.pdf" (at 256.54 132.08 0)
-      (effects (font (size 1.27 1.27)) hide)
-    )
-    (pin "1" (uuid 698d8c4d-0647-4e83-bb1f-79c95546d32c))
-    (pin "2" (uuid 59fdb5f6-0cfc-401c-965d-81179d7a9f6b))
-    (pin "3" (uuid 7221bad2-f0aa-43af-8545-f7168f03a209))
-    (instances
-      (project "raspberry"
-        (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
-          (reference "U4") (unit 1)
-        )
-      )
-    )
-  )
-
-  (symbol (lib_id "Device:R_Small") (at 213.36 120.65 180) (unit 1)
+  (symbol (lib_id "Device:R_Small") (at 208.28 123.825 180) (unit 1)
     (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
     (uuid f041bcda-6478-43f5-9792-5da7bb7a9936)
-    (property "Reference" "R2" (at 215.9 119.38 0)
+    (property "Reference" "R2" (at 210.82 122.555 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "470R" (at 215.9 121.92 0)
+    (property "Value" "470R" (at 210.82 125.095 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Footprint" "" (at 213.36 120.65 0)
+    (property "Footprint" "" (at 208.28 123.825 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "~" (at 213.36 120.65 0)
+    (property "Datasheet" "~" (at 208.28 123.825 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid a95b6713-b98e-4620-b0d0-f2c882e14835))
-    (pin "2" (uuid e021a614-3f7e-4cee-a11c-390e9e827aca))
+    (pin "1" (uuid 1b17c561-b6e2-49cd-8394-67cf2960d154))
+    (pin "2" (uuid 39a8661d-421f-4efa-9887-7985bdd57605))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2798,8 +2518,8 @@
     (property "Datasheet" "http://www.ti.com/lit/ds/symlink/lm4040-n.pdf" (at 203.2 57.15 0)
       (effects (font (size 1.27 1.27) italic) hide)
     )
-    (pin "2" (uuid a13709ea-70d8-4b4e-9325-5756da3fb6fe))
-    (pin "3" (uuid 8913e3c9-1421-487b-a5bb-e63e4e5b873f))
+    (pin "2" (uuid 282e127e-a659-4f09-8361-a8c220dd7848))
+    (pin "3" (uuid fc2ce44a-9344-40ab-858a-52e234d945dc))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2809,23 +2529,23 @@
     )
   )
 
-  (symbol (lib_id "Device:R_Small") (at 256.54 120.65 180) (unit 1)
+  (symbol (lib_id "Device:R_Small") (at 241.935 123.825 180) (unit 1)
     (in_bom yes) (on_board no) (dnp no) (fields_autoplaced)
     (uuid f775ec6e-8dfa-4539-94ab-840902f6e4ff)
-    (property "Reference" "R3" (at 259.08 119.38 0)
+    (property "Reference" "R3" (at 244.475 122.555 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Value" "470R" (at 259.08 121.92 0)
+    (property "Value" "470R" (at 244.475 125.095 0)
       (effects (font (size 1.27 1.27)) (justify right))
     )
-    (property "Footprint" "" (at 256.54 120.65 0)
+    (property "Footprint" "" (at 241.935 123.825 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "~" (at 256.54 120.65 0)
+    (property "Datasheet" "~" (at 241.935 123.825 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid ea96ba3f-4075-4cc6-baa3-dde4c3802213))
-    (pin "2" (uuid de043003-329a-43df-a5de-e28a9d9da3fd))
+    (pin "1" (uuid a21d94ae-a3c4-4cb4-864e-2a727ac760e2))
+    (pin "2" (uuid b72460f7-eb79-4e8f-a8ba-e6a938bb2317))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
@@ -2835,22 +2555,22 @@
     )
   )
 
-  (symbol (lib_id "power:+5V") (at 213.36 116.84 0) (unit 1)
+  (symbol (lib_id "power:+5V") (at 208.28 120.015 0) (unit 1)
     (in_bom yes) (on_board yes) (dnp no) (fields_autoplaced)
     (uuid fa71d3fe-8d12-436b-bdba-97517ff9f09a)
-    (property "Reference" "#PWR03" (at 213.36 120.65 0)
+    (property "Reference" "#PWR03" (at 208.28 123.825 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Value" "+5V" (at 213.36 111.76 0)
+    (property "Value" "+5V" (at 208.28 114.935 0)
       (effects (font (size 1.27 1.27)))
     )
-    (property "Footprint" "" (at 213.36 116.84 0)
+    (property "Footprint" "" (at 208.28 120.015 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (property "Datasheet" "" (at 213.36 116.84 0)
+    (property "Datasheet" "" (at 208.28 120.015 0)
       (effects (font (size 1.27 1.27)) hide)
     )
-    (pin "1" (uuid daa37883-5a08-4bda-8bea-62f2f35224a5))
+    (pin "1" (uuid a549dc3b-0ed4-4a93-a6f4-3c0e07e7d5b7))
     (instances
       (project "raspberry"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
