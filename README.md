@@ -51,7 +51,7 @@ and on my OneDrive:
 ## 2.2. Detector
 
 SDD Detector made by *PN Detector*: [XRS-A (All-in-One)](https://pndetector.de/products-applications/the-xrf-spectrometer-all-in-one/)
-![SDD Detector](pictures/detector.jpg)
+![SDD Detector](pictures/footage/detector.jpg)
 
 ### 2.2.1. 📜 Documentation
 
