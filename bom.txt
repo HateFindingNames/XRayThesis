@@ -1,0 +1,43 @@
+Pos.    Menge   Benennung
+1	1		Sample Platform
+2	1		Sample Driven Gear 80T
+3	2		SKF_W 61708.stp
+4	1		Stator Center
+5	1		Stator Center Spac
+6	1		Motor Mounnt Sample Dr
+7	2		17HM19-2004S
+8	2		Belt Tightener
+9	32		DIN 934 M5 Hex Nut
+10	44		DIN 912 M5 x 25
+11	8		Washer DIN 125 - A 3.2
+12	8		DIN 912 M3 x 6
+13	8		Washer DIN 125 - A 5.3
+14	1		Motor Mount Socket
+15	1		GT3 2mm 20T
+16	8		635-2rsr
+17	1		Endstop Bump Sample
+18	13		DIN 912 M5 x 6
+19	2		DIN 912 M5 x 55
+20	2		DIN 912 M5 x 50
+21	6		Stator Center Spacer Lo
+22	7		DIN 912 M5 x 10
+23	1		XRS-A Main Body
+24	4		PRT-01-60
+25	1		Detector Platform
+26	1		Detector Driven Gear 250T
+27	1		Motor Mount Detector Dr
+28	1		GT3 2mm 80T
+29	1		Endstop Bump Detector
+30	4		Detector Spacer
+31	4		DIN 912 M3 x 25
+32	1		Stator Base
+33	1		TUB00154-SA-W06
+34	1		Tube Mount
+35	1		Source Stand Socket
+36	1		Tube Mount Extrusion
+37	1		4020 90deg Bracket
+38	1		Tube Mount Extrusion
+39	4		DIN 912 M5 x 12
+40	1		Sample Belt^X-MAGIX
+41	1		Detector Belt^X-MAGIX
+42	2		DIN 912 M5 x 30

@@ -29,7 +29,7 @@
             \Cref{fig:xmagix full sample highlightes} shows the main kinematic assembly and the sample stage with drive highlighted in light blue.
             \begin{figure}[ht]
                 \centering
-                \includesvg[width=.8\textwidth]{drawings/X-MAGIX_full_sample}%
+                \includesvg[width=.6\textwidth]{drawings/X-MAGIX_full_sample}%
                 \caption[Full motion system. Sample stage blue highlighted.]{Full motion system. Sample stage highlighted in light blue.}%
                 \label{fig:xmagix full sample highlightes}%
             \end{figure}%
@@ -49,8 +49,8 @@
 
             \begin{figure}[h]
                 \centering
-                \includesvg[width=.8\textwidth]{drawings/sample_stage_-_exploded_section_2}%
-                \caption[Sample stage exploded view -- sectioned.]{Sample stage exploded view -- sectioned. 1: 4 x M5x50, 2: sample platform, 3: 6 x stator lock, 4: 2 x ball bearing W 61708-2RS1, 5: stator center spacer, 6: PRT-01-60, 7: stator center, 8: 4 x washer 5.3, 9: 4 x ball bearing 635-2RS, 10: 2 x M5x25, 11: endstop bump sample, 12: M5 hex nut, 13: 7 x M5x10, 14: sample driven gear.}%
+                \includesvg[width=.8\textwidth]{drawings/sample_stage_-_exploded_section}%
+                \caption[Sample stage exploded view -- sectioned.]{Sample stage exploded view -- sectioned. 1: Sample Platform, 2: Sample Driven Gear 80T, 3: W 61708, 4: Stator Center, 5: Stator Center Spacer, 9: M5 Hex nut, 10: M5x25, 13: Washer 5.3, 16: 635-2RS, 17: Endstop Bump Sample, 19: M5x55, 20: M5x50, 21: Stator Center Spacer Lock, 22: M5x10, 24: PRT-01-60.}%
                 \label{fig:sample stage exploded section}%
             \end{figure}%
             Not shown in~\cref{fig:sample stage exploded section} is the driving sub-assembly for the sample stage.
@@ -59,36 +59,40 @@
         \subsection{Detector Stage}\label{sec:detector stage}
             The components comprising the detector stage are depicted in~\cref{fig:xmagix full detector highlightes}.
             Its principle of operation follows the same basic concept~--~a timing belt mechanically couples the driving sub-assembly on the right-hand side to the movable central platform.
-            \begin{figure}[h]
+            \begin{figure}[ht]
                 \centering
-                \includesvg[width=.8\textwidth]{drawings/X-MAGIX_full_detector}%
+                \includesvg[width=.6\textwidth]{drawings/X-MAGIX_full_detector}%
                 \caption[Full motion system. Detector stage blue highlighted.]{Full motion system. Detector stage blue highlighted.}%
                 \label{fig:xmagix full detector highlightes}%
             \end{figure}
-            Again, the detector stage is subdivided into a driving sub-assembly as shown in \cref{fig:detector drive exploded} and driven one shown in \cref{fig:detector stage exploded} respectively.
+
+            Again, the detector stage is subdivided into a driving sub-assembly as shown in~\cref{fig:detector drive exploded} and driven one shown in~\cref{fig:detector stage exploded} respectively.
             The driven portion of the detector stage only consists of two main parts mounted to the slewing ring.
             The \textit{detector platform} (no. 4) which is placed on the top at an arbitrary orientation and the \textit{detector driven gear} on the bottom of the slewing ring.
             \textit{M5x25} bolts and \textit{hex nuts} are placed into all holes but the two where the \textit{endstop bump detector} (no. 6) is mounted.
             Here, to accommodate the needed extra length, \textit{M5x30} bolts are used instead.
             The \textit{endstop bump detector} itself is oriented such that its outermost mounting hole is aligned with the hole at the clockwise end of the detector arm.
-
-            To get the detector to the needed height, \textit{detector spacers} are placed underneath the \textit{detector}.\par\medskip
-
+            To lift the detector to a suitable height above the \textit{sample platform }, \textit{detector spacers} are placed underneath the \textit{detector}.\par\medskip
             \begin{figure}[t]
                 \centering
                 \includesvg[width=.8\textwidth]{drawings/detector_stage_-_exploded}%
-                \caption[Detector stage exploded view.]{Detector stage exploded view. 1: M5x25, 2: M3x25, 3: detector spacer, 4: detector platform, 5: detector driven gear, 6: endstop bump detector, 7: 20 x hex nut, 8: M5x30.}%
+                \caption[Detector stage exploded view.]{Detector stage exploded view. 9: M5 Hex Nut, 10: M5x25, 23: XRS-A, 25: Detector Platform, 26: Detector Driven Gear 250T, 29: Endstop Bump Detector, 30: Detector Spacer, 31: M3x25, 42: M5x30.}%
                 \label{fig:detector stage exploded}%
             \end{figure}
             
-
-            % \lipsum
+            \Cref{fig:detector drive exploded} shows an exploded view of the detector drive sub-assembly.
+            The core component, a NEMA17 \num{200} steps per revolution stepper motor (no. 7), is placed on the inside of the housing (no. 27) and held in place by four \textit{M3x6} screws.
+            Slotted srew holes allow easier installation of the timing belt and adjustment of tension later on.
+            Together with a \textit{hex nut} and the \textit{belt tensioner} (no. 8), a \textit{M5x25} bolt allows to hold the motor in place while tensioning the belt prior to finally tightening the screws at the top.
+            Bearing stacks identical to those seen in \cref{fig:sample stage exploded} are put in place to confine the belt path along a \qty{180}{\degree} loop around the \textit{80T} timing pulley (no. 28).
+            Having as many teeth of the belt engage the pulley at any given time is preferred as it ensures good torque transmission without belt slipping at a lower overall belt tension and thus lower load on the motors.
             \begin{figure}[h]
                 \centering
                 \includesvg[height=.5\textheight]{drawings/detector_drive_-_exploded}
-                \caption[Detector stage drive - exploded view.]{Detector stage drive - exploded view. 1: }
+                \caption[Detector stage drive - exploded view.]{Detector stage drive - exploded view. 7: 17HM19-2004S, 8: Belt Tightener, 9: M5 Hex nut, 10, M5x25, 11: Washer 3.2, 12: M3x6, 13: Washer 5.3, 14: Motor Mount Socket, 16: 635-2RS, 27: Motor Mount Detector Drive, 28: GT3 2mm 80T.}
                 \label{fig:detector drive exploded}
             \end{figure}
+            
         \subsection{Base and X-Ray Source}
             \lipsum
 
