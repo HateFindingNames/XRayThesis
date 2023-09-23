@@ -12,7 +12,11 @@
 	% ----------------------------------------------
 	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}
 	\centering
-	\textsc{\Large Hochschule RheinMain} \par
+	\ifbool{deutsch}{%
+		\textsc{\Large Hochschule RheinMain} \par
+	}{%
+		\textsc{\Large RheinMain University of Applied Sciences} \par
+	}
 	\begin{center}
 		\includegraphics[width=0.15\textwidth]{logo-hsrm.jpg}
 	\end{center}
