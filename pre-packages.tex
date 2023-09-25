@@ -3,6 +3,8 @@
 \usepackage[reqno,intlimits]{amsmath} % [reqno] um die gleichungsnummerierung rechts zu haben
 % intlimits: Grenzen für Integrale unterhalb und oberhalb des Zeichens
 \usepackage{amssymb} % math symbols
+\usepackage{mathtools}
+\DeclarePairedDelimiter{\cint}\lceil\rceil
 \usepackage{array} % Extending the array and tabular environments https://ctan.org/pkg/array
 \ifbool{deutsch}{%
     \usepackage[ngerman]{babel}
@@ -36,6 +38,7 @@
 \DeclareSIUnit\amperehour{Ah}
 \DeclareSIUnit\watthour{Wh}
 \DeclareSIUnit\newtonmetre{Nm}
+\DeclareSIUnit\bit{bit}
 \usepackage{subcaption} % Support for sub-captions https://www.ctan.org/pkg/subcaption
 \usepackage{threeparttable} % better tablenotes
 \usepackage{tabularx} % Tabulars with adjustable-width columns https://www.ctan.org/pkg/tabularx
