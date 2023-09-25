@@ -1,6 +1,225 @@
 \chapter{Software}
     \section{Detector Interface}
-        \lipsum
+        The central component of the \textit{XRS-A} is the \textit{microDXP} manufactured by \textsc{XIA LLC}.
+        \textsc{XIA} provides USB drivers and a GUI tool \textit{ProSpect} for Windows but no pre-compiled binaries for Linux systems.
+        The sources for the software API \textit{Handel} however are provided on their public repository on \textsc{GitHub}~\cite{Software.HandelRelease.2023} and are forked by the author of this work~\cite{Software.XraythesisHandel.2023}.\par\medskip
+
+        \subsection{Building the Libraries}\label{sec:building libraries}
+            The SBC runs the latest x64 version of \textit{Raspberry Pi OS Lite}\footnote{Installed using the \textit{Raspberry Pi Imager} tool. Direct download available under~\cite{Software.RaspberryPiOSLite.2023}}.
+            % In order to build the API libraries on \textit{Ra}
+            A detailed description and troubleshooting suggestions can be found on the author's repository~\cite{Software.XraythesisHandel.2023}.\par\medskip
+
+            \textit{Handel} is meant to be build with \textit{SCons}~--~\textquote{a computer software build tool} which in turn is written in python.
+            Thus, it is dependent on a working python environment.
+            While Raspberry Pi OS has a Python interpreter pre-installed, its version does not match SCons requirements.
+            Not only to ensure consistent and reproducible development environment but also to keep the Python environment isolated from the system a forked version of miniconda\footnote{\textquote{a small bootstrap version of Anaconda that includes only conda, Python, the packages they both depend on, and a small number of other useful packages}} \textit{miniforge} is used.
+            As of the time of writing, Miniconda does not provide a build working on arm64 architecture.
+
+            With a working conda install set up a virtual environment is created installing the specific Python version~\num{3.9} and activated.
+            Next, the required Python packages are installed and~--~if not already bundles with the \textit{Raspberry Pi OS} install~--~the \texttt{libusb-dev} libraries.
+            \begin{lstlisting}[style=mybash, caption={[Creating conda environment and installing dependencies]Creating conda environment and installing dependencies.}, label={lst:creating conda env}, gobble=12]
+                # Create conda environment
+                conda create -n xmagix python=3.9 pip ipykernel
+                conda activate xmagix
+
+                # Install required python packages
+                pip install -r requirements.txt
+
+                # Install other dependencies
+                sudo apt install libusb-dev
+            \end{lstlisting}
+
+            The main entry point is the shell script \texttt{./build.sh}.
+            To start the build process it needs to be made executable and executed using the commands shown in~\cref{lst:build.sh}.
+            A build log is created in \texttt{./build.log} and the default build location is \texttt{./myapp/lib/}.
+            \begin{lstlisting}[style=mybash, caption={[Executing build script]Executing build script.}, label={lst:build.sh}, gobble=12]
+                # Make script executable
+                chmod +x ./build.sh
+
+                # Build
+                ./build.sh
+            \end{lstlisting}
+        \section{Python Wrapper}
+            The main language chosen to interface with the created shared object libraries is Python using the same environment created in~\cref{lst:creating conda env}.
+            The class \texttt{XMagix} defined in \texttt{./myapp/xmagix.py} exposes most of the relevant functions of the Handel API and is mostly written in plain Python.
+            The only external packages loaded are \textit{Numpy} and \textit{Rich}.
+            The former to enable fast matrix manipulation and the latter to auto-timestamp and colorize logging prints to console.\par\medskip
+
+            Furthermore, to actually develop wrapping code Pythons standard library \textit{ctypes} was used to access \textit{Handels} C-functions.
+            Following, only the most relevant methods of \texttt{XMagix} are shown.
+            See \cref{lst:xmagix class} for a full overview.
+
+            
+            \begin{lstlisting}[style=mypython, firstnumber=13, caption={[XMagix class constructor]XMagix class constructor.}, label={lst:xmagix constructor}, gobble=12]
+                class XMagix:
+                    """Wrapper class to expose handel API functions."""
+
+                    def __init__(self, libpath):
+                        self.systemUp = False
+                        self._lib = None
+                        self.libpath = libpath
+                        self.cdetChan = c_int(0)
+                        try:
+                            self._lib = cdll.LoadLibrary(self.libpath)
+                        except Exception:
+                            # Return traceback on error
+                            console.log("[red]Aw naw :disappointed: wrong file/path?[red]")
+                        else:
+                            console.log("[green]Library loaded successfully :smile:[/green]")
+            \end{lstlisting}
+            The constructor of \texttt{XMagix} as shown in~\cref{lst:xmagix constructor} does, besides setting some internal state variables, load the shared object library from the path passed to it during creation.
+
+            \subsection{getAllowedAcquisitionParams()}
+                \begin{lstlisting}[style=mypython, firstnumber=46, caption={[XMagix method getAllowedAcquisitionParams()]XMagix method getAllowedAcquisitionParams().}, label={lst:xmagix getAllowedAcquisitionParams}, gobble=16]
+                    def getAllowedAcquisitionParams(self, verbose=False):
+                        """Prints a list of allowed acquisition parameters to the console."""
+
+                        for key, item in acquisition_values.items():
+                            if verbose == False:
+                                console.console.log(f"[bold]{key}[/bold]")
+                            if verbose == True:
+                                console.console.log(f"[bold]{key}:[/bold] {item}")
+                            else:
+                                console.console.log(f"[dark_orange] :warning: <verbose> expects boolean values.")
+                \end{lstlisting}
+            
+            \subsection{init()}
+                \begin{lstlisting}[style=mypython, firstnumber=67, caption={[XMagix method init()]XMagix method init().}, label={lst:xmagix init}, gobble=16]
+                    def init(self, inifile):
+                        """Initializes the Handel library and loads in an .ini file. The functionality of this
+                        routine can be emulated by calling xiaInitHandel() followed by xiaLoadSys-
+                        tem()("handel_ini", iniFile). Either this routine or xiaInitHandel must be
+                        called prior to using the other Handel routines.
+                        """
+                
+                        self.inifile = inifile
+                        self.status = self._lib.xiaInit(self.stringToBytes(inifile))
+                        self.CHECK_ERROR("Loading system...")
+                \end{lstlisting}
+            
+            \subsection{startSystem()}
+                \begin{lstlisting}[style=mypython, firstnumber=84, caption={[XMagix method startSystem()]XMagix method startSystem().}, label={lst:xmagix startSystem}, gobble=16]
+                    def startSystem(self):
+                        """Starts the system previously defined via an .ini file."""
+
+                        if self.inifile and self.logpath:
+                            self.status = self._lib.xiaStartSystem()
+                            self.CHECK_ERROR("Starting system...")
+                        else:
+                            console.log("Set <logpath> and specify <inifile> first.")
+                \end{lstlisting}
+            
+            \subsection{setAcquisitionValues()}
+                \begin{lstlisting}[style=mypython, firstnumber=117, caption={[XMagix method setAcquisitionValues()]XMagix method setAcquisitionValues().}, label={lst:xmagix setAcquisitionValues}, gobble=16]
+                    def setAcquisitionValues(self, name, value):
+                        """
+                        Translates a high-level acquisition value into the appropriate DSP parameter(s)
+                        in the hardware. Product-specific Handel manuals list the acquisition values for
+                        each product.
+                        """
+
+                        if name not in acquisition_values:
+                            console.log(f"[dark_orange] :warning: Parameter \"{name}\" unknown.")
+                        else:
+                            cname = self.stringToBytes(name)
+                            cvalue = c_double(value)
+
+                            self.status = self._lib.xiaSetAcquisitionValues(self.cdetChan, cname, byref(cvalue))
+                            self.CHECK_ERROR(f"Setting '{name}' to {value}...")
+                \end{lstlisting}
+            
+            \subsection{getAcquisitionValues()}
+                \begin{lstlisting}[style=mypython, firstnumber=133, caption={[XMagix method getAcquisitionValues()]XMagix method getAcquisitionValues().}, label={lst:xmagix getAcquisitionValues}, gobble=16]
+                    def getAcquisitionValues(self, name) -> dict:
+                        """Retrieves the current setting of an acquisition value. This routine returns the same value as xiaSetAcquisitionValues() in the value parameters."""
+                        cvalue = c_double(0)
+
+                        self.acquisitionParams = []
+                        self.acquisitionValues = []
+                        if name == "all":
+                            for key in acquisition_values:
+                                self.status = self._lib.xiaGetAcquisitionValues(self.cdetChan, self.stringToBytes(key), byref(cvalue))
+                                self.acquisitionParams.append(key)
+                                self.acquisitionValues.append(cvalue.value)
+                            self.acquisitionValuesDict = dict(zip(self.acquisitionParams, self.acquisitionValues))
+                        else:
+                            if name in acquisition_values:
+                                console.log(f"{name}: {self.acquisitionValuesDict[name]}")
+                                return self.acquisitionValuesDict[name]
+                            else:
+                                console.log(f"[dark_orange] :warning: Parameter <name> unknown.")
+                                pass
+                                
+                        return self.acquisitionValuesDict
+                \end{lstlisting}
+            
+            \subsection{startRun()}
+                \begin{lstlisting}[style=mypython, firstnumber=217, caption={[XMagix method startRun()]XMagix method startRun().}, label={lst:xmagix startRun}, gobble=16]
+                    def startRun(self, clearMca=0):
+                        self.cclearMca = c_short(clearMca)
+                
+                        self.status = self._lib.xiaStartRun(self.cdetChan, self.cclearMca)
+                        self.CHECK_ERROR(f"Run started until stopped by user...")
+                        self.isRunning = True
+                \end{lstlisting}
+
+            \subsection{fixedRealtimeRun()}
+                \begin{lstlisting}[style=mypython, firstnumber=224, caption={[XMagix method fixedRealtimeRun()]XMagix method fixedRealtimeRun().}, label={lst:xmagix fixedRealtimeRun}, gobble=16]
+                    def fixedRealtimeRun(self, realtime, clearMca=True):
+                        """Start fixed realtime run."""
+                
+                        if type(realtime) == str:
+                            realtime = float(realtime)
+                        self.crealtime = c_double(realtime)
+                        self.ctype = c_double(CONSTANTS["XIA_PRESET_FIXED_REAL"])
+                        clearMca = not clearMca
+                        self.cclearMca = c_short(clearMca) # 0: DO clear MCA, 1: do NOT clear MCA
+                        crunActive = c_short(0)
+                        cinputCountRate = c_double(0)
+                        coutputCountRate = c_double(0)
+                        ceventsInRun = c_ulong(0)
+                        cruntime = c_double(0)
+                        abort = 0
+                
+                        self.status = self.setAcquisitionValues("preset_type", CONSTANTS["XIA_PRESET_FIXED_REAL"])
+                        self.status = self.setAcquisitionValues("preset_value", realtime)
+                
+                        self.status = self._lib.xiaStartRun(self.cdetChan, self.cclearMca)
+                        self.CHECK_ERROR("Starting Run...")
+                
+                        console.clear()
+                        with console.status(":satellite: out cps: 0, Events: 0") as status:
+                            for _ in range(10*int(realtime)):
+                                self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("output_count_rate"), byref(coutputCountRate))
+                                self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("events_in_run"), byref(ceventsInRun))
+                                self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("run_active"), byref(crunActive))
+                                self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("runtime"), byref(cruntime))
+                                status.update(f":satellite: Time: {cruntime.value:.1f}/{realtime:.1f}, out cps: {coutputCountRate.value:.2f}, Events: {ceventsInRun.value}")
+                                if crunActive.value == 0:
+                                    break
+                                time.sleep(.1)
+                        console.log(f"Done. Run statistics: out cps: {coutputCountRate.value:.2f}, Events: {ceventsInRun.value}")
+                \end{lstlisting}
+
+            \subsection{pullMcaData()}
+                \begin{lstlisting}[style=mypython, firstnumber=271, caption={[XMagix method pullMcaData()]XMagix method pullMcaData().}, label={lst:xmagix pullMcaData}, gobble=16]
+                    def pullMcaData(self):
+                        """Time to read out the MCA"""
+                        
+                        nmca = self.getAcquisitionValues(name="number_mca_channels")
+                        cmca = (c_ulong * int(nmca))()
+                
+                        self.status = self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("mca"), byref(cmca))
+                        self.CHECK_ERROR("Pulling MCA...")
+                
+                        mca = np.ctypeslib.as_array(cmca)
+                        return mca
+                \end{lstlisting}
+
+            % \subsection{()}
+            %     \begin{lstlisting}[style=mypython, firstnumber=, caption={XMagix method ()}, label={lst:xmagix }, gobble=16]
+                    
+            %     \end{lstlisting}
     \section{X-Ray Source Interface}
         \lipsum
     \section{Motion System}

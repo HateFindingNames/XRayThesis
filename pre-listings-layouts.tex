@@ -1,21 +1,46 @@
 %
 %=====================Code Listing Layout Matlab=============================
 \definecolor{codegreen}{RGB}{28,172,0} % color values Red, Green, Blue
+\definecolor{codedarkgreen}{RGB}{94,153,85}
 \definecolor{codelilas}{RGB}{170,55,241}
-\lstdefinestyle{python}{language=Python,%
-    basicstyle=\footnotesize,%
-    inputencoding=latin1,%
-    breaklines=true,%
-    stepnumber=2,% line numbering steps
-    morekeywords={ones,height,width,datetime},% additional keywords to highlight
-    keywordstyle=\color{blue},%
-    frame=none,%
-    identifierstyle=\color{black},%
-    stringstyle=\color{codelilas},%
-    commentstyle=\color{codegreen},%
-    showstringspaces=false,%without this there will be a symbol in the places where there is a space
-    numbers=left,%
-    numberstyle={\tiny \color{black}},% size of the numbers
-    numbersep=9pt,% this defines how far the numbers are from the text
+\definecolor{codeorange}{RGB}{155, 55, 31}
+\definecolor{codegrey}{rgb}{0.6,0.6,0.6}
+\lstdefinestyle{mypython}{
+    language=Python,
+    tabsize=2,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+    basicstyle=\ttfamily\footnotesize,
+    inputencoding=utf8,
+    breaklines=true,
+    stepnumber=2, % line numbering steps
+    % morekeywords={ones,height,width,datetime}, % additional keywords to highlight
+    keywordstyle=\color{blue},
+    frame=none,
+    identifierstyle=\color{black},
+    stringstyle=\color{codeorange},
+    commentstyle=\color{codegreen},
+    showstringspaces=false, %without this there will be a symbol in the places where there is a space
+    numbers=left,
+    numberstyle={\tiny \color{black}}, % size of the numbers
+    numbersep=-5pt % this defines how far the numbers are from the text
+}
+\lstdefinestyle{mybash}{
+    language=bash,
+    tabsize=1,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+    basicstyle=\ttfamily\footnotesize,
+    inputencoding=utf8,
+    breaklines=true,
+    stepnumber=2, % line numbering steps
+    % morekeywords={ones,height,width,datetime}, % additional keywords to highlight
+    keywordstyle=\color{black},
+    frame=none,
+    identifierstyle=\color{black},
+    stringstyle=\color{black},
+    commentstyle=\color{codegreen},
+    showstringspaces=false, %without this there will be a symbol in the places where there is a space
+    numbers=left,
+    numberstyle={\tiny \color{black}}, % size of the numbers
+    numbersep=-5pt % this defines how far the numbers are from the text
 }
 %==============================================================================

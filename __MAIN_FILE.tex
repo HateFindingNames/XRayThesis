@@ -1,7 +1,6 @@
 \documentclass[paper=a4,11pt,titlepage,twoside=false,headings=normal,numbers=noenddot,captions=tableabove,listof=totoc,index=totoc,bibliography=totoc]{scrreprt}
 %-----------------------------------------------------------------
 \usepackage{etoolbox}
-\newbool{deutsch}
 % \booltrue{deutsch}	% comment out to switch document to english
 %-----------------------------------------------------------------
 \input{pre-variables}
@@ -9,7 +8,7 @@
 \input{pre-page-layout}
 \input{pre-header-footer-2010}
 \input{pre-header-footer-text-report}
-% \input{pre-listings-layouts}
+\input{pre-listings-layouts}
 \input{pre-nomenclature-layout}
 \DeclareNameAlias{author}{family-given}
 \DeclareNameAlias{editor}{family-given}
@@ -29,6 +28,7 @@
 \tableofcontents
 \listoffigures
 \listoftables
+\lstlistoflistings
 \printnomenclature[5cm]
 %-----------------------------------------------------------------
 \clearpage\pagenumbering{arabic}
@@ -43,6 +43,7 @@
 \appendix
 \input{chapters/appendixA}
 \input{chapters/appendixB}
-\printbibliography%
+\printbibliography[notkeyword={software}]%
+\printbibliography[keyword={software}, title={Software}]%
 %=================================================================
 \end{document}

@@ -1,0 +1,1 @@
+These files are comment-stripped and cleaned versions of those found in the HateFindingNames/xraythesis-handel repository up to ``commit 0806809``.
