@@ -7,7 +7,7 @@ lib/literature.bib.sav
 # For PCBs designed using KiCad: https://www.kicad.org/
 # Format documentation: https://kicad.org/help/file-formats/
 
-# Temporary files
+# KiCAD
 *.000
 *.bak
 *.bck
@@ -25,6 +25,9 @@ fp-info-cache
 *.lck
 \#auto_saved_files\#
 
+/electronics/sim/*.pdf
+/electronics/sim/*.emf
+
 # inkscapestuff
 drawings/main.svg
 svg-inkscape/*
@@ -34,6 +37,7 @@ svg-inkscape/*
 
 # ltex
 ltex.dictionary.*
+
 pictures/footage/raw/2023-08-22-12-29-33-436.jpg
 pictures/footage/raw/2023-08-22-12-36-15-389.jpg
 pictures/footage/raw/2023-08-22-15-53-14-295.jpg
