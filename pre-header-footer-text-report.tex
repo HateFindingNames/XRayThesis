@@ -6,36 +6,18 @@
 % ro --> rechts, ungerade Seite
 % even --> gerade Seite
 % odd --> ungerade Seite
-\ifbool{deutsch}{
-    %----------------------------------------- Kopfzeilentext
-    \newcommand{\titelkopfzeilemitteeven}{}
-    \newcommand{\titelkopfzeilemitteodd}{}
-    \newcommand{\titelkopfzeilelinkseven}{Hochschule RheinMain}
-    \newcommand{\titelkopfzeilelinksodd}{}
-    \newcommand{\titelkopfzeilerechtseven}{}
-    \newcommand{\titelkopfzeilerechtsodd}{Hochschule RheinMain}
-    %----------------------------------------- Fußzeilentext
-    \newcommand{\titelfusszeilemitteeven}{}
-    \newcommand{\titelfusszeilemitteodd}{}
+%----------------------------------------- Header
+\newcommand{\titelkopfzeilemitteeven}{}
+\newcommand{\titelkopfzeilemitteodd}{}
+\newcommand{\titelkopfzeilelinkseven}{RheinMain University of Applied Sciences}
+\newcommand{\titelkopfzeilelinksodd}{RheinMain University of Applied Sciences}
+\newcommand{\titelkopfzeilerechtseven}{\nameA}
+\newcommand{\titelkopfzeilerechtsodd}{\nameA}
+%----------------------------------------- Footer
+\newcommand{\titelfusszeilemitteeven}{}
+\newcommand{\titelfusszeilemitteodd}{}
 
-    \newcommand{\titelfusszeilerechtseven}{Studienbereich Angewandte Physik \& Medizintechnik}
-    \newcommand{\titelfusszeilerechtsodd}{\thepage \hspace{0.5mm} von \pageref{LastPage}}
-    \newcommand{\titelfusszeilelinkseven}{\thepage \hspace{0.5mm} von \pageref{LastPage}}
-    \newcommand{\titelfusszeilelinksodd}{Studienbereich Angewandte Physik \& Medizintechnik}
- }{
-    %----------------------------------------- Header
-    \newcommand{\titelkopfzeilemitteeven}{}
-    \newcommand{\titelkopfzeilemitteodd}{}
-    \newcommand{\titelkopfzeilelinkseven}{RheinMain University of Applied Sciences}
-    \newcommand{\titelkopfzeilelinksodd}{RheinMain University of Applied Sciences}
-    \newcommand{\titelkopfzeilerechtseven}{\nameA}
-    \newcommand{\titelkopfzeilerechtsodd}{\nameA}
-    %----------------------------------------- Footer
-    \newcommand{\titelfusszeilemitteeven}{}
-    \newcommand{\titelfusszeilemitteodd}{}
-
-    \newcommand{\titelfusszeilerechtseven}{Applied Physics \& Medical Technology}
-    \newcommand{\titelfusszeilerechtsodd}{\thepage \hspace{0.5mm} of \pageref{LastPage}}
-    \newcommand{\titelfusszeilelinkseven}{\thepage \hspace{0.5mm} of \pageref{LastPage}}
-    \newcommand{\titelfusszeilelinksodd}{Applied Physics \& Medical Technology}
- }
+\newcommand{\titelfusszeilerechtseven}{Applied Physics \& Medical Technology}
+\newcommand{\titelfusszeilerechtsodd}{\thepage \hspace{0.5mm} of \pageref{LastPage}}
+\newcommand{\titelfusszeilelinkseven}{\thepage \hspace{0.5mm} of \pageref{LastPage}}
+\newcommand{\titelfusszeilelinksodd}{Applied Physics \& Medical Technology}

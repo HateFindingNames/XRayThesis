@@ -6,16 +6,13 @@
 \usepackage{mathtools}
 \DeclarePairedDelimiter{\cint}\lceil\rceil
 \usepackage{array} % Extending the array and tabular environments https://ctan.org/pkg/array
-\ifbool{deutsch}{%
-    \usepackage[ngerman]{babel}
-}{%
-    \usepackage[english]{babel}
-}
+\usepackage[english]{babel}
 \usepackage{lmodern} % Latin modern fonts in outline formats https://www.ctan.org/pkg/lm
 \usepackage[T1]{fontenc} % Standard package for selecting font encodings https://ctan.org/pkg/fontenc
 \usepackage[utf8]{inputenc} % Accept different input encodings https://ctan.org/pkg/inputenc
 \usepackage{csquotes}
-\usepackage{libertine}
+% \usepackage[mono=false]{libertine}
+% \usepackage[libertine]{newtxmath}
 \usepackage{booktabs} % Publication quality tables in LaTeX https://ctan.org/pkg/booktabs
 % \usepackage{calc} % Simple arithmetic in LaTeX commands https://ctan.org/pkg/calc
 \usepackage[labelfont={footnotesize,sf,bf},textfont={footnotesize,sf}]{caption} % Customising captions in floating environments https://ctan.org/pkg/caption
@@ -24,17 +21,17 @@
 % sc --> smallcaps
 % bf --> bold face
 % sf --> sans serif
-% \usepackage[table]{xcolor} % Driver-independent color extensions for LaTeX and pdfLaTeX https://ctan.org/pkg/xcolor
+\usepackage{xcolor} % Driver-independent color extensions for LaTeX and pdfLaTeX https://ctan.org/pkg/xcolor
 \usepackage{currency} % Format currencies in a consistent way https://ctan.org/pkg/currency
 \DefineCurrency{EUR}{name={Euro},plural={Euro},iso={EUR},kind=iso,symbol={\€}}
 \usepackage{ellipsis} % Fix uneven spacing around ellipses in LaTeX text mode https://ctan.org/pkg/ellipsis
 \usepackage{graphicx} % Enhanced support for graphics https://ctan.org/pkg/graphicx
-% \usepackage{listings} % Typeset source code listings using LaTeX https://ctan.org/pkg/listings
+\usepackage{listings} % Typeset source code listings using LaTeX https://ctan.org/pkg/listings
 \usepackage{lastpage} % Reference last page for Page N of M type footers https://ctan.org/pkg/lastpage
 % \usepackage{makeidx} % Standard LaTeX package for creating indexes https://www.ctan.org/pkg/makeidx
 % \usepackage{paralist} % Enumerate and itemize within paragraphs https://www.ctan.org/pkg/paralist
 \usepackage[automark]{scrlayer-scrpage} % Define and manage page styles https://www.ctan.org/pkg/scrlayer-scrpage
-\usepackage[locale=DE,per-mode=power,range-units=repeat,separate-uncertainty=true]{siunitx} % A comprehensive (SI) units package https://www.ctan.org/pkg/siunitx
+\usepackage[per-mode=power,range-units=repeat,separate-uncertainty=true]{siunitx} % A comprehensive (SI) units package https://www.ctan.org/pkg/siunitx
 \DeclareSIUnit\amperehour{Ah}
 \DeclareSIUnit\watthour{Wh}
 \DeclareSIUnit\newtonmetre{Nm}
