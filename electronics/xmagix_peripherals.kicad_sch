@@ -10,7 +10,6 @@
     (rev "0")
     (company "RheinMain University of Applied Sciences")
     (comment 1 "by Dennis Hunter")
-    (comment 2 "!!WIP!!")
   )
 
   (lib_symbols
@@ -1552,7 +1551,7 @@
     (pin "2" (uuid c712a1e4-36c3-4291-9927-ab3b1e781bf3))
     (pin "3" (uuid 87d51c0c-00d5-4b22-8523-64dc1022be4d))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "U1") (unit 1)
         )
@@ -1579,7 +1578,7 @@
     (pin "2" (uuid 93ee340f-0301-4e46-b875-c78f18437012))
     (pin "3" (uuid 2dd15505-1077-47dd-8745-1fb0368c21c4))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "SW1") (unit 1)
         )
@@ -1604,7 +1603,7 @@
     )
     (pin "1" (uuid 83a10556-d678-4977-a030-22fbe882d171))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR05") (unit 1)
         )
@@ -1630,7 +1629,7 @@
     (pin "1" (uuid 8ad219cd-913b-4095-b281-ff14e28495b0))
     (pin "2" (uuid 6e27a762-5a81-4eea-aeb1-e35084925889))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "J3") (unit 1)
         )
@@ -1655,7 +1654,7 @@
     )
     (pin "1" (uuid 6c900f0f-53b9-4051-9fa6-0584babe4fbd))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR012") (unit 1)
         )
@@ -1689,7 +1688,7 @@
     (pin "8" (uuid 2dcbbfc1-5053-497a-a1e0-7cee0bba91d6))
     (pin "9" (uuid f7dd077b-54b7-4d43-a83b-054d20c1c3bd))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "J2") (unit 1)
         )
@@ -1716,7 +1715,7 @@
     (pin "2" (uuid 3adb0c23-4061-47a3-8d1f-85f20b2ae88f))
     (pin "3" (uuid d89ba9b1-467e-496c-8134-1f8b829f21c4))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "SW2") (unit 1)
         )
@@ -1741,7 +1740,7 @@
     )
     (pin "1" (uuid 8c0ad2f5-945e-4823-8a44-3e4dc9d71cbc))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR013") (unit 1)
         )
@@ -1767,7 +1766,7 @@
     (pin "1" (uuid 93b6f99f-da38-49e6-b9bd-ea5f84167ad1))
     (pin "2" (uuid b29ea9d5-a959-46c2-b42e-dbc14fc33cc0))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "C2") (unit 1)
         )
@@ -1799,7 +1798,7 @@
     (pin "7" (uuid 91eec061-b042-402a-a3d4-44bb2179867b))
     (pin "8" (uuid 4f155ebe-1cf8-4e9c-8e9b-d1fb7d48d565))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "U2") (unit 1)
         )
@@ -1824,7 +1823,7 @@
     )
     (pin "1" (uuid 428e000c-1037-40f6-b929-468550402bf6))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR022") (unit 1)
         )
@@ -1849,7 +1848,7 @@
     )
     (pin "1" (uuid 227a8929-c2a8-40a8-b8ea-7b508410d221))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR07") (unit 1)
         )
@@ -1874,7 +1873,7 @@
     )
     (pin "1" (uuid 6035754f-e9d7-4461-a236-f2fdb2d50216))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR06") (unit 1)
         )
@@ -1899,7 +1898,7 @@
     )
     (pin "1" (uuid 40a7b9c6-28ef-4054-b9d8-5cc89d91c5b3))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR019") (unit 1)
         )
@@ -1924,7 +1923,7 @@
     )
     (pin "1" (uuid cb19f5dd-eb10-4a24-8e17-e365726026c4))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR023") (unit 1)
         )
@@ -1949,7 +1948,7 @@
     )
     (pin "1" (uuid 63d2f2db-8a85-42a4-b84e-9ba44c663016))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR025") (unit 1)
         )
@@ -1975,7 +1974,7 @@
     (pin "1" (uuid a834c139-a61a-4869-8d0b-0b4fa6eab99c))
     (pin "2" (uuid 00bc3227-0a67-4082-b105-c28a8f108993))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "C1") (unit 1)
         )
@@ -2000,7 +1999,7 @@
     )
     (pin "1" (uuid 3ca070a1-ad15-40f6-ae18-55199c07f196))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR017") (unit 1)
         )
@@ -2025,7 +2024,7 @@
     )
     (pin "1" (uuid d252f9b2-e597-4958-8101-fbdd2aa494db))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR020") (unit 1)
         )
@@ -2050,7 +2049,7 @@
     )
     (pin "1" (uuid 59af02a4-c752-4265-b266-0852b720cb19))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR021") (unit 1)
         )
@@ -2075,7 +2074,7 @@
     )
     (pin "1" (uuid 00356f28-14b4-48d5-90dc-c25fbb8a3cfb))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR011") (unit 1)
         )
@@ -2100,7 +2099,7 @@
     )
     (pin "1" (uuid d501daf9-be70-4d64-bee1-9b5d09a2d378))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR015") (unit 1)
         )
@@ -2126,7 +2125,7 @@
     (pin "1" (uuid 3a1aa102-9b74-4ae2-8f58-041265f49ec3))
     (pin "2" (uuid f5143a70-653a-408a-9867-47861cf1d83e))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "R1") (unit 1)
         )
@@ -2160,7 +2159,7 @@
     (pin "8" (uuid 688f7e06-0268-4081-a867-2359c1abe250))
     (pin "9" (uuid ee9f7094-4718-45e8-998f-7b3f274b5412))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "J1") (unit 1)
         )
@@ -2185,7 +2184,7 @@
     )
     (pin "1" (uuid 6d99435b-253a-4a07-b0dc-761d9c9296f3))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR014") (unit 1)
         )
@@ -2210,7 +2209,7 @@
     )
     (pin "1" (uuid f0760856-6aba-44f4-884a-d49deb6f7329))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR08") (unit 1)
         )
@@ -2235,7 +2234,7 @@
     )
     (pin "1" (uuid 7a8cb14b-78d4-4702-90d8-ffed5f5aba48))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR016") (unit 1)
         )
@@ -2260,7 +2259,7 @@
     )
     (pin "1" (uuid 36d8b647-4e2c-46cd-b93b-2f913a00b121))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR018") (unit 1)
         )
@@ -2286,7 +2285,7 @@
     (pin "1" (uuid 738f9627-d3e2-478a-bf71-e03344ae7c1b))
     (pin "2" (uuid df557340-2b3c-4b83-ac3c-aeb2fed389ea))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "R4") (unit 1)
         )
@@ -2311,7 +2310,7 @@
     )
     (pin "1" (uuid 6af1c07a-2086-4fd6-823a-e6df5a0c063b))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR024") (unit 1)
         )
@@ -2343,7 +2342,7 @@
     (pin "7" (uuid 84eadaec-92b3-430f-b1e1-a0791b2b8754))
     (pin "8" (uuid fe2562a4-8f75-4674-8ed4-e1a7c59491d9))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "U5") (unit 1)
         )
@@ -2369,7 +2368,7 @@
     (pin "1" (uuid 01769f53-c592-4ea9-a22f-e8bb297de231))
     (pin "2" (uuid 9e2a2612-1844-40e5-b425-3feafaaf49c8))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "R5") (unit 1)
         )
@@ -2394,7 +2393,7 @@
     )
     (pin "1" (uuid 08ea15a4-0bab-4e97-8a97-cc45d2467803))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR01") (unit 1)
         )
@@ -2419,7 +2418,7 @@
     )
     (pin "1" (uuid 5a820da8-c481-4479-9fee-32338da72139))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR0101") (unit 1)
         )
@@ -2444,7 +2443,7 @@
     )
     (pin "1" (uuid e13da092-9d35-42f8-b2bf-c28f187e3f4f))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR04") (unit 1)
         )
@@ -2469,7 +2468,7 @@
     )
     (pin "1" (uuid 6071aa8a-8860-4248-b2c7-c74885f67635))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR026") (unit 1)
         )
@@ -2495,7 +2494,7 @@
     (pin "1" (uuid 1b17c561-b6e2-49cd-8394-67cf2960d154))
     (pin "2" (uuid 39a8661d-421f-4efa-9887-7985bdd57605))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "R2") (unit 1)
         )
@@ -2521,7 +2520,7 @@
     (pin "2" (uuid 282e127e-a659-4f09-8361-a8c220dd7848))
     (pin "3" (uuid fc2ce44a-9344-40ab-858a-52e234d945dc))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "U7") (unit 1)
         )
@@ -2547,7 +2546,7 @@
     (pin "1" (uuid a21d94ae-a3c4-4cb4-864e-2a727ac760e2))
     (pin "2" (uuid b72460f7-eb79-4e8f-a8ba-e6a938bb2317))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "R3") (unit 1)
         )
@@ -2572,7 +2571,7 @@
     )
     (pin "1" (uuid a549dc3b-0ed4-4a93-a6f4-3c0e07e7d5b7))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR03") (unit 1)
         )
@@ -2597,10 +2596,27 @@
     )
     (pin "1" (uuid f7d75831-8bfd-4482-b731-fca5759effc2))
     (instances
-      (project "raspberry"
+      (project "xmagix_peripherals"
         (path "/38b26eea-f38c-484f-9bac-db518f332ae0"
           (reference "#PWR02") (unit 1)
         )
+      )
+    )
+  )
+
+  (sheet (at -31.115 66.675) (size 19.05 21.59) (fields_autoplaced)
+    (stroke (width 0.1524) (type solid))
+    (fill (color 0 0 0 0.0000))
+    (uuid 56f498bc-fd09-4aed-a4f0-1abbb2dcfbbb)
+    (property "Sheetname" "raspberry4b" (at -31.115 65.9634 0)
+      (effects (font (size 1.27 1.27)) (justify left bottom))
+    )
+    (property "Sheetfile" "raspberry4b.kicad_sch" (at -31.115 88.8496 0)
+      (effects (font (size 1.27 1.27)) (justify left top))
+    )
+    (instances
+      (project "xmagix_peripherals"
+        (path "/38b26eea-f38c-484f-9bac-db518f332ae0" (page "2"))
       )
     )
   )
