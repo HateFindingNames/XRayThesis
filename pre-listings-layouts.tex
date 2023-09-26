@@ -7,6 +7,25 @@
 \definecolor{codegrey}{rgb}{0.6,0.6,0.6}
 \lstdefinestyle{mypython}{
     language=Python,
+    tabsize=1,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+    basicstyle=\ttfamily\footnotesize,
+    inputencoding=utf8,
+    breaklines=true,
+    stepnumber=2, % line numbering steps
+    % morekeywords={ones,height,width,datetime}, % additional keywords to highlight
+    keywordstyle=\color{blue},
+    frame=none,
+    identifierstyle=\color{black},
+    stringstyle=\color{codeorange},
+    commentstyle=\color{codegreen},
+    showstringspaces=false, %without this there will be a symbol in the places where there is a space
+    numbers=left,
+    numberstyle={\tiny \color{black}}, % size of the numbers
+    numbersep=-6pt % this defines how far the numbers are from the text
+}
+\lstdefinestyle{mypython-apx}{
+    language=Python,
     tabsize=2,
     postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
     basicstyle=\ttfamily\footnotesize,
@@ -22,25 +41,25 @@
     showstringspaces=false, %without this there will be a symbol in the places where there is a space
     numbers=left,
     numberstyle={\tiny \color{black}}, % size of the numbers
-    numbersep=-5pt % this defines how far the numbers are from the text
+    numbersep=5pt % this defines how far the numbers are from the text
 }
 \lstdefinestyle{mybash}{
-    language=bash,
+    language=sh,
     tabsize=1,
     postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
     basicstyle=\ttfamily\footnotesize,
     inputencoding=utf8,
     breaklines=true,
     stepnumber=2, % line numbering steps
-    % morekeywords={ones,height,width,datetime}, % additional keywords to highlight
-    keywordstyle=\color{black},
+    morekeywords={lsusb,grep,sudo,echo,conda,pip,chmod,tee,apt,groups}, % additional keywords to highlight
+    keywordstyle=\color{blue},
     frame=none,
     identifierstyle=\color{black},
-    stringstyle=\color{black},
+    stringstyle=\color{codeorange},
     commentstyle=\color{codegreen},
     showstringspaces=false, %without this there will be a symbol in the places where there is a space
     numbers=left,
     numberstyle={\tiny \color{black}}, % size of the numbers
-    numbersep=-5pt % this defines how far the numbers are from the text
+    numbersep=-6pt % this defines how far the numbers are from the text
 }
 %==============================================================================

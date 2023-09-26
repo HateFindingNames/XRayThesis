@@ -17,10 +17,6 @@ class Tube:
         self.pi.write(self.enpin, 0)
 
         self.dac = self.pi.spi_open(1, 20000000, 1) # device 0 at 20MHz using mode 1 (clk-polarity 0, clock-phase 1)
-        self.R1_msk = 0x8000 # bit 15
-        self.SPD_msk = 0x4000 # 1: fast mode; 0: slow mode
-        self.PWR_msk = 0x2000 # 1: power down; 0: normal operation
-        self.R0_msk = 0x1000 # bit 12
 
         # ADC SPI-Com config: T=1 (LSB first on MOSI) (3-wire mode) nnnn=0001 (write 1 bytes then read) W=1 (3-wire) mm=11 (POL1, PHA1)
         # --> 0x4403

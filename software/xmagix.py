@@ -226,16 +226,12 @@ class XMagix:
 
         if type(realtime) == str:
             realtime = float(realtime)
-        self.crealtime = c_double(realtime)
-        self.ctype = c_double(CONSTANTS["XIA_PRESET_FIXED_REAL"])
         clearMca = not clearMca
         self.cclearMca = c_short(clearMca) # 0: DO clear MCA, 1: do NOT clear MCA
         crunActive = c_short(0)
-        cinputCountRate = c_double(0)
         coutputCountRate = c_double(0)
         ceventsInRun = c_ulong(0)
         cruntime = c_double(0)
-        abort = 0
 
         self.status = self.setAcquisitionValues("preset_type", CONSTANTS["XIA_PRESET_FIXED_REAL"])
         self.status = self.setAcquisitionValues("preset_value", realtime)
@@ -255,12 +251,13 @@ class XMagix:
                     break
                 time.sleep(.1)
         console.log(f"Done. Run statistics: out cps: {coutputCountRate.value:.2f}, Events: {ceventsInRun.value}")
+        self.status = self.setAcquisitionValues("preset_type", CONSTANTS["XIA_PRESET_FIXED_NONE"])
         
     def stopRun(self, stopmessage="Stopped..."):
         """Stops an active run."""
 
-        self.crunActive = c_short(0)
-        self.status = self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("run_active"), byref(self.crunActive))
+        crunActive = c_short(0)
+        self.status = self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("run_active"), byref(crunActive))
 
         if self.crunActive.value != 0:
             self.status = self._lib.xiaStopRun(0)
