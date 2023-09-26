@@ -3,6 +3,9 @@
 /__MAIN_FILE.synctex.gz
 *.blg
 lib/literature.bib.sav
+/__MAIN_FILE.pdf
+/__MAIN_FILE_compressed.pdf
+*.zip
 
 # For PCBs designed using KiCad: https://www.kicad.org/
 # Format documentation: https://kicad.org/help/file-formats/
@@ -24,7 +27,7 @@ _autosave-*
 fp-info-cache
 *.lck
 \#auto_saved_files\#
-
+/electronics/pdf/*.pdf
 /electronics/sim/*.pdf
 /electronics/sim/*.emf
 
