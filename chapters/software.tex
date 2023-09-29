@@ -1,5 +1,5 @@
 \chapter{Software}
-    \section{Detector Interface}
+    \section{Environment Preperation}
         The central component of the \textit{XRS-A} is the \textit{microDXP} manufactured by \textsc{XIA LLC}.
         \textsc{XIA} provides USB drivers and a GUI tool \textit{ProSpect} for Windows but no pre-compiled binaries for Linux systems.
         The sources for the software API \textit{Handel} however are provided on their public repository on \textsc{GitHub}~\cite{Software.HandelRelease.2023} and are forked by the author of this work~\cite{Software.XraythesisHandel.2023}.
@@ -8,7 +8,7 @@
         The used detector incorporates a \textit{microDXP}-platform.
         Thus, all non-\textit{microDXP} routines will not be discussed here as well.\par\medskip
 
-        \subsection{Building the Libraries}\label{sec:building libraries}
+        \subsection{Building Handel's API Libraries}\label{sec:building libraries}
             The SBC runs the latest x64 version of \textit{Raspberry Pi OS Lite}\footnote{Installed using the \textit{Raspberry Pi Imager} tool.
             Direct download available under~\cite{Software.RaspberryPiOSLite.2023}}.
             A detailed description and troubleshooting suggestions can be found on the author's repository~\cite{Software.XraythesisHandel.2023}.\par\medskip
@@ -61,7 +61,7 @@
             \end{lstlisting}
             creates the file \texttt{/etc/udev/rules.d/99-xia.rules} containing a custom \texttt{udev} rule and restarts the \texttt{udev} daemon\footnote{See~\cite{Software.XraythesisHandel.2023} for a non-comprehensive troubleshooting guide.}~\cite{Software.HandelRelease.2023,Software.XraythesisHandel.2023}.
 
-    \section{Python Wrapper}
+    \section{Detector Interface}
         The main language chosen to interface with the created shared object (\texttt{*.so}) libraries is Python using the same environment created in~\cref{lst:creating conda env}.
         The class \texttt{XMagix} defined in \texttt{./myapp/xmagix.py} exposes most of the relevant functions of the Handel API and is mostly written in plain Python.
         The only external packages loaded are \textit{Numpy} and \textit{Rich}.
@@ -77,23 +77,24 @@
         \texttt{XMagix}' method \texttt{stringToBytes()} takes a \texttt{str}-object as an input and returns a byte-stream.
         Practical examples are shown in \crefrange{sec:init}{sec:pullMcaData}.
 
-        \begin{lstlisting}[style=mypython, firstnumber=13, caption={[XMagix class constructor]XMagix class constructor.}, label={lst:xmagix constructor}]
-    class XMagix:
-        """Wrapper class to expose handel API functions."""
+        \lstinputlisting[style=mypython, firstnumber=13, caption={[XMagix class constructor]XMagix class constructor.}, label={lst:xmagix constructor}, firstline=13, lastline=27]{software/xmagix.py}
+    %     \begin{lstlisting}[style=mypython, firstnumber=13, caption={[XMagix class constructor]XMagix class constructor.}, label={lst:xmagix constructor}]
+    % class XMagix:
+    %     """Wrapper class to expose handel API functions."""
 
-        def __init__(self, libpath):
-            self.systemUp = False
-            self._lib = None
-            self.libpath = libpath
-            self.cdetChan = c_int(0)
-            try:
-                self._lib = cdll.LoadLibrary(self.libpath)
-            except Exception:
-                # Return traceback on error
-                console.log("[red]Aw naw :disappointed: wrong file/path?[red]")
-            else:
-                console.log("[green]Library loaded successfully :smile:[/green]")
-        \end{lstlisting}
+    %     def __init__(self, libpath):
+    %         self.systemUp = False
+    %         self._lib = None
+    %         self.libpath = libpath
+    %         self.cdetChan = c_int(0)
+    %         try:
+    %             self._lib = cdll.LoadLibrary(self.libpath)
+    %         except Exception:
+    %             # Return traceback on error
+    %             console.log("[red]Aw naw :disappointed: wrong file/path?[red]")
+    %         else:
+    %             console.log("[green]Library loaded successfully :smile:[/green]")
+    %     \end{lstlisting}
         The constructor of \texttt{XMagix}, as shown in~\cref{lst:xmagix constructor}, does, besides pre-setting some internal state variables, load the shared object library from the path passed to it during object creation.
         
         \subsection{init()}\label{sec:init}
@@ -101,84 +102,88 @@
             Handel expects it to be loaded prior to starting up the system.
             One does not need to modify any of its values except the line defining the \texttt{device\_number}.
             \texttt{device\_number} tells Handel which USB device to communicate with.\par\medskip
-            
-            \begin{lstlisting}[style=mypython, firstnumber=67, caption={[XMagix method init()]XMagix method init().}, label={lst:xmagix init}]
-    def init(self, inifile):
-        """Initializes the Handel library and loads in an .ini file. The functionality of this
-        routine can be emulated by calling xiaInitHandel() followed by xiaLoadSys-
-        tem()("handel_ini", iniFile). Either this routine or xiaInitHandel must be
-        called prior to using the other Handel routines.
-        """
 
-        self.inifile = inifile
-        self.status = self._lib.xiaInit(self.stringToBytes(inifile))
-        self.CHECK_ERROR("Loading system...")
-            \end{lstlisting}
+            \lstinputlisting[style=mypython, firstnumber=67, caption={[XMagix method init()]XMagix method init().}, label={lst:xmagix init}, firstline=67, lastline=72]{software/xmagix.py}
+    %         \begin{lstlisting}[style=mypython, firstnumber=67, caption={[XMagix method init()]XMagix method init().}, label={lst:xmagix init}]
+    % def init(self, inifile):
+    %     """Initializes the Handel library and loads in an .ini file. The functionality of this
+    %     routine can be emulated by calling xiaInitHandel() followed by xiaLoadSys-
+    %     tem()("handel_ini", iniFile). Either this routine or xiaInitHandel must be
+    %     called prior to using the other Handel routines.
+    %     """
+
+    %     self.inifile = inifile
+    %     self.status = self._lib.xiaInit(self.stringToBytes(inifile))
+    %     self.CHECK_ERROR("Loading system...")
+    %         \end{lstlisting}
         
         \subsection{startSystem()}\label{sec:startSystem}
             After initializing the system using the method described in \cref{sec:init}, one can start up the system using \texttt{<class object name>.startSystem()}.
             No error codes printed to the console indicates a successful start-up\footnote{\texttt{4001, DXP\_MDOPEN} might indicate a wrong \texttt{device\_number}. If there is more than one USB device plugged into the SBC one might try setting \texttt{device\_number} to an integer value > \texttt{0}.}.\par\medskip
 
-            \begin{lstlisting}[style=mypython, firstnumber=84, caption={[XMagix method startSystem()]XMagix method startSystem().}, label={lst:xmagix startSystem}]
-    def startSystem(self):
-        """Starts the system previously defined via an .ini file."""
+            \lstinputlisting[style=mypython, firstnumber=80, caption={[XMagix method startSystem()]XMagix method startSystem().}, label={lst:xmagix startSystem}, firstline=80, lastline=87]{software/xmagix.py}
+    %         \begin{lstlisting}[style=mypython, firstnumber=84, caption={[XMagix method startSystem()]XMagix method startSystem().}, label={lst:xmagix startSystem}]
+    % def startSystem(self):
+    %     """Starts the system previously defined via an .ini file."""
 
-        if self.inifile and self.logpath:
-            self.status = self._lib.xiaStartSystem()
-            self.CHECK_ERROR("Starting system...")
-        else:
-            console.log("Set <logpath> and specify <inifile> first.")
-            \end{lstlisting}
+    %     if self.inifile and self.logpath:
+    %         self.status = self._lib.xiaStartSystem()
+    %         self.CHECK_ERROR("Starting system...")
+    %     else:
+    %         console.log("Set <logpath> and specify <inifile> first.")
+    %         \end{lstlisting}
 
         \subsection{setAcquisitionValues()}\label{sec:setAcquisitionValues}
             The method \texttt{setAcquisitionValues()} has two positional arguments: the name of a value to set and the desired value itself.
             The name will be checked against a list of allowed names specified in Appendix A of \textit{Handels} programmer guide~\cite{Manual.HandelProgrammersGuideMicroDXP.Xiang}.\par\medskip
 
-            \begin{lstlisting}[style=mypython, firstnumber=117, caption={[XMagix method setAcquisitionValues()]XMagix method setAcquisitionValues().}, label={lst:xmagix setAcquisitionValues}]
-    def setAcquisitionValues(self, name, value):
-        """
-        Translates a high-level acquisition value into the appropriate DSP parameter(s)
-        in the hardware. Product-specific Handel manuals list the acquisition values for
-        each product.
-        """
+            \lstinputlisting[style=mypython, firstnumber=98, caption={[XMagix method setAcquisitionValues()]XMagix method setAcquisitionValues().}, label={lst:xmagix setAcquisitionValues}, firstline=98, lastline=108]{software/xmagix.py}
+    %         \begin{lstlisting}[style=mypython, firstnumber=117, caption={[XMagix method setAcquisitionValues()]XMagix method setAcquisitionValues().}, label={lst:xmagix setAcquisitionValues}]
+    % def setAcquisitionValues(self, name, value):
+    %     """
+    %     Translates a high-level acquisition value into the appropriate DSP parameter(s)
+    %     in the hardware. Product-specific Handel manuals list the acquisition values for
+    %     each product.
+    %     """
 
-        if name not in acquisition_values:
-            console.log(f"[dark_orange] :warning: Parameter \"{name}\" unknown.")
-        else:
-            cname = self.stringToBytes(name)
-            cvalue = c_double(value)
+    %     if name not in acquisition_values:
+    %         console.log(f"[dark_orange] :warning: Parameter \"{name}\" unknown.")
+    %     else:
+    %         cname = self.stringToBytes(name)
+    %         cvalue = c_double(value)
 
-            self.status = self._lib.xiaSetAcquisitionValues(self.cdetChan, cname, byref(cvalue))
-            self.CHECK_ERROR(f"Setting '{name}' to {value}...")
-            \end{lstlisting}
+    %         self.status = self._lib.xiaSetAcquisitionValues(self.cdetChan, cname, byref(cvalue))
+    %         self.CHECK_ERROR(f"Setting '{name}' to {value}...")
+    %         \end{lstlisting}
         
         \subsection{getAcquisitionValues()}\label{sec:getAcquisitionValues}
             To retrieve a particular~--~or all~--~currently set acquisition value \texttt{getAcquisitionValues(<name>)} can be used.
             The method returns a dictionary where the key-value pair reflects the specified~--~or all~--~name and value.\par\medskip
 
-            \begin{lstlisting}[style=mypython, firstnumber=133, caption={[XMagix method getAcquisitionValues()]XMagix method getAcquisitionValues().}, label={lst:xmagix getAcquisitionValues}]
-    def getAcquisitionValues(self, name) -> dict:
-        """Retrieves the current setting of an acquisition value. This routine returns the same value as xiaSetAcquisitionValues() in the value parameters."""
-        cvalue = c_double(0)
+            \lstinputlisting[style=mypython, firstnumber=110, caption={[XMagix method getAcquisitionValues()]XMagix method getAcquisitionValues().}, label={lst:xmagix getAcquisitionValues}, firstline=110, lastline=132]{software/xmagix.py}
+    %         \begin{lstlisting}[style=mypython, firstnumber=133, caption={[XMagix method getAcquisitionValues()]XMagix method getAcquisitionValues().}, label={lst:xmagix getAcquisitionValues}]
+    % def getAcquisitionValues(self, name) -> dict:
+    %     """Retrieves the current setting of an acquisition value. This routine returns the same value as xiaSetAcquisitionValues() in the value parameters."""
+    %     cvalue = c_double(0)
 
-        self.acquisitionParams = []
-        self.acquisitionValues = []
-        if name == "all":
-            for key in acquisition_values:
-                self.status = self._lib.xiaGetAcquisitionValues(self.cdetChan, self.stringToBytes(key), byref(cvalue))
-                self.acquisitionParams.append(key)
-                self.acquisitionValues.append(cvalue.value)
-            self.acquisitionValuesDict = dict(zip(self.acquisitionParams, self.acquisitionValues))
-        else:
-            if name in acquisition_values:
-                console.log(f"{name}: {self.acquisitionValuesDict[name]}")
-                return self.acquisitionValuesDict[name]
-            else:
-                console.log(f"[dark_orange] :warning: Parameter <name> unknown.")
-                pass
+    %     self.acquisitionParams = []
+    %     self.acquisitionValues = []
+    %     if name == "all":
+    %         for key in acquisition_values:
+    %             self.status = self._lib.xiaGetAcquisitionValues(self.cdetChan, self.stringToBytes(key), byref(cvalue))
+    %             self.acquisitionParams.append(key)
+    %             self.acquisitionValues.append(cvalue.value)
+    %         self.acquisitionValuesDict = dict(zip(self.acquisitionParams, self.acquisitionValues))
+    %     else:
+    %         if name in acquisition_values:
+    %             console.log(f"{name}: {self.acquisitionValuesDict[name]}")
+    %             return self.acquisitionValuesDict[name]
+    %         else:
+    %             console.log(f"[dark_orange] :warning: Parameter <name> unknown.")
+    %             pass
                 
-        return self.acquisitionValuesDict
-            \end{lstlisting}
+    %     return self.acquisitionValuesDict
+    %         \end{lstlisting}
         
         \subsection{startRun()}\label{sec:startRun}
             The acquisition value \texttt{"preset\_type"} lets the user choose between five modes of data acquisition runs:
@@ -189,72 +194,75 @@
                 \item \texttt{"XIA\_PRESET\_FIXED\_EVENTS"}~--~stops after \texttt{"preset\_value"} output events.
                 \item \texttt{"XIA\_PRESET\_FIXED\_TRIGGERS"}~--~stops after \texttt{"preset\_value"} trigger events.
             \end{itemize}
-            Having a \texttt{"preset\_type"} and corresponding \texttt{"preset\_value"} set, \texttt{startRun()} initiates a data acquisition.\par\medskip
+            Having a \texttt{"preset\_type"} and corresponding \texttt{"preset\_value"} set, \texttt{startRun()} initiates data acquisition.\par\medskip
 
-            \begin{lstlisting}[style=mypython, firstnumber=217, caption={[XMagix method startRun()]XMagix method startRun().}, label={lst:xmagix startRun}]
-    def startRun(self, clearMca=0):
-        self.cclearMca = c_short(clearMca)
+            \lstinputlisting[style=mypython, firstnumber=191, caption={[XMagix method startRun()]XMagix method startRun().}, label={lst:xmagix startRun}, firstline=191, lastline=200]{software/xmagix.py}
+    %         \begin{lstlisting}[style=mypython, firstnumber=217, caption={[XMagix method startRun()]XMagix method startRun().}, label={lst:xmagix startRun}]
+    % def startRun(self, clearMca=0):
+    %     self.cclearMca = c_short(clearMca)
 
-        self.status = self._lib.xiaStartRun(self.cdetChan, self.cclearMca)
-        self.CHECK_ERROR(f"Run started until stopped by user...")
-        self.isRunning = True
-            \end{lstlisting}
+    %     self.status = self._lib.xiaStartRun(self.cdetChan, self.cclearMca)
+    %     self.CHECK_ERROR(f"Run started until stopped by user...")
+    %     self.isRunning = True
+    %         \end{lstlisting}
 
         \subsection{fixedRealtimeRun()}\label{sec:fixedRealtimeRun}
             To directly start a fixed realtime run, the method \texttt{fixedRealtimeRun()} takes the desired realtime in seconds as a mandatory argument.
             The optional argument \texttt{clearMca}, if set to \texttt{True} (default), clears the internal multi-channel analyzers bins prior starting the run.
             During the data acquisition, alongside the elapsed and total time, basic statistics like output count rate (OCR) and the sum of all output events during the run (EIR) are printed to the console in intervals of \qty{1}{\second}.\par\medskip
 
-            \begin{lstlisting}[style=mypython, firstnumber=224, caption={[XMagix method fixedRealtimeRun()]XMagix method fixedRealtimeRun().}, label={lst:xmagix fixedRealtimeRun}]
-    def fixedRealtimeRun(self, realtime, clearMca=True):
-        """Start fixed realtime run."""
+            \lstinputlisting[style=mypython, firstnumber=202, caption={[XMagix method fixedRealtimeRun()]XMagix method fixedRealtimeRun().}, label={lst:xmagix fixedRealtimeRun}, firstline=202, lastline=232]{software/xmagix.py}
+    %         \begin{lstlisting}[style=mypython, firstnumber=224, caption={[XMagix method fixedRealtimeRun()]XMagix method fixedRealtimeRun().}, label={lst:xmagix fixedRealtimeRun}]
+    % def fixedRealtimeRun(self, realtime, clearMca=True):
+    %     """Start fixed realtime run."""
 
-        if type(realtime) == str:
-            realtime = float(realtime)
-        clearMca = not clearMca
-        self.cclearMca = c_short(clearMca) # 0: DO clear MCA, 1: do NOT clear MCA
-        crunActive = c_short(0)
-        coutputCountRate = c_double(0)
-        ceventsInRun = c_ulong(0)
-        cruntime = c_double(0)
+    %     if type(realtime) == str:
+    %         realtime = float(realtime)
+    %     clearMca = not clearMca
+    %     self.cclearMca = c_short(clearMca) # 0: DO clear MCA, 1: do NOT clear MCA
+    %     crunActive = c_short(0)
+    %     coutputCountRate = c_double(0)
+    %     ceventsInRun = c_ulong(0)
+    %     cruntime = c_double(0)
 
-        self.status = self.setAcquisitionValues("preset_type", CONSTANTS["XIA_PRESET_FIXED_REAL"])
-        self.status = self.setAcquisitionValues("preset_value", realtime)
+    %     self.status = self.setAcquisitionValues("preset_type", CONSTANTS["XIA_PRESET_FIXED_REAL"])
+    %     self.status = self.setAcquisitionValues("preset_value", realtime)
 
-        self.status = self._lib.xiaStartRun(self.cdetChan, self.cclearMca)
-        self.CHECK_ERROR("Starting Run...")
+    %     self.status = self._lib.xiaStartRun(self.cdetChan, self.cclearMca)
+    %     self.CHECK_ERROR("Starting Run...")
 
-        console.clear()
-        with console.status(":satellite: out cps: 0, Events: 0") as status:
-            for _ in range(10*int(realtime)):
-                self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("output_count_rate"), byref(coutputCountRate))
-                self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("events_in_run"), byref(ceventsInRun))
-                self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("run_active"), byref(crunActive))
-                self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("runtime"), byref(cruntime))
-                status.update(f":satellite: Time: {cruntime.value:.1f}/{realtime:.1f}, OCR: {coutputCountRate.value:.2f}, EIR: {ceventsInRun.value}")
-                if crunActive.value == 0:
-                    break
-                time.sleep(1)
-        console.log(f"Done. Run statistics: out cps: {coutputCountRate.value:.2f}, Events: {ceventsInRun.value}")
-        self.status = self.setAcquisitionValues("preset_type", CONSTANTS["XIA_PRESET_FIXED_NONE"])
-            \end{lstlisting}
+    %     console.clear()
+    %     with console.status(":satellite: out cps: 0, Events: 0") as status:
+    %         for _ in range(10*int(realtime)):
+    %             self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("output_count_rate"), byref(coutputCountRate))
+    %             self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("events_in_run"), byref(ceventsInRun))
+    %             self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("run_active"), byref(crunActive))
+    %             self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("runtime"), byref(cruntime))
+    %             status.update(f":satellite: Time: {cruntime.value:.1f}/{realtime:.1f}, OCR: {coutputCountRate.value:.2f}, EIR: {ceventsInRun.value}")
+    %             if crunActive.value == 0:
+    %                 break
+    %             time.sleep(1)
+    %     console.log(f"Done. Run statistics: out cps: {coutputCountRate.value:.2f}, Events: {ceventsInRun.value}")
+    %     self.status = self.setAcquisitionValues("preset_type", CONSTANTS["XIA_PRESET_FIXED_NONE"])
+    %         \end{lstlisting}
 
         \subsection{stopRun()}\label{sec:stopRun}
             A call to \texttt{stopRun()} stops any active run.\par\medskip
 
-            \begin{lstlisting}[style=mypython, firstnumber=256, caption={XMagix method stopRun()}, label={lst:xmagix stopRun}]
-    def stopRun(self, stopmessage="Stopped..."):
-        """Stops an active run."""
+            \lstinputlisting[style=mypython, firstnumber=234, caption={XMagix method stopRun()}, label={lst:xmagix stopRun}, firstline=234, lastline=244]{software/xmagix.py}
+    %         \begin{lstlisting}[style=mypython, firstnumber=256, caption={XMagix method stopRun()}, label={lst:xmagix stopRun}]
+    % def stopRun(self, stopmessage="Stopped..."):
+    %     """Stops an active run."""
 
-        crunActive = c_short(0)
-        self.status = self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("run_active"), byref(crunActive))
+    %     crunActive = c_short(0)
+    %     self.status = self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("run_active"), byref(crunActive))
 
-        if self.crunActive.value != 0:
-            self.status = self._lib.xiaStopRun(0)
-            self.CHECK_ERROR(f"{stopmessage}")
-        else:
-            console.log(f"No run started. Nothing to do...")
-            \end{lstlisting}
+    %     if self.crunActive.value != 0:
+    %         self.status = self._lib.xiaStopRun(0)
+    %         self.CHECK_ERROR(f"{stopmessage}")
+    %     else:
+    %         console.log(f"No run started. Nothing to do...")
+    %         \end{lstlisting}
 
         \subsection{pullMcaData()}\label{sec:pullMcaData}
             After data acquisition, \texttt{pullMcaData()} writes the MCA's content to a pre-defined array of length \texttt{nmca} and type \texttt{c\_ulong} and returns it as a \textit{numpy} array.
@@ -262,19 +270,20 @@
             \texttt{nmca} is the length of the MCA i.e.~the number of bins (see~\cref{sec:setAcquisitionValues} and~\cref{sec:getAcquisitionValues}).
             Since each bin can hold a maximum number of \(2^{24} - 1 = 16777215\) events, the arrays \textit{ctype} has to be sufficiently large.\par\medskip
 
-            \begin{lstlisting}[style=mypython, firstnumber=271, caption={[XMagix method pullMcaData()]XMagix method pullMcaData().}, label={lst:xmagix pullMcaData}]
-    def pullMcaData(self):
-        """Time to read out the MCA"""
+            \lstinputlisting[style=mypython, firstnumber=246, caption={[XMagix method pullMcaData()]XMagix method pullMcaData().}, label={lst:xmagix pullMcaData}, firstline=246, lastline=256]{software/xmagix.py}
+    %         \begin{lstlisting}[style=mypython, firstnumber=271, caption={[XMagix method pullMcaData()]XMagix method pullMcaData().}, label={lst:xmagix pullMcaData}]
+    % def pullMcaData(self):
+    %     """Time to read out the MCA"""
         
-        nmca = self.getAcquisitionValues(name="number_mca_channels")
-        cmca = (c_ulong * int(nmca))()
+    %     nmca = self.getAcquisitionValues(name="number_mca_channels")
+    %     cmca = (c_ulong * int(nmca))()
 
-        self.status = self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("mca"), byref(cmca))
-        self.CHECK_ERROR("Pulling MCA...")
+    %     self.status = self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("mca"), byref(cmca))
+    %     self.CHECK_ERROR("Pulling MCA...")
 
-        mca = np.ctypeslib.as_array(cmca)
-        return mca
-            \end{lstlisting}
+    %     mca = np.ctypeslib.as_array(cmca)
+    %     return mca
+    %         \end{lstlisting}
 
     \section{X-Ray Source Interface}
         Both the ADC and the DAC utilize the SPI protocol of which the \textit{Raspberry Pi 4 B} has implemented a total of seven hardware buses with two hardware chip selects each.
@@ -314,54 +323,146 @@
             \end{tabular}
         \end{table}
 
-        \subsection{Tube Python Wrapper}
+        \subsection{Initializing the SPI Bus}
             The Python class \texttt{Tube} implements automatic initialization of the SPI bus and allows easy reading from and writing to the XRS.
-            While doing so it has to adhere to the serial interface description and timing requirements of the two different devices connected to the bus.
-            Lines \num{7} to \num{17} of the constructor set the pin modes of GPIO24 and GPIO25 responsible i.e. \texttt{Filament Ready} and \texttt{HV/Filament Enable} pins\footnote{Although the full code can be found in~\cref{lst:Tube full source}, reading and writing specific GPIO pins is considered trivial and will not be further elaborated.}.
-            Line \num{19} to \num{24} configure the SPI modes for the DAC and the ADC respectively.
-            The three arguments of \texttt{spi\_open} set the channel (the CS pin the device is physically connected to), the Baud (clock speed) and the mode.\par\medskip
+            While doing so it has to adhere to the SPI protocol description and timing requirements of the two different devices connected to the bus.
+            Lines 9 to 17 of the constructor set the pin modes of GPIO24 and GPIO25 responsible i.e. \texttt{Filament Ready} and \texttt{HV/Filament Enable} pins\footnote{Although the full code can be found in~\cref{lst:Tube full source}, reading and writing specific GPIO pins is considered trivial and will not be further elaborated.}.
+            Line 19 to 24 configure the SPI modes for the DAC and the ADC respectively.
+            The three arguments of \texttt{spi\_open} set the channel (the \(\overline{\texttt{CS}}\) pin the device is physically connected to), the Baud (clock speed) and the mode.
 
-            Taken from the DAC's datasheet, it operates at a clock speed of \qty{20}{\mega\hertz} with clock polarity 0 and a clock phase 1.
-            Clock polarity defines the idle state of the clock, thus, the clocks logic level during a pulse.
-            Clock phase defines when a bit is being sampled.
-            \Cref{fig:tlv5618a timing req} is taken from the DAC's datasheet and shows that it requires a clock polarity of 0 and samples a bit on the clocks transition to idle.
-            
-            To reflect that, the third argument of \texttt{spi\_open} needs to be set to 1~\cite{Manual.PigpioLibrary}.
             \begin{figure}[h]
                 \centering
                 \includesvg[width=.8\textwidth]{electronics/datasheets/tlv5618_timing_req}
                 \caption[TLV5618a timing requirements]{TLV5618a timing requirements~\cite{Manual.DAC.TLV5618A}. A bit is read on the falling edge at the end of a clock pulse which translates to clock polarity 0 and clock phase 1.}
                 \label{fig:tlv5618a timing req}
+            \end{figure}\par\medskip
+
+            Clock polarity defines the idle state of the clock, thus, the clocks logic level while \(\overline{\texttt{CS}}\) is logic high.
+            Clock phase defines when a bit is being sampled.
+            \Cref{fig:tlv5618a timing req} is taken from the DAC's datasheet and shows that the DAC is compatible with either clock polarities and samples a bit on the clocks transition to idle making it compatible with SPI modes 1 and 2~\cite{Manual.IntroductionToSPIInterface.Dhaker.SPI}.
+            Further, it operates at a clock speed of \qty{20}{\mega\hertz} and is physically connected to \(\overline{\texttt{CS1}}\).
+            Line 19 in \cref{lst:Tube constructor} shows the final composition of the necessary arguments to \texttt{spi\_open}~\cite{Manual.PigpioLibrary}.\par\medskip
+
+            The ADC communicates at \qty{100}{\kilo\hertz} on \(\overline{\texttt{CS0}}\) and is compatible with SPI modes 0 and 3.
+            To have the clock phases in sync during debugging, SPI modes are chosen such that the clock signal idles low on both devices.
+
+            \lstinputlisting[style=mypython, firstnumber=5, caption={[\texttt{Tube} class's constructor]\texttt{Tube} class's constructor.}, label={lst:Tube constructor}, firstline=5, lastline=28]{software/thetube.py}
+
+            To let the ADC begin sampling the analog signal at its input, it expects a single start bit and three configuration bits after which it starts to clock back 1 \texttt{NULL} bit followed by its sampling result of 12 bits length.
+            Aligned with the clock edge transitioning from idle the receive buffer starts to fill with random bits immediately after \(\overline{\texttt{CS}}\) was pulled low.
+            Following the application information of the \textit{MCP3202} sending a total of 3 Bytes consisting of seven leading zeros, the start bit, three configuration bits and 13 \texttt{Don't Care} bits, the receive buffer will fill with three Bytes as well.
+            Bit 0 of the last received Byte being the least significant bit (LSB) and Bit 3 of the second Byte the most significant bit (MSB) of the conversion result.
+            \begin{figure}[h]
+                \centering
+                \includesvg[width=.8\textwidth]{electronics/datasheets/mcp3202_protocol}
+                \caption[ADC's communication protocol]{ADC's communication protocol~\cite{Manual.ADC.MCP3202}.}%
+                \label{fig:adc communication protocol}
             \end{figure}
 
-            \begin{lstlisting}[style=mypython,firstnumber=5, caption={[\texttt{Tube} class's constructor]\texttt{Tube} class's constructor.},label={lst:Tube constructor}]
-    def __init__(self, spi_bus: int = 0):
+            Line 24 in \cref{lst:Tube constructor} pre-defines the three Bytes with leading zeros, start bit, single-ended mode, channel 1 and trailing ones.
+            Lines 26 to 28 initialize the two DAC-channels with \qty{0}{\volt} and pull \texttt{enpin} low disabling the XRS.
 
-        self.spi_bus = spi_bus
+            \subsection{enable()}\label{sec:tube enable}
+                The method \texttt{enable()} is a shortcut to set \texttt{enpin} high, enabling the acceleration voltage and filament current and setting an internal state variable accordingly.
 
-        self.pi = pigpio.pi()
-        self.filrdypin = 24
-        self.pi.set_pull_up_down(self.filrdypin, pigpio.PUD_DOWN)
-        self.pi.set_mode(self.filrdypin, pigpio.INPUT) # GPIO 24
+                \lstinputlisting[style=mypython, firstnumber=34, caption={[\texttt{Tube} method \texttt{enable()}]\texttt{Tube} method \texttt{enable().}}, label={lst:Tube method enable}, firstline=34, lastline=36]{software/thetube.py}
 
-        self.enpin = 25
-        self.pi.set_pull_up_down(self.enpin, pigpio.PUD_DOWN)
-        self.pi.set_mode(self.enpin, pigpio.OUTPUT) # GPIO 25
-        self.pi.write(self.enpin, 0)
+            \subsection{disable()}\label{sec:tube disable}
+                Same as \cref{sec:tube enable} but disabling acceleration voltage and filament current.
 
-        self.dac = self.pi.spi_open(1, 20000000, 1) # device 0 at 20MHz using mode 1 (clk-polarity 0, clock-phase 1)
+                \lstinputlisting[style=mypython, firstnumber=38, caption={[\texttt{Tube} method \texttt{enable()}]\texttt{Tube} method \texttt{disable().}}, label={lst:Tube method disable}, firstline=38, lastline=40]{software/thetube.py}
 
-        # ADC SPI-Com config: T=1 (LSB first on MOSI) (3-wire mode) nnnn=0001 (write 1 bytes then read) W=1 (3-wire) mm=11 (POL1, PHA1)
-        # --> 0x4403
-        self.adc = self.pi.spi_open(0, 100000, 0) # device 1 at 100kHz using mode 0 (clk-polarity 0, clock-phase 0)
-        self.adc_read = 0x1Bfff # Single ended, ODD, channel 1
+            \subsection{composeBytesDac()}
+                Tube class' internal helper function \texttt{composeBytesDac()} is supposed to be invoked by user-level methods.
+                Its purpose is to pack the desired set points and configuration bits into a 2-Byte payload ready to be transmitted to the DAC.
+                Hence, it takes two mandatory arguments~--~the actual value i.e. set point and the target channel~--~and defaults two optional arguments \texttt{fast} and \texttt{pwr} to \texttt{False} and \texttt{True}.
+                The application in this work demands no high-speed output.
+                Thus, to ensure better signal integrity by reducing the stability requirements of the reference voltage, fast mode is set to False~\cite{Manual.ADC.MCP3202}.
+                \texttt{pwr} sets the on/off state of the device and should normally be kept \texttt{True}.
 
-        self.setHV(0)
-        self.setI(0)
-        self.disable()
-            \end{lstlisting}
+                \begin{table}[h]
+                    \centering
+                    \caption[Channel select register bits of the ADC]{Channel select register bits of the ADC~\cite{Manual.DAC.TLV5618A}.}%
+                    \label{tab:channel select bits adc}
+                    \begin{tabular}{@{}rlll@{}}
+                        \toprule
+                        & R1& R0& REGISTER\\
+                        \midrule
+                        \(\rightarrow\)& 0& 0& Write data to DAC B and BUFFER\\
+                        & 0& 1& Write data to BUFFER\\
+                        \(\rightarrow\)& 1& 0& Write data to DAC A and update DAC B with BUFFER content\\
+                        & 1& 1& Reserved\\
+                        \bottomrule
+                    \end{tabular}
+                \end{table}
 
+                Depending on the chosen channel i.e. keyword argument \texttt{channel} = \texttt{True/False} the channel select register bit \texttt{R1} is set 0 or 1 while keeping \texttt{R0} 0 at all times (see highlighted lines in \cref{tab:channel select bits adc}~\cite{Manual.DAC.TLV5618A}).\par\medskip
+
+                \lstinputlisting[style=mypython, firstnumber=42, caption={[\texttt{Tube} method \texttt{composeBytesDac()}]\texttt{Tube} method \texttt{composeBytesDac().}}, label={lst:Tube method composebytesdac}, firstline=42, lastline=66]{software/thetube.py}
+
+            \subsection{setHV()}\label{sec:setHV}
+                A method to translate a desired acceleration voltage in \unit{\kev} to a \qty{12}{\bit} integer value to pass to the DAC's channel 0.
+                The user must input a value in a range from \qtyrange{4}{60}{\kev}.
+                Values below \qty{4}{\kev} and above \qty{60}{\kev} will be set to 0.
+                In any case, the set actual set value for the acceleration voltage is stored in a class variable \texttt{hv} for later calculations of the maximum allowed filament current.\par\medskip
+
+                \begin{align}
+                    val_{hv,ctrl} = \fint*{ \frac{hv}{res_{hv,ctrl}} }
+                    \label{eq:setHV val mapping}
+                \end{align}
+
+                Knowing the resolution from \cref{tab:adc dac performance summery} and assuming a linearity error and offset error of 0,
+                the slope of the transfer function can be calculated as shown in \cref{eq:setHV val mapping} and line 90 below.
+                
+                \lstinputlisting[style=mypython, firstnumber=86, caption={[\texttt{Tube} method \texttt{setI()}]\texttt{Tube} method \texttt{setI().}}, label={lst:Tube method setI}, firstline=86, lastline=102]{software/thetube.py}
+
+            \subsection{setI()}
+                A method to translate a desired filament current in \unit{\micro\ampere} to a \qty{12}{\bit} integer value to pass to the DAC's channel 1.
+                The principle of mapping the desired current to an input value is basically the same as discussed in \cref{sec:setHV}.
+                But, to ensure operating the XRS inside its specification limits the value of argument \texttt{i} undergoes an extra conditioning step limiting the output to an appropriate value.
+
+                \begin{align}
+                    val_{i,ctrl} = \fint*{ \frac{i}{res_{i,ctrl}} }
+                    \label{eq:setI val mapping}
+                \end{align}
+
+                The XRS is designed to operate at an output power of \qty{12}{\watt}.
+                Line 107 in \cref{lst:Tube method setI} calculates the maximum allowed filament current according to the currently set acceleration voltage and stores it in the local variable \texttt{imax}.
+                If that filament current exceeds \qty{1000}{\uA} line 109 caps it at the XRS' specified maximum filament current.
+                Lastly, in line 114 \texttt{i} gets capped off at the value of \texttt{imax} if the user has set it above \texttt{imax}.\par\medskip
+                
+                \lstinputlisting[style=mypython, firstnumber=104, caption={[\texttt{Tube} method \texttt{setI()}]\texttt{Tube} method \texttt{setI().}}, label={lst:Tube method setI}, firstline=104, lastline=123]{software/thetube.py}
+            
+            \subsection{read()}
+                \texttt{read} takes a single positional argument \texttt{channel} and returns a list containing the raw convertion result from the ADC and a calculated real-world value in \unit{\keV} or \unit{\uA} using the monitor resolutions in \cref{tab:adc dac performance summery}, depending on the chosen channel.\par\medskip
+
+                \lstinputlisting[style=mypython, firstnumber=68, caption={[\texttt{Tube} method \texttt{read()}]\texttt{Tube} method \texttt{read().}}, label={lst:Tube method read}, firstline=68, lastline=84]{software/thetube.py}
     \section{Motion System}
-        \lipsum
+        Due to the rise of hobby-level 3D-printing not only hardware components became readily available but firmware development as well profited of thriving communities and still does.
+        Among managing other important tasks, one of any 3D-printing firmwares most crucial functions is generating precisely timed stepping pulses to drive usually three or more motors at once.
+        Since reproducing that functionality is a non-trivial task and the orchestrating system is \textit{Raspberry Pi} based, the popular 3D-printer firmware \textit{Klipper}~\cite{Software.Klipper.2023} was chosen to generate the stepping pulses.
+        
+        Due to time limitations, no XMagix user interface integration was developed yet.
+        To still be able to drive the motion system, a pre-made and 3D-printing web interface \textit{Fluidd}~\cite{Software.FluiddTheKlipperUI} is used instead.
+        
+        \textit{Fluidd} itself depends on \textit{Moonraker}~\cite{Software.MoonrakerAPIWebServerForKlipper.2023}~--~an intermediate communication layer exposing the low level \textit{Klipper} commands as an API web server.\par\medskip
+
+        Lastly, for the sake of ease of setting all software components up, \textit{kiauh} was used to automate download and installation as well as taking care of any preliminary configuration of necessary services\footnote{As the time of writing the recommended \textit{Klipper} version running on top of Python 3 is non-functional and the legacy Python 2 variant is installed.}.\par\medskip
+
+        \textit{Klipper} functions by allocating all demanding computational work to the relatively potent host processor~--~the device it is installed to~--~and shifts only the resulting I/O instructions out to the attached peripheral hardware.
+        This requires that hardware to run a daughter software making it understand those instructions.
+        \textit{Klipper} comes with a shell script to configure a makefile and build the required binaries.
+        \begin{lstlisting}[style=mybash]
+            cd ~/klipper
+            make menuconfig
+        \end{lstlisting}
+        In case of the used \textit{Octopus v1.1} the binaries have to be build for the micro-controller architecture \textit{LPC176x} and .
+        \textit{Klipper} uses a special configuration file \texttt{printer.cfg} located in \texttt{~/printer_data/config}.
+        In order 
+        % \begin{lstlisting}[style=mybash, caption={[]}, label={lst:}]
+            
+        % \end{lstlisting}
+        % The way stepper motors are build, driving them demands pulsing their pole pairs in a certain
+
     \section{User Interface}
         \lipsum
