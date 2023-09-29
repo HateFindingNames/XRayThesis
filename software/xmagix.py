@@ -1,5 +1,5 @@
+from timeit import default_timer as timer
 import time
-from rich import print
 from rich.console import Console
 import numpy as np
 from ctypes import *
@@ -65,11 +65,7 @@ class XMagix:
         console.log(f"Logfile set to {logpath}")
 
     def init(self, inifile):
-        """Initializes the Handel library and loads in an .ini file. The functionality of this
-        routine can be emulated by calling xiaInitHandel() followed by xiaLoadSys-
-        tem()("handel_ini", iniFile). Either this routine or xiaInitHandel must be
-        called prior to using the other Handel routines.
-        """
+        """Initializes the Handel library and loads in an .ini file."""
 
         self.inifile = inifile
         self.status = self._lib.xiaInit(self.stringToBytes(inifile))
@@ -91,22 +87,7 @@ class XMagix:
             console.log("Set <logpath> and specify <inifile> first.")
         
     def boardOperation(self, name, value):
-        """Performs product-specific queries and operations.
-        
-        Parameters:
-        ----------
-        name : str
-            Type of data to pass or return. Reference the product-specific Handel manuals for complete lists by product.
-        value : int
-            Variable to return the data in, cast into a void *. See the product-specific Handel manuals for the required data type for each name.
-
-        Return Codes
-        ----------
-        XIA_INVALID_DETCHAN Specified detChan does not exist or is not associated with a known module.
-        XIA_BAD_TYPE detChan refers to a detChan set, which is not allowed in this routine.
-        XIA_UNKNOWN Internal Handel error. Contact XIA.
-        XIA_BAD_CHANNEL Internal Handel error. Contact XIA.
-        """
+        """Performs product-specific queries and operations."""
 
         self.boardOpName = self.stringToBytes(name)
         self.boardOpValue = c_double(value)
@@ -115,11 +96,7 @@ class XMagix:
         self.CHECK_ERROR()
 
     def setAcquisitionValues(self, name, value):
-        """
-        Translates a high-level acquisition value into the appropriate DSP parameter(s)
-        in the hardware. Product-specific Handel manuals list the acquisition values for
-        each product.
-        """
+        """Translates a high-level acquisition value into the appropriate DSP parameter(s) in the hardware."""
 
         if name not in acquisition_values:
             console.log(f"[dark_orange] :warning: Parameter \"{name}\" unknown.")
@@ -132,6 +109,7 @@ class XMagix:
 
     def getAcquisitionValues(self, name) -> dict:
         """Retrieves the current setting of an acquisition value. This routine returns the same value as xiaSetAcquisitionValues() in the value parameters."""
+
         cvalue = c_double(0)
 
         self.acquisitionParams = []
@@ -144,8 +122,9 @@ class XMagix:
             self.acquisitionValuesDict = dict(zip(self.acquisitionParams, self.acquisitionValues))
         else:
             if name in acquisition_values:
-                console.log(f"{name}: {self.acquisitionValuesDict[name]}")
-                return self.acquisitionValuesDict[name]
+                self.status = self._lib.xiaGetAcquisitionValues(self.cdetChan, self.stringToBytes(name), byref(cvalue))
+                console.log(f"{name}: {cvalue.value}")
+                return {name: cvalue.value}
             else:
                 console.log(f"[dark_orange] :warning: Parameter <name> unknown.")
                 pass
@@ -183,11 +162,9 @@ class XMagix:
         binfo = dict(zip(binfo, chararray.tolist()))
         return binfo
 
-    def setParams(self, params):
+    def setParams(self, params, verbose = False):
         """Setting parameters. Defaults taken from XIAs Programmer Guide"""
 
-        # ACQ_MEM_CONSTANTS[AV_MEM_PARSET] = 0x04
-        # ACQ_MEM_CONSTANTS[AV_MEM_GENSET] = 0x08
         cparsetAndGenset = c_short(ACQ_MEM_CONSTANTS["AV_MEM_PARSET"] | ACQ_MEM_CONSTANTS["AV_MEM_GENSET"])
         for key in params:
             if key not in acquisition_values:
@@ -196,38 +173,39 @@ class XMagix:
 
         for key, value in params.items():
             self.cvalue = c_double(value)
-            console.log(f"Setting {key}: {self.cvalue.value}")
+            if verbose == True:
+                console.log(f"Setting {key}: {self.cvalue.value}")
             self.status = self._lib.xiaSetAcquisitionValues(self.cdetChan, self.stringToBytes(key), byref(self.cvalue))
         # Need to call "apply" after setting acquisition values. */
         self.status = self._lib.xiaBoardOperation(self.cdetChan, self.stringToBytes("apply"), byref(cparsetAndGenset))
         self.CHECK_ERROR("Applying changes...")
 
-    def applyParams(self, parset, genset):
+    def applyParams(self):
 
-        if parset or genset not in ACQ_MEM_CONSTANTS:
-            console.log(f"[dark_orange] Xwarning: Bad PARSET/GENSET given.")
-            return None
-        self.cparsetAndGenset = c_short(ACQ_MEM_CONSTANTS[parset] | ACQ_MEM_CONSTANTS[genset])
-
+        self.cparsetAndGenset = c_short(ACQ_MEM_CONSTANTS["AV_MEM_PARSET"] | ACQ_MEM_CONSTANTS["AV_MEM_GENSET"])
         # Need to call "apply" after setting acquisition values. */
         console.log("Applying changes...")
         self.status = self._lib.xiaBoardOperation(self.cdetChan, self.stringToBytes("apply"), byref(self.cparsetAndGenset))
         self.CHECK_ERROR("Applying changes...")
 
-    def startRun(self, clearMca=0):
-        self.cclearMca = c_short(clearMca)
+    def startRun(self, clearMca: bool=True):
 
-        self.status = self._lib.xiaStartRun(self.cdetChan, self.cclearMca)
-        self.CHECK_ERROR(f"Run started until stopped by user...")
+        clearMca = not clearMca
+        cclearMca = c_short(clearMca) # 0: DO clear MCA, 1: do NOT clear MCA
+
+        self.status = self._lib.xiaStartRun(self.cdetChan, cclearMca)
+        runtype = self.getAcquisitionValues("preset_type")
+        runtype = [key for key, val in CONSTANTS.items() if val == runtype]
+        self.CHECK_ERROR(f"Run type {runtype} started ...")
         self.isRunning = True
 
     def fixedRealtimeRun(self, realtime, clearMca=True):
-        """Start fixed realtime run."""
+        """Start fixed length run. Four types of fixed length run are supported"""
 
         if type(realtime) == str:
             realtime = float(realtime)
         clearMca = not clearMca
-        self.cclearMca = c_short(clearMca) # 0: DO clear MCA, 1: do NOT clear MCA
+        cclearMca = c_short(clearMca) # 0: DO clear MCA, 1: do NOT clear MCA
         crunActive = c_short(0)
         coutputCountRate = c_double(0)
         ceventsInRun = c_ulong(0)
@@ -236,8 +214,7 @@ class XMagix:
         self.status = self.setAcquisitionValues("preset_type", CONSTANTS["XIA_PRESET_FIXED_REAL"])
         self.status = self.setAcquisitionValues("preset_value", realtime)
 
-        self.status = self._lib.xiaStartRun(self.cdetChan, self.cclearMca)
-        self.CHECK_ERROR("Starting Run...")
+        self.status = self._lib.xiaStartRun(self.cdetChan, cclearMca)
 
         console.clear()
         with console.status(":satellite: out cps: 0, Events: 0") as status:
@@ -246,12 +223,13 @@ class XMagix:
                 self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("events_in_run"), byref(ceventsInRun))
                 self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("run_active"), byref(crunActive))
                 self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("runtime"), byref(cruntime))
-                status.update(f":satellite: Time: {cruntime.value:.1f}/{realtime:.1f}, out cps: {coutputCountRate.value:.2f}, Events: {ceventsInRun.value}")
+                status.update(f":satellite: Time: {cruntime.value:.1f}/{realtime:.1f}, OCR: {coutputCountRate.value:.2f}, EIR: {ceventsInRun.value}")
                 if crunActive.value == 0:
                     break
-                time.sleep(.1)
+                time.sleep(1)
+        console.clear()
         console.log(f"Done. Run statistics: out cps: {coutputCountRate.value:.2f}, Events: {ceventsInRun.value}")
-        self.status = self.setAcquisitionValues("preset_type", CONSTANTS["XIA_PRESET_FIXED_NONE"])
+        self.status = self.setAcquisitionValues("preset_type", CONSTANTS["XIA_PRESET_NONE"])
         
     def stopRun(self, stopmessage="Stopped..."):
         """Stops an active run."""
@@ -259,7 +237,7 @@ class XMagix:
         crunActive = c_short(0)
         self.status = self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("run_active"), byref(crunActive))
 
-        if self.crunActive.value != 0:
+        if crunActive.value != 0:
             self.status = self._lib.xiaStopRun(0)
             self.CHECK_ERROR(f"{stopmessage}")
         else:
@@ -269,7 +247,7 @@ class XMagix:
         """Time to read out the MCA"""
         
         nmca = self.getAcquisitionValues(name="number_mca_channels")
-        cmca = (c_ulong * int(nmca))()
+        cmca = (c_ulong * int(nmca["number_mca_channels"]))()
 
         self.status = self._lib.xiaGetRunData(self.cdetChan, self.stringToBytes("mca"), byref(cmca))
         self.CHECK_ERROR("Pulling MCA...")

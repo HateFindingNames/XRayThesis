@@ -34,9 +34,6 @@ class Tube:
     def enable(self):
         self.enabled = True
         self.pi.write(self.enpin, True)
-        self.pi.spi_write(self.dac, self.Ival)
-        sleep(.001)
-        self.pi.spi_write(self.dac, self.HVval)
 
     def disable(self):
         self.enabled = False
@@ -45,18 +42,9 @@ class Tube:
     def composeBytesDac(self,
                         data: int,
                         channel: bool,
-                        fast: bool = True,
+                        fast: bool = False,
                         pwr: bool = True) -> list:
-        """
-        Register-Select Truth Table:
-        R1  R2  REGISTER
-        -------------------
-        0   0   Write data to DAC B and BUFFER
-        0   1   Write data to BUFFER
-        1   0   Write data to DAC A and update DAC B with BUFFER content
-        1   1   Reserved
-        -------------------
-        """
+
         channel = not channel
 
         if int(data) > 4095:
@@ -87,27 +75,40 @@ class Tube:
 
         # ready to write/read
         n, b = self.pi.spi_xfer(self.adc, adc_bytes)
-        res = (b[-2] << 8) | b[-1] # remove most significant byte
-        res = res & ~(0xf000) # set bits 12-15 zero
+        raw = (b[-2] << 8) | b[-1] # remove most significant byte
+        raw = raw & ~(0xf000) # set bits 12-15 zero
         if channel == False:
-            return [res, ((70/4095)*res)]
+            # return [res, ((70/4095)*res)]
+            if raw <= 222:
+                res = 0
+            else:
+                res = ((70/(3276+546))*raw)
+            return [raw, res]
         else:
-            return [res, ((870/3071)*res)]
+            if raw <= 33:
+                res = 0
+            else:
+                res = ((1100/(3276+328))*raw)
+            # return [res, ((870/3071)*res)]
+            return [raw, res]
 
     def setHV(self, hv: float) -> None:
         """Set HV Output in kV."""
         self.hv = hv
         if 4 <= hv <= 70:
-            val = abs(int(hv*4095/70))
+            # val = abs(int(hv*4095/70))
+            val = abs(int(hv*(3276+546+241)/70))
             print(val)
             self.HVval = self.composeBytesDac(val, 0)
-            print(f"HV set to {hv} -> {val}. Ok.")
+            print(f"HV set to {hv}kV -> {val}. Ok.")
         elif 0 <= hv < 4:
             print(f"HV set to 0. Ok.")
             self.HVval = self.composeBytesDac(0, 0)
         else:
             print("HV must be in range 4-70kV!")
             self.HVval = self.composeBytesDac(0, 0)
+
+        self.pi.spi_write(self.dac, self.HVval)
     
     def setI(self, i: float) -> None:
         """Set Filament Current Output in uA. Output gets capped at 12 Watt."""
@@ -121,12 +122,15 @@ class Tube:
             if i > imax:
                 i = imax
                 print(f"Did cap filament current at 12W/{self.hv:.3f}V = {(12e3/self.hv):.3f}uA.")
-            val = abs(int((i)*3071/(870)))
+            # val = abs(int((i)*3071/(870)))
+            val = abs(int(i*(3276+328+36)/1100))
             self.Ival = self.composeBytesDac(val, 1)
             print(f"Filament current set to {i}uA -> {val}. Ok.")
         elif i < 0 or i > 1100:
             self.Ival = self.composeBytesDac(0, 1)
             print(f"Filament current must be in range 0-{(12/self.hv):.3f}uA but {i} given -> Did set to 0.")
+
+        self.pi.spi_write(self.dac, self.Ival)
 
     def setPercent(self, percent: float, channel: bool) -> None:
         """Set Output in percent on specified channel."""
