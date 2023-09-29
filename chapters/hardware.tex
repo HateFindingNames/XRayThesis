@@ -139,7 +139,7 @@
 
         \subsection{Raspberry Pi to X-Ray Source Interface}
             The most straight forward way of operating and monitoring the XRS would be connecting to its dedicated USB-B port and using there GUI tool ``12WattController''.
-            It allows to set and monitor the tubes acceleration voltage as well as the filament current, monitoring the devices on/off state, parametrizing and activating PWM operation mode and setting up an auto-shutdown timer.
+            It allows to set and monitor the tube's acceleration voltage as well as the filament current, monitoring the devices on/off state, parametrizing and activating PWM operation mode and setting up an auto-shutdown timer.
             Unfortunately, the software only runs under \textsc{Microsoft} Windows and there are no means of accessing the control schemes programmatically.\par\medskip
 
             Located next to the USB-B port is a 2x5 Pin connector allowing analog control of the device and monitoring its state%
@@ -161,10 +161,10 @@
                     \midrule
                     1&      HV Enable&      \qtyrange{0.0}{+5.0}{\volt} (Input \(Z = \qty{10}{\kilo\ohm}\))&     \(< \qty{1.0}{\volt} = \text{OFF, } >\qty{4}{\volt} = \text{ON}\)\\
                     2&      Filament Ready& \qtyrange{0.0}{+5.0}{\volt} (Output \(Z = \qty{1}{\kilo\ohm}\))&     \(< \qty{1.0}{\volt} = \text{Not ready, } \qty{5}{\volt} = \text{Ready}\)\\
-                    3&      HV Control&     \qtyrange{0.27}{+4.0}{\volt} (Input \(Z = \qty{100}{\kilo\ohm}\))&   \qtyrange{4}{60}{\kilo\volt}\\
-                    4&      HV Monitor&      \qtyrange{0.27}{+4.0}{\volt} (Output \(Z = \qty{100}{\ohm}\))&       \qtyrange{4}{60}{\kilo\volt}\\
-                    5&      Current Control& \qtyrange{0.04}{+4.0}{\volt} (Input \(Z = \qty{100}{\kilo\ohm}\))&   \qtyrange{10}{1000}{\micro\ampere}\\
-                    6&      Current Monitor& \qtyrange{0.0}{+4.0}{\volt} (Output \(Z = \qty{100}{\ohm}\))&        \qtyrange{0}{1000}{\micro\ampere}\\
+                    3&      HV Control&     \qtyrange{0.27}{+4.0}{\volt} (Input \(Z = \qty{100}{\kilo\ohm}\))&   \qtyrange{4}{60}{\keV}\\
+                    4&      HV Monitor&      \qtyrange{0.27}{+4.0}{\volt} (Output \(Z = \qty{100}{\ohm}\))&       \qtyrange{4}{60}{\keV}\\
+                    5&      Current Control& \qtyrange{0.04}{+4.0}{\volt} (Input \(Z = \qty{100}{\kilo\ohm}\))&   \qtyrange{10}{1000}{\uA}\\
+                    6&      Current Monitor& \qtyrange{0.0}{+4.0}{\volt} (Output \(Z = \qty{100}{\ohm}\))&        \qtyrange{0}{1000}{\uA}\\
                     7&      Ground&         Ground&                                                             Ground\\
                     8&      Ground&         Ground&                                                             Ground\\
                     9&      Filament Enable&\qtyrange{0.0}{+5.0}{\volt} (Input \(Z = \qty{10}{\kilo\ohm}\))&     \(< \qty{1.0}{\volt} = \text{OFF, } >\qty{4}{\volt} = \text{ON}\)\\
@@ -185,89 +185,102 @@
                 \caption[Schematic of the DAC]{Schematic of the DAC.}
                 \label{fig:DAC schematic}
             \end{figure}
-            To generate analog signals a \textit{TLV5618A} was used.
-            It integrates two separate output channels with 12bit resolution, delivers peak output voltages ranging from \qtyrange{2.7}{5.5}{\volt} and is SPI programmable~\cite{Manual.DAC.TLV5618A}.
+            To generate analog signals the component \textit{TLV5618A} was used.
+            It integrates two separate output channels with \(n = \qty{12}{\bit}\) resolution, delivers peak output voltages ranging from \qtyrange{2.7}{5.5}{\volt} and is SPI programmable~\cite{Manual.DAC.TLV5618A}.
             The schematic depicted in \cref{fig:DAC schematic} shows its external circuitry and the configuration of its voltage reference.
             In order to prevent clipping of the output voltage, it is important to keep the reference voltage below \(\frac{V_{DD} - \qty{0.4}{\volt}}{2}\) which effectively means keeping it below half the maximum desired output voltage~\cite[p. 3]{Manual.DAC.TLV5618A}.
-            The used \textit{LT1009} delivers a sufficiently stable reference voltage of \(\approx \qty{2.385}{\volt}\) while pin 3 is tied to ground (see \cref{fig:LT1009 sim} for spice simulation analysis).
-            Although this still is slightly higher than the limits stated above, minimal clipping of the output voltage should not be of a concern.
-            Taken from \cref{tab:xrs 10pin connector specs} HV Control and Filament Control are ranging from \qtyrange{0.27}{4}{\volt} which limits the usable number of bits (\(UNOB\)) to:
-            \begin{align}
-                UNOB_{HV,Ctrl} &= UNOB_{HV,Ctrl,H} + UNOB_{HV,Ctrl,L} \nonumber\\
-                &= \cint*{\frac{n_{bits}-1}{V_{DD}-\qty{0.4}{\volt}} \cdot \qty{0.6}{\volt}} - \cint*{\frac{n_{bits}-1}{V_{DD}-\qty{0.4}{\volt}} \cdot \qty{0.27}{\volt}} \nonumber\\
-                &= 535 + 241 = 776
-                \label{eq:UNOB hv DAC}
-            \end{align}
-            with \(UNOB_{HV,Ctrl,L}\) being the unusable number of bits between \qty{0}{\volt} and \qty{0.27}{\volt} and \(UNOB_{HV,Ctrl,H}\) the bits mapping the unusable range from \qtyrange{4}{4.6}{\volt}.
-            Calculating \(UNOB\) for Current Control yields
-            \begin{equation}
-                UNOB_I = 535 + 36 = 571
-                \label{eq:UNOB filament DAC}
-            \end{equation}
-            with a resulting HV Control resolution
-            \begin{equation}
-                V_{Ctrl}(bit) = \frac{V_{Ctrl,max} - V_{Ctrl,min}}{n_{bits}} \approx \qty{13.7}{\volt\per\bit}
-                \label{eq:HV ctrl resolution}
-            \end{equation}
-            and a Current Control resolution
-            \begin{equation}
-                I_{Ctrl}(bit) = \frac{I_{Ctrl,max} - I_{Ctrl,min}}{n_{bits}} \approx \qty{0.24}{\micro\ampere\per\bit}
-                \label{eq:Current ctrl resolution}
-            \end{equation}
-            respectively.\par\medskip
+            The used \textit{LT1009} delivers a sufficiently stable reference voltage of \(\approx \qty{2.385}{\volt}\) with pin 3 tied to ground (see \cref{fig:LT1009 sim} for spice simulation analysis).
+            % Although this still is slightly higher than the limits stated above, minimal clipping of the output voltage should not be of a concern.
 
-            The analogous feedback values are sampled by an \textit{MCP3202}.
-            The \textit{MCP3202} is a \qty{12}{\bit} two-channel ADC with an input range of \qtyrange{2.7}{5.5}{\volt} and SPI-programmable as well~\cite{Manual.ADC.MCP3202}.
+            \begin{equation}
+                2REF\frac{CODE}{2^n} = FS \qquad \text{where} \qquad CODE \overset{!}{=} 2^n
+                \label{eq:dac general function}
+            \end{equation}
+
+            \Cref{eq:dac general function}, taken from the DAC's datasheet, specifies a full scale range (\(FS\)) of two times the reference voltage while the output voltage keeps capped at \(V_{DD}- \qty{0.4}{\volt}\).
+            The difference of \qty{0.17}{\volt} is expected to be clipped off of the full scale output signal.\par\medskip
+
+            % The D/A converter's resolution is given as
+
+            % \begin{equation}
+            %     Res_{DAC} = \frac{2U_{Ref}}{n - 1} \approx \qty{1.2}{\milli\volt\per\bit}
+            %     \label{eq:DAC resolution}
+            % \end{equation}
+
+            \begin{align}
+                UNOB = \cint*{ U \cdot \frac{n - 1}{FS}}
+                \label{eq:UNOB}
+            \end{align}
+
+            Taken from~\cref{tab:xrs 10pin connector specs} HV Control and Current Control are ranging from \(U_{DAC,A} = \qtyrange{0.27}{4}{\volt}\) and \(U_{DAC,B} = \qtyrange{0.04}{4}{\volt}\).
+            These control ranges introduce upper and lower dead regions rendering a number of bits in those regions unusable (\(UNOB\), see \cref{eq:UNOB}).
+            \Cref{fig:transfer function DAC} illustrates those dead regions.
+
+            \begin{figure}[h]
+                \centering
+                \includesvg[width=\textwidth]{software/pictures/dac_transfer_function}
+                \caption[Transfer function of the DAC showing the operational range]{Transfer function of the DAC showing the operational range.}%
+                \label{fig:transfer function DAC}
+            \end{figure}
+
+            The to-be-expected minor clipping of the signal at the DAC's outputs is considered not much of a concern since it will be well inside the upper (mutual) dead region.
+
+            \begin{equation}
+                R_S = \frac{U_S - U_Z}{I_Z + I_L}
+                \label{eq:LM4040 cathode current}
+            \end{equation}
+
+            The analogous feedback signal from the XRS is sampled by an \textit{MCP3202}~\cite{Manual.ADC.MCP3202}.
+            The \textit{MCP3202} is a \qty{12}{\bit} two-channel ADC with an input range of \qtyrange{2.7}{5.5}{\volt} and SPI-programmable as well.
             It uses its power supply as its voltage reference, thus, the \textit{LT1009} needs to be replaced in favor of a \qty{5}{\volt} reference.
             As shown in \cref{fig:ADC schematic}, a reference of type \textit{LM4040DIZ-5.0} is used.
             To provide a reference of \(\qty{5}{\volt} \pm \qty{2}{\percent}\), a cathode current of \qtyrange{0}{25}{\milli\ampere} must not be exceeded~\cite{Manual.LM4040PrecisionMicropowerShuntVoltageReference}.
-            \begin{equation}
-                I_Z = \frac{U_S - U_Z}{I_Z + I_L}
-                \label{eq:LM4040 cathode current}
-            \end{equation}
-            With an assumed supply voltage slightly higher than nominal \qty{5}{\volt}, a maximum expected load current of \qty{550}{\micro\ampere}\footnote{Operating current of the \textit{MCP3202}.} and values given in the datasheet a current limiting resistor of \(\approx \qty{6}{\ohm}\) is calculated and reflected in the two parallel resistors \(R_4\) and \(R_5\) of \qty{12}{\ohm} each.
+
             \begin{figure}[h]
                 \centering
                 \includesvg[width=.65\textwidth]{electronics/pdf/ADC_circuitry}
                 \caption[Schematic of the ADC]{Schematic of the ADC.}%
                 \label{fig:ADC schematic}
-            \end{figure}\par\medskip
-            %
-            With \(V_{DD} = V_{Ref,ADC}\), full scale of~\(V_{DD} - 1\cdot LSB\) and following the same considerations as in~\crefrange{eq:UNOB hv DAC}{eq:Current ctrl resolution} the ADC's~\(UNOB\) computes as follows:
-            \begin{align}
-                UNOB_{HV,Mon} &= \cint*{ \frac{2^{12}-1}{\qty{5}{\volt}} \cdot \qty{1}{\volt}} + \cint*{\frac{2^{12}-1}{\qty{5}{\volt}} \cdot \qty{0.27}{\volt}}\nonumber\\
-                &= 819 + 222 = 1041
-                \label{eq:UNOB hv ADC}
-            \end{align}
-            and
-            \begin{equation}
-                UNOB_{I,Mon} = 819 + 33 = 852
-                \label{eq:UNOB current ADC}
-            \end{equation}
-            accordingly.
-            With the HV~Monitors range being identical to the HV~Control range, HV Monitor reads with an equal resolution as in~\cref{eq:HV ctrl resolution}.
-            Current Monitor instead misses an offset.
-            With \cref{eq:Current ctrl resolution} and~\(I_{Mon,min} = \qty{0}{\micro\ampere}\) the Current monitor readings resolve to about~\qty{24.4}{\micro\ampere\per\bit} (\cref{eq:Current monitor resolution}).
-            \begin{equation}
-                I_{Mon}(bit) = \frac{I_{C,Mon,max}}{n_{bits}} \approx \qty{24.4}{\micro\ampere\per\bit}
-                \label{eq:Current monitor resolution}
-            \end{equation}\par\medskip
+            \end{figure}
 
-            \Cref{fig:top view interface board} shows the top view of the real-world implementation of the above.
-            The yellow area~(1) comprises the DAC portion of the circuit, the purple area~(2) the ADC.
-            The 10pin headers on the left and right connect to the SBC and the XRS.
-            A detailed description of there respective pin-assignment can be found in the full schematics in~\cref{fig:schematics of peripherals}.
-            The 2-pin connector on the upper-right receives~\qty{24}{\volt} to supply the XRS via pin 10 on its connector.
+            With an assumed supply voltage \(U_S\) slightly higher than nominal \qty{5}{\volt} and a maximum expected load current of \(I_L = \qty{550}{\uA}\)\footnote{Operating current of the \textit{MCP3202}.} and \(I_Z = \qty{15}{\milli\ampere}\) \cref{eq:LM4040 cathode current} yields a current limiting resistor of \(R_S \approx \qty{6}{\ohm}\)~\cite{Manual.LM4040PrecisionMicropowerShuntVoltageReference}.
+            This value is comfortably achievable using two widely available E12 series resistors in parallel and is reflected in the two resistors \(R_4\) and \(R_5\) of \qty{12}{\ohm} each.\par\medskip
+
+            The \textit{MCP3202} does not exhibit any clipping letting the reference voltage be assumed equal the full scale voltage.
+            HV Monitors output signal has the same upper and lower boundaries as the HV Control signal, thus, decreasing resolution and increasing the dead region compared to the DAC's performance.
+            Again, in this application this is not considered problematic since there is no need to for sub-\unit{\kev} and sub-\unit{\uA} adjustability.
+
+            \Cref{tab:adc dac performance summery} summarizes the theoretical performance data of the D/A and A/D converter circuits.
+            \begin{table}[t]
+                \centering
+                \caption[Performance data of D/A and A/D circuitry]{Performance data of D/A and A/D circuitry.}%
+                \label{tab:adc dac performance summery}
+                \begin{tabular}{@{}lSSSS@{}}
+                    \toprule
+                    Value&          {HV Control}&   {Current Control}&  {HV Monitor}&   {Current Monitor}\\
+                    \midrule
+                    \(UNOB_L\)&     232&            35&                 222&            0\\
+                    \(UNOB_H\)&     662&            662&                819&            819\\
+                    \(UNOB_{tot}\)& 894&            697&                1041&           819\\
+                    Resolution&     \qty{0.017}{\kV\per\bit}& \qty{0.291}{\uA\per\bit}& \qty{0.018}{\kV\per\bit}& \qty{0.302}{\uA\per\bit}\\
+                    \bottomrule
+                    
+                \end{tabular}
+            \end{table}
+
+            % The resolution in terms of \unit{\keV\per\bit} and \unit{\uA\per\bit}
+
             \begin{figure}[h]
                 \centering
                 \includesvg[width=.7\textwidth]{pictures/footage/interface_front}
                 \caption[Top view of the SBC-XRS-interface board]{Top view of the SBC-XRS-interface board. DAC in yellow (1), ADC in purple (2).}%
                 \label{fig:top view interface board}
-            \end{figure}
+            \end{figure}\par\medskip
+
+            \Cref{fig:top view interface board} shows the top view of the real-world implementation of the above.
+            The yellow area~(1) comprises the DAC portion of the circuit, the purple area~(2) the ADC.
+            The 10-pin headers on the left and right connect to the SBC and the XRS.
+            A detailed description of their respective pin-assignment can be found in the full schematics in~\cref{fig:schematics of peripherals}.
+            The 2-pin connector on the upper-right receives~\qty{24}{\volt} to supply the XRS via pin 10 on its connector.
+
             The Pin ordering scheme for the 10-pin connector on the rear of the XRS is shown in \cref{fig:10 pin numbering scheme}.
-            \begin{figure}[h]
-                \centering
-                \includegraphics[width=.3\textwidth]{electronics/datasheets/XRS_10pin_male.png}
-                \caption[XRS' analog control pin numbering scheme.]{XRS' analog control pin-numbering scheme.}%
-                \label{fig:10 pin numbering scheme}
-            \end{figure}

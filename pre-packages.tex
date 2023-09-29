@@ -5,6 +5,7 @@
 \usepackage{amssymb} % math symbols
 \usepackage{mathtools}
 \DeclarePairedDelimiter{\cint}\lceil\rceil
+\DeclarePairedDelimiter{\fint}\lfloor\rfloor
 \usepackage{array} % Extending the array and tabular environments https://ctan.org/pkg/array
 \usepackage[english]{babel}
 \usepackage{lmodern} % Latin modern fonts in outline formats https://www.ctan.org/pkg/lm
@@ -36,6 +37,8 @@
 \DeclareSIUnit\watthour{Wh}
 \DeclareSIUnit\newtonmetre{Nm}
 \DeclareSIUnit\bit{bit}
+\newcommand{\kev}{\kilo\electronvolt}
+\newcommand{\uA}{\micro\ampere}
 \usepackage{subcaption} % Support for sub-captions https://www.ctan.org/pkg/subcaption
 \usepackage{threeparttable} % better tablenotes
 \usepackage{tabularx} % Tabulars with adjustable-width columns https://www.ctan.org/pkg/tabularx
@@ -52,7 +55,7 @@
     bookmarksopen=true,
     bookmarksnumbered=true,
     colorlinks=true, % Color links instead of disgusting boxes :barfing_emoji:
-    linkcolor={blue}, % Color of internal links
+    linkcolor={black}, % Color of internal links
     citecolor={blue}, % Color of citations
     urlcolor={blue} % Color of external hyperlinks
 }
