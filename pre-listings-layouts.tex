@@ -26,13 +26,45 @@
 }
 \lstdefinestyle{mypython-apx}{
     language=Python,
-    tabsize=2,
+    tabsize=1,
     postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
     basicstyle=\ttfamily\footnotesize,
     inputencoding=utf8,
     breaklines=true,
     stepnumber=1, % line numbering steps
     % morekeywords={ones,height,width,datetime}, % additional keywords to highlight
+    keywordstyle=\color{blue},
+    frame=none,
+    identifierstyle=\color{black},
+    stringstyle=\color{codeorange},
+    commentstyle=\color{codegreen},
+    showstringspaces=false, %without this there will be a symbol in the places where there is a space
+    numbers=left,
+    numberstyle={\tiny \color{black}}, % size of the numbers
+    numbersep=5pt % this defines how far the numbers are from the text
+}
+\lstdefinestyle{mydjango}{
+    language=Python,
+    tabsize=1,
+    postbreak=\mbox{\textcolor{red}{$\hookrightarrow$}\space},
+    basicstyle=\ttfamily\footnotesize,
+    inputencoding=utf8,
+    breaklines=true,
+    stepnumber=1, % line numbering steps
+    morekeywords={
+        include,
+        mcu,
+        printer,
+        virtual_sdcard,
+        stepper_x,
+        tmc2209,
+        stepper_y,
+        stepper_z,
+        homing_override,
+        force_move,
+        gcode_macro,
+        idle_timeout
+        }, % additional keywords to highlight
     keywordstyle=\color{blue},
     frame=none,
     identifierstyle=\color{black},
@@ -51,7 +83,7 @@
     inputencoding=utf8,
     breaklines=true,
     stepnumber=1, % line numbering steps
-    morekeywords={lsusb,grep,sudo,echo,conda,pip,chmod,tee,apt,groups}, % additional keywords to highlight
+    morekeywords={lsusb,grep,sudo,echo,conda,pip,chmod,tee,apt,groups,ls,make}, % additional keywords to highlight
     keywordstyle=\color{blue},
     frame=none,
     identifierstyle=\color{black},

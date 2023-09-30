@@ -74,38 +74,29 @@ class Tube:
         adc_bytes = adc_bytes.to_bytes(3, "big") # 0b00000001 11011111 11111111
 
         # ready to write/read
-        n, b = self.pi.spi_xfer(self.adc, adc_bytes)
+        _, b = self.pi.spi_xfer(self.adc, adc_bytes)
         raw = (b[-2] << 8) | b[-1] # remove most significant byte
         raw = raw & ~(0xf000) # set bits 12-15 zero
         if channel == False:
-            # return [res, ((70/4095)*res)]
-            if raw <= 222:
-                res = 0
-            else:
-                res = ((70/(3276+546))*raw)
-            return [raw, res]
+            res = (raw*0.018)
         else:
-            if raw <= 33:
-                res = 0
-            else:
-                res = ((1100/(3276+328))*raw)
-            # return [res, ((870/3071)*res)]
-            return [raw, res]
+            res = (raw*0.302)
+        return [raw, res]
 
     def setHV(self, hv: float) -> None:
         """Set HV Output in kV."""
         self.hv = hv
-        if 4 <= hv <= 70:
-            # val = abs(int(hv*4095/70))
-            val = abs(int(hv*(3276+546+241)/70))
-            print(val)
+        if 4 <= hv <= 60:
+            val = abs(int(hv/0.017))
             self.HVval = self.composeBytesDac(val, 0)
             print(f"HV set to {hv}kV -> {val}. Ok.")
         elif 0 <= hv < 4:
+            self.hv = 0
             print(f"HV set to 0. Ok.")
             self.HVval = self.composeBytesDac(0, 0)
         else:
-            print("HV must be in range 4-70kV!")
+            self.hv = 0
+            print("HV must be in range 4-60kV!")
             self.HVval = self.composeBytesDac(0, 0)
 
         self.pi.spi_write(self.dac, self.HVval)
@@ -114,19 +105,18 @@ class Tube:
         """Set Filament Current Output in uA. Output gets capped at 12 Watt."""
         try:
             imax = 12e3/self.hv
-            if imax > 1100:
-                imax = 1100
+            if imax > 1000:
+                imax = 1000
         except ZeroDivisionError:
-            imax = 1100
-        if 0 <= i <= 1100:
+            imax = 1000
+        if 0 <= i <= 1000:
             if i > imax:
                 i = imax
                 print(f"Did cap filament current at 12W/{self.hv:.3f}V = {(12e3/self.hv):.3f}uA.")
-            # val = abs(int((i)*3071/(870)))
-            val = abs(int(i*(3276+328+36)/1100))
+            val = abs(int(i/0.291))
             self.Ival = self.composeBytesDac(val, 1)
             print(f"Filament current set to {i}uA -> {val}. Ok.")
-        elif i < 0 or i > 1100:
+        elif i < 0 or i > 1000:
             self.Ival = self.composeBytesDac(0, 1)
             print(f"Filament current must be in range 0-{(12/self.hv):.3f}uA but {i} given -> Did set to 0.")
 
