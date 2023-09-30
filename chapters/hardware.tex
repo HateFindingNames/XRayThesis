@@ -176,6 +176,7 @@
                     Direction&  PF12&   PG1\\
                     Enable&     !PF14&  !PF15\\
                     Endstop&    \textasciicircum PG6&   \textasciicircum PG9\\
+                    Driver UART& PC4&   PD11\\
                     \bottomrule
                 \end{tabular}
             \end{table}
@@ -184,6 +185,10 @@
             The host system is connected to the board via USB type C to be found on the right-most edge of the board (4).
             The logic level of the \texttt{Octopus} could be powered by the USB bus-power by placing the respective jumper accordingly.
             Doing so is neither required, nor is it advisable to put unnecessary additional load on the SBC's \qty{5}{\volt} supply.
+
+            For each motor is a dedicated stepper driver of type \textit{TMC2209} placed beneath the respective connector.
+            The \textit{TMC2209} feature various modes of operation, which can be manipulated dynamically during operation.
+            The connected MCU communicates with the drivers via 1-wire UART needing a special pin assignment for each driver.
 
         \subsection{Raspberry Pi to X-Ray Source Interface}
             The most straight forward way of operating and monitoring the XRS would be connecting to its dedicated USB-B port and using there GUI tool ``12WattController''.

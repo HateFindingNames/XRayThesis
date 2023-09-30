@@ -8,7 +8,7 @@
         The used detector incorporates a \textit{microDXP}-platform.
         Thus, all non-\textit{microDXP} routines will not be discussed here as well.\par\medskip
 
-        \subsection{Building Handel's API Libraries}\label{sec:building libraries}
+        \subsection{Building Handel's API Libraries}\label{sec:software preperations}
             The SBC runs the latest x64 version of \textit{Raspberry Pi OS Lite}\footnote{Installed using the \textit{Raspberry Pi Imager} tool.
             Direct download available under~\cite{Software.RaspberryPiOSLite.2023}}.
             A detailed description and troubleshooting suggestions can be found on the author's repository~\cite{Software.XraythesisHandel.2023}.\par\medskip
@@ -306,7 +306,7 @@
         \textit{Klipper} functions by allocating all demanding computational work to the relatively potent host processor~--~the device it is installed to~--~and shifts only the resulting I/O instructions out to the attached peripheral hardware.
         This requires that hardware to run a daughter software making it understand those instructions.
         \textit{Klipper} comes with a shell script to configure a makefile and build the required binaries.
-        In case of the used \textit{Octopus v1.1} the micro-controller architecture \texttt{LPC176x} and the processor model \texttt{LPC1769} have to be selected.
+        In case of the used \textit{Octopus v1.0} the micro-controller architecture \texttt{LPC176x} and the processor model \texttt{LPC1769} have to be selected.
 
         \begin{lstlisting}[style=mybash, numbers=none]
     cd ~/klipper
@@ -333,6 +333,7 @@
         After flashing the binary to the peripheral hardware, the command above re-issued yields a new device file location which \texttt{Klipper} has to be pointed to.
         The configuration file needs to be edited accordingly by entering it as a value for \texttt{serial}.
         % With all preliminary configurations in place, entering the IP-address of the host system into a browser of a device 
+
         \begin{lstlisting}[style=mydjango, firstnumber=7,
             caption={[\texttt{mcu}-section of \texttt{printer.cfg} showing the id of the connected serial device]\texttt{mcu}-section of the \texttt{printer.cfg} showing the id of the connected serial device.},
             label={lst:usb by id}%
@@ -341,15 +342,70 @@
     serial: /dev/serial/by-id/usb-Klipper_stm32f446xx_440022001251303431333234-if00
         \end{lstlisting}
 
-        Hereafter, the sections \texttt{[stepper\_x]}, \texttt{[stepper\_y]} and \texttt{[stepper\_z]} need to be populated for \texttt{Klipper} service to start without error.
-        If the motors are plugged
-        The detector stage will be driven by \texttt{[stepper\_x]}.
-        Physically, only two motors are installed so the entries in \texttt{[stepper\_z]} can be of any arbitrary kind as they follow the general structure.
-        % \textit{Klipper} uses a special configuration file \texttt{printer.cfg} located in \texttt{~/printer\_data/config}.
-        % \begin{lstlisting}[style=mybash, caption={[]}, label={lst:}]
-            
-        % \end{lstlisting}
-        % The way stepper motors are build, driving them demands pulsing their pole pairs in a certain
+        Hereafter, the sections \texttt{[stepper\_x]}, \texttt{[stepper\_y]} and \texttt{[stepper\_z]} must be populated for \texttt{Klipper} service to start without error.
+        The detector stage will be driven by \texttt{[stepper\_x]}, the sample stage by \texttt{[stepper\_y]}.
+        Physically, there is no motor connected to \texttt{[stepper\_z]} so the entries in this section can be filled with dummy values.
+
+        Taken the detector stage as an example \cref{lst:stepper section printer cfg} shows all necessary entries.
+        The pin definitions are taken from \cref{tab:octopus pin assignments} and correspond to the physical connections to the board as discussed in \cref{sec:kinematics}.
+
+        \begin{lstlisting}[style=mydjango, firstnumber=16,
+            caption={[Example stepper section of \texttt{printer.cfg}]Example stepper section of \texttt{printer.cfg}.},
+            label={lst:stepper section printer cfg}%
+            ]
+    [stepper_x]
+    step_pin: PF13
+    dir_pin: PF12
+    enable_pin: !PF14
+    microsteps: 32
+    rotation_distance: 500 # unit mm
+    gear_ratio: 250:80
+    full_steps_per_rotation: 200
+    endstop_pin: ^PG6
+    position_endstop: 0 # unit mm
+    position_max: 300
+    homing_speed: 10 # unit mm/min
+    homing_retract_dist: 5 # unit mm
+    homing_positive_dir: false
+        \end{lstlisting}
+
+        Variables \texttt{rotation\_distance}, \texttt{gear\_ratio} and \texttt{full\_steps\_per\_rotation} define the physical setup of the effector comprising motors and gearing.
+        Here, \texttt{gearing\_ratio} denotes the ratio of the last gear in the chain~--~250T attached to the slewing ring~--~to the very first gear~--~80T on the motor shaft~--~ignoring all other gearing in between.
+        To achieve the maximum precicion on the drivers end a microstepping of 32 is chosen increasing the amount of full steps per revolution by a factor of 32.
+        \texttt{rotation\_distance} is the distance in \unit{\milli\meter} traveled after one full rotation of the last gear.
+        The detector stage is mechanically not capable of traveling beyond \(\approx \qty{225}{\degree}\).
+        With a safety margin the maximum allowed travel of the X-axis is capped at \qty{300}{\milli\metre} along the gears pitch diameter which translates to
+
+        \begin{equation}
+            \frac{\qty{360}{\degree}}{\qty{500}{\milli\metre}} \cdot \qty{300}{\milli\metre} = \qty{216}{\degree}
+            \label{eq:position max}
+        \end{equation}
+        
+        Since each motor is driven by a dedicated \texttt{TMC2209} stepper driver, each section defining a physical axis is accompanied by a special \texttt{tmc2209} section (see \cref{lst:stepper tmc section} for reference).
+        The \textit{TMC2209} are capable of interpolating 256 steps between each full step regardless of the actual microstepping mode.
+        Whilst this does provide a smoother motion interpolation mode is more prone to missed steps requiring a higher motor current to counter its negative effects.
+        Additionally, the stepper drivers feature \textit{StealthChop2}~--~a \textquote{voltage-chopper based principle} to \textquote{guarantees that the motor is absolutely quiet in standstill and in slow motion}~\cite{Manual.TMC2209Datasheet} in trade for more heat generated in the motor windings while reducing torque at any given speed compared to normal operation.
+        Since the application in this work does not require exceptional quiet motion, the threshold for dynamically switching to \textit{StealthChop} is set to \qty{0}{\milli\metre\per\minute}.
+        \begin{lstlisting}[style=mydjango, firstnumber=31,
+            caption={[Stepper corresponding stepper driver section of \texttt{printer.cfg}]Stepper corresponding stepper driver section of \texttt{printer.cfg}.},
+            label={lst:stepper tmc section}%
+            ]
+    [tmc2209 stepper_x]
+    uart_pin: PC4
+    interpolate: False
+    run_current: 0.8 # unit A
+    sense_resistor: 0.110 # unit Ohm
+    stealthchop_threshold: 0 # unit mm/min
+        \end{lstlisting}
 
     \section{User Interface}
-        \lipsum
+        As a preliminary user interface putting all software components together, a jupyter notebook was created and hosted on the SBC itself (see \texttt{./myapp/user.ipynb} in \cite{Software.XraythesisHandel.2023}).
+        Here, all both classes \texttt{XMagix} and \texttt{Tube} are loaded and most important functions are exposed inside individual cells separated by logical sectioning.
+        In order to have all dependencies available, the kernel inside the conda environment \texttt{xmagix} created in~\cref{sec:software preperations}~--~\textit{xmagix} if not named otherwise~--has to be chosen as the executing kernel.
+        The following lines executed import the custom classes into the ipython kernel
+        \begin{lstlisting}[style=mypython, firstnumber=auto]
+    from xmagix import XMagix
+    from thetube import Tube
+    tube = Tube()
+    xmagix = XMagix("lib/libhandel.so")
+        \end{lstlisting}
