@@ -108,7 +108,7 @@
         The SBC is typically powered via its dedicated USB-C port which in turn requires a \qty{5.1}{\volt} supply with a recommended current rating of \qty{3}{\ampere}~\cite{Manual.Documentation.RPF}.
         The detectors specifications state, that it needs a \qty{5}{\volt} power supply and draws less than \qty{3}{\watt} which translates to \(<\qty{0.6}{\ampere}\).
         Taken from the datasheet, the XRS is driven by an input voltage of \qty{24}{\volt} and an input current of \qty{1.1}{\ampere}~\cite{Manual.MAGPRODataSheet.QD}.
-        The two stepper motors are each driven by TMC2209 stepper drivers which in turn accept a relatively broad range of \qtyrange{4.75}{29}{\volt}~\cite{Manual.TMC2209Datasheet} as supply voltages.
+        The two stepper motors are each driven by \textit{TMC2209} stepper drivers which in turn accept a relatively broad range of \qtyrange{4.75}{29}{\volt}~\cite{Manual.TMC2209Datasheet} as supply voltages.
         The remaining peripherals such as the interface between the SBC and the XRS are directly driven from \qty{3.3}{\volt} and \qty{5}{\volt} provided by the Raspberry Pi's GPIO-Header.
 
         A tabulated summery of the supply power requirements can be found in \cref{tab:power requirements}.\par\medskip
@@ -135,7 +135,55 @@
 
         All wiring~--~where applicable~--~is routed through perforated cable ducting.
 
-        \subsection{Kinematics}
+        \subsection{Kinematics}\label{sec:kinematics}
+            In addition to the two stepper motors driving each stage at least one endstop needs to be installed per axis.
+            Despite inferior durability compared to optical or magnetic options, mechanical micro switch type endstops were chosen due to availability and simplicity by requiring no additional passive components.
+            \begin{figure}[h]
+                \centering
+                \includegraphics[width=.25\textwidth]{pictures/footage/endstop_switch.jpg}
+                \caption[Wiring of the used mechanical endstops]{Wiring of the used mechanical endstops. They are installed in normal closed (NC) configuration to detect faulty connections early on.}%
+                \label{fig:endstop pic}
+            \end{figure}
+
+            \Cref{fig:endstop pic} shows an example of one of the actual endstops used.
+            They are wired in normally closed (NC) configuration to prevent potential damage by driving the stages past there minimal position during the homing procedures in case of an accidental connection break.
+
+            \begin{figure}[h]
+                \centering
+                \includesvg[width=.9\textwidth]{electronics/pdf/octopus}
+                \caption[Top view drawing of the \textit{Octopus v1.0} PCB layout]{Top view drawing of the \textit{Octopus v1.0} PCB layout~\cite{Manual.BigTreeTechOctopus}. Highlighted are the power terminals for (1), the used motor (2) and endstop (3) connectors and the USB type C plug (4). The Motors and the main power supply share the same \qty{24}{\volt} supply and are tied together.}%
+                \label{fig:octopus connections}
+            \end{figure}
+
+            Low level processing of the endstop signaling and stepping pulse generation takes place on dedicated peripheral hardware connected to the SBC via USB.
+            Usually found in 3D-printing appliances, an \textit{Octopus v1.0} is installed to accept motion instructions from and return endstop signals to the host system.
+            \Cref{fig:octopus connections} depicts a top view diagram of the \textit{Octopus'} PCB layout and highlights the relevant connectors and terminals~\cite{Manual.BigTreeTechOctopus}.
+            The power supply terminals located on the left hand side serve as power supply to the connected motor drivers, the board itself and an~--~if installed~--~heated print bed.
+            In this design, motors and the primary power supply of the board share the same voltage level of \qty{24}{\volt} (1).
+            The two motors are connected to the first two 4-pin connectors at the top of horizontal row labeled \texttt{MOTOR0} and \texttt{MOTOR1}(2).
+            On the bottom-right located there are four dedicated endstop connectors (3).
+            Each providing a ground connection and \qty{3.3}{\volt}\footnote{Depending on the respective jumper placement \qty{5}{\volt} can be chosen as well. See~\cite{Manual.BigTreeTechOctopus} for the exact jumper location.}.
+
+            \begin{table}[h]
+                \centering
+                \caption[\textit{Octopus} pin assignment]{\textit{Octopus} pin assignment.}
+                \label{tab:octopus pin assignments}
+                \begin{tabular}{@{}lll@{}}
+                    \toprule
+                    Function&   X-axis pin& Y-axis pin\\
+                    \midrule
+                    Step&       PF13&   PG0\\
+                    Direction&  PF12&   PG1\\
+                    Enable&     !PF14&  !PF15\\
+                    Endstop&    \textasciicircum PG6&   \textasciicircum PG9\\
+                    \bottomrule
+                \end{tabular}
+            \end{table}
+
+            The endstop switches are connected between ground and the input pin with the internal pull-up resistor enabled.
+            The host system is connected to the board via USB type C to be found on the right-most edge of the board (4).
+            The logic level of the \texttt{Octopus} could be powered by the USB bus-power by placing the respective jumper accordingly.
+            Doing so is neither required, nor is it advisable to put unnecessary additional load on the SBC's \qty{5}{\volt} supply.
 
         \subsection{Raspberry Pi to X-Ray Source Interface}
             The most straight forward way of operating and monitoring the XRS would be connecting to its dedicated USB-B port and using there GUI tool ``12WattController''.
@@ -151,7 +199,7 @@
             Unfortunately, neither the manufacturer \textsc{Moxtek}, nor the reseller \textsc{Quantum Design Europe} provide freely accessible resources besides the cited data sheets~\cites{Manual.MAGPRODataSheet.MOXTEK}{Manual.MAGPRODataSheet.QD}.
             Therefore, this work will only provide contextual necessary transcripts of relevant parts of the included documents.%
             }
-            \begin{table}
+            \begin{table}[h]
                 \centering
                 \caption[Pinout of the analog control connector of the XRS]{Pinout of the analog control connector of the XRS. Transcribed from the included users manual.}%
                 \label{tab:xrs 10pin connector specs}
