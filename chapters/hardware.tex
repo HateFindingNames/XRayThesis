@@ -3,60 +3,64 @@
     The electronics are subdivided into the power supply, motion and logic handling and an interface between XRS/detector/motion system and the logic.
 
     \section{Mechanics}\label{sec:mechanics}
-        Mechanically the main challenge is to build two co-axial and co-planar but kinematically independent operating goniometer stages.
-        One to move the detector and one to move the specimen about there mutual center of rotation as shown in~\cref{fig:rough sketch of the motion system}.
+        Mechanically, the main challenge is to build two co-axial and co-planar but kinematically independent operating goniometer stages;
+        One to move the detector and one to move the specimen about their mutual center of rotation as shown in~\cref{fig:rough sketch of the motion system}.
         \begin{figure}[!h]
             \centering
             \includesvg[width=.4\textwidth]{drawings/sketch_stages}%
             \caption[Rough sketch of the motion system]{Rough sketch of the motion system.}%
             \label{fig:rough sketch of the motion system}%
         \end{figure}
-        The light bulb depicted in~\cref{fig:rough sketch of the motion system} represents the XRS, the eye represents the detector and the specimen to analyze is positioned in the center\footnote{Clearly, an X-Ray source most likely will not be found in the fashion of an actual incandescent light bulb. Here, it merely serves as a visual shortcut representing a photon source. Furthermore, an actual eye performs rather poor at detecting \(\gamma\)-radiation. Thus, it, as well, shall serve the purpose of representation.}.
-        The center stage varies the angle~\(\theta\) which is the angle spun between the incident beam path and the plane of the specimen.
+        Let the light bulb depicted in~\cref{fig:rough sketch of the motion system} be an x-ray source.
+        The eye represents the detector and the specimen to analyze is positioned in the center\footnote{Clearly, an X-Ray source most likely will not be found in the fashion of an actual incandescent light bulb. Here, it merely serves as a visual shortcut representing a photon source. Furthermore, an actual eye performs rather poor at detecting \(\gamma\)-radiation. Thus, it, as well, shall serve the purpose of representation.}.
+        The central stage carrying the sample varies the angle~\(\theta\), which is the angle enclosed by the incident beam path and the plane of the specimen.
         The detector stage~--~the outer circle in~\cref{fig:rough sketch of the motion system}~--~gets positioned along an angle~\(\varphi\).\par\medskip
 
-        While both stages need to be capable of accurate and repeatable positioning, the detector stage needs to accelerate and carry the mass of the actual detector and its supporting structure.
+        Since x-ray diffraction spectroscopy relies on angle-dependent intensity measurements both stages need to be capable of accurate and repeatable positioning at best possible angular resolution.
+        Additionally, the detector stage needs to accelerate and carry the mass of the actual detector and its supporting structure.
 
-        The rise of desktop 3D-printing and the growing communities around highly sophisticated open source/hardware machines made components for high precision yet low cost motion systems in the low to lower-mid power range more available than ever.
-        Hence, common 3D-printer parts where used where applicable.
-        To achieve accuracy a gearing system utilizing stepper motors, purpose made timing pulleys and timing belts with a GT3 profile and~\qty{2}{\milli\metre} pitch are chosen~\cite{Manual.POWERGRIPGT3,Manual.LIGHTPOWERPRECISION}.
+        The rise of desktop 3D-printing and the growing communities around highly sophisticated open source/hardware machines has made components for high precision yet low cost motion systems in the low to lower-mid power range more available than ever.
+        To this end, common 3D-printer parts are used where applicable.
+        To achieve accuracy, a gearing system utilizing stepper motors, purpose-made timing pulleys and timing belts with a GT3 profile and~\qty{2}{\milli\metre} pitch are chosen~\cite{Manual.POWERGRIPGT3,Manual.LIGHTPOWERPRECISION}.
         
-        Besides other factors, to maintain repeatability the easiest ones to achieve are reduced springiness in the whole motion system by choosing good quality, glass-fiber lined timing belts and eliminating slip during changes of torque e.g. direction changes and/or acceleration and deceleration by means of preloading the drive system.\par\medskip
+        To achieve and maintain repeatability~--~besides other factors~--~springiness in the motion system needs to be reduced to a minimum and slip during changes of torque e.g. direction changes and/or acceleration and deceleration needs to be eliminated.
+        The former can reasonably easy be achieved by choosing fiberglass lined timing belts and proper preloading of the drive system removes residual slip.\par\medskip
 
-        A detailed description of the in this work proposed solutions are discussed in~\cref{sec:sample stage,,sec:detector stage}.
+        % A detailed description of the in this work proposed solutions are discussed in~\cref{sec:sample stage,,sec:detector stage}.
         
         \subsection{Sample Stage}\label{sec:sample stage}
             \Cref{fig:xmagix full sample highlightes} shows the main kinematic assembly and the sample stage with drive highlighted in light blue.
             \begin{figure}[!ht]
                 \centering
                 \includesvg[width=.7\textwidth]{drawings/X-MAGIX_full_sample}%
-                \caption[Full motion system. Sample stage blue highlighted]{Full motion system. Sample stage highlighted in light blue.}%
+                \caption[Full motion system. Sample stage highlighted in light blue]{Full motion system. Sample stage highlighted in light blue.}%
                 \label{fig:xmagix full sample highlightes}%
             \end{figure}%
 
             The center part of the main assembly is the slewing ring \textit{PRT-01-60} by \textsc{igus}~\cite{Manual.IglidePRTPolymerSlewingRings.} depicted as no. 24 in the section view in~\cref{fig:sample stage exploded section}.
-            Its relatively large center hole gives room to place a smaller bearing assembly co-axially to its own axis of rotation.\par\medskip
+            Its relatively large central hole gives room to place a smaller bearing assembly so that its is coaxial to its own axis of rotation.\par\medskip
 
             \begin{figure}[!h]
                 \centering
                 \includesvg[width=.3\textwidth]{pictures/footage/stage_bearings}
-                \caption[Detailed photo of the stator center]{Detailed photo of the stator center. Zoomed in a close-up view of the press-in-place stator center locks (1). At the top and bottom are the \textit{W 61708} bearings visible (2) with the \textit{stator center spacer} in between (4). The outer part is the \textit{stator center} itself (3). All parts except the bearings are 3D-printed in ABS.}%
+                \caption[Detailed photo of the stator center]{Detailed photo of the stator center. Close-up view of the press-in-place stator center locks (1). At the top and bottom are the \textit{W 61708} bearings visible (2) with the \textit{stator center spacer} in between (4). The outer part is the \textit{stator center} itself (3). All parts except the bearings are 3D-printed in acrylonitrile butadiene styrene (ABS).}%
                 \label{fig:detailed view of the stator center}
             \end{figure}
+            \nomenclature[A]{ABS}{Acrylonitrile butadiene styrene}
 
-            The stationary part of slewing ring provides two circular patterns of tapped bores fitting 10 M5 fasteners each.
+            The stationary part of the slewing ring provides two circular patterns of tapped bores fitting 10 M5 fasteners each.
             The holes along the inner circle are free to use.
-            \textit{Stator center} (no.~4) is inserted into the slewing ring and held in place by seven M5x10 bolts (no.~22).
+            \textit{Stator center} (no.~4) is inserted into the slewing ring and held in place by seven \textit{M5x10} bolts (no.~22).
             Hereafter and in that sequence, the \textit{stator center spacer} (no.~5) and ball bearing \textit{W 61708-2RS} gets inserted into the free space from the top.
-            One secures the ball bearing press-fitting six of the \textit{stator locks} into their respective slots\footnote{ ``Abusing'' an ordinary drill-press to~--~well~--~press them in place (turned off!) works perfect.}.
+            The ball bearing is secured by press-fitting six of the \textit{stator locks} into their respective slots\footnote{ ``Abusing'' an ordinary drill-press to~--~well~--~press them in place (turned off!) works perfect.}.
             The final sub-assembly is shown in~\cref{fig:detailed view of the stator center}.
 
-            With slight force the remaining bearing gets fit in place from the bottom against the \textit{stator center spacer} as well.
-            Finally, the \textit{sample driven gear} (no.~2) and the \textit{endstop bump sample} (no.~17) together are tightened against the \textit{sample platform} (no.~1) which is placed into the bearings beforehand.
+            With slight force, the remaining bearing is slid in its appropriate position from the bottom against the \textit{stator center spacer} as well.
+            Finally, the \textit{sample driven gear} (no.~2) and the \textit{endstop bump sample} (no.~17) are tightened together against the \textit{sample platform} (no.~1) which is placed into the bearings beforehand.
             In order to guide the timing belt later, two bearings stacks are screwed from the bottom into two adjacent tapped holes.\par\medskip
 
             Not shown in~\cref{fig:sample stage exploded section} is the driving sub-assembly for the sample stage.
-            Since its assembly is considered straight forward and a more complex version is shown in~\cref{fig:detector drive exploded} an assembled view is found in~\cref{fig:sample drive} for reference.
+            Since its assembly is considered straightforward and a more complex version is shown in~\cref{fig:detector drive exploded}, an assembled view is found in~\cref{fig:sample drive} for reference.
 
             \begin{figure}[!h]
                 \centering
@@ -77,10 +81,10 @@
             \end{figure}
 
             Again, the detector stage is subdivided into a driving sub-assembly as shown in~\cref{fig:detector drive exploded} and driven one shown in~\cref{fig:detector stage exploded} respectively.
-            The driven portion of the detector stage only consists of two main parts mounted to the slewing ring.
+            The driven portion of the detector stage only consists of two main parts mounted to the slewing ring;
             The \textit{detector platform} (no.~25) which is placed on the top at an arbitrary orientation and the \textit{detector driven gear} (no.~26) on the bottom of the slewing ring.
             \textit{M5x25} (no.~10) bolts and \textit{hex nuts} (9) are placed into all holes but the two where the \textit{endstop bump detector} (no.~29) is mounted.
-            Here, to accommodate the needed extra length, \textit{M5x30} (no.~42) bolts are used instead.
+            To accommodate the needed extra length here, \textit{M5x30} (no.~42) bolts are used instead.
             The \textit{endstop bump detector} itself is oriented such that its outermost mounting hole is aligned with the hole at the clockwise end of the detector arm.
             To lift the detector to a suitable height above the \textit{sample platform}, \textit{detector spacers} (no.~30) are placed underneath the \textit{XRS-A} (no.~23).\par\medskip
 
@@ -92,7 +96,7 @@
             \begin{figure}[!h]
                 \centering
                 \includesvg[width=.8\textwidth]{drawings/detector_stage_-_exploded}%
-                \caption[Detector stage exploded view]{Detector stage exploded view. 9: M5 Hex Nut, 10: M5x25, 23: XRS-A, 25: Detector Platform, 26: Detector Driven Gear 250T, 29: Endstop Bump Detector, 30: Detector Spacer, 31: M3x25, 42: M5x30.}%
+                \caption[Detector stage -- exploded view]{Detector stage -- exploded view. 9: M5 Hex Nut, 10: M5x25, 23: XRS-A, 25: Detector Platform, 26: Detector Driven Gear 250T, 29: Endstop Bump Detector, 30: Detector Spacer, 31: M3x25, 42: M5x30.}%
                 \label{fig:detector stage exploded}%
             \end{figure}
             
@@ -115,10 +119,9 @@
 
     \clearpage
     \section{Electronics}\label{sec:electronics}
-        On the electronics side, several tasks need to be accomplished.
-        Most basic of which is powering each of the systems components.
-        The SBC is typically powered via its dedicated USB-C port which in turn requires a \qty{5.1}{\volt} supply with a recommended current rating of \qty{3}{\ampere}~\cite{Manual.Documentation.RPF}.
-        The detectors specifications state, that it needs a \qty{5}{\volt} power supply and draws less than \qty{3}{\watt} which translates to \(<\qty{0.6}{\ampere}\).
+        On the electronics side, several tasks need to be accomplished, the most basic of which is powering each of the system's components.
+        The SBC is typically powered via its dedicated USB-C port, which in turn requires a \qty{5.1}{\volt} supply with a recommended current rating of \qty{3}{\ampere}~\cite{Manual.Documentation.RPF}.
+        The detector's specifications state that it needs a \qty{5}{\volt} power supply and draws less than \qty{3}{\watt}, which translates to \(<\qty{0.6}{\ampere}\).
         Taken from the datasheet, the XRS is driven by an input voltage of \qty{24}{\volt} and an input current of \qty{1.1}{\ampere}~\cite{Manual.MAGPRODataSheet.QD}.
         The two stepper motors are each driven by \textit{TMC2209} stepper drivers which in turn accept a relatively broad range of \qtyrange{4.75}{29}{\volt}~\cite{Manual.TMC2209Datasheet} as supply voltages.
         The remaining peripherals such as the interface between the SBC and the XRS are directly driven from \qty{3.3}{\volt} and \qty{5}{\volt} provided by the Raspberry Pi's GPIO-Header.
@@ -140,15 +143,14 @@
             \end{tabular}
         \end{table}
 
-        Following the above considerations, a \qty{5}{\volt} \qty{25}{\watt} PSU (\textit{RS-25-5}) and a \qty{24}{\volt} \qty{150}{\watt} PSU (\textit{LRS-150-24}) are installed.
-        Each is able to deliver slightly more power than expected to be necessary.
-        Thus, leaving headroom for future extensibility and peaks in power demand.
+        Following the considerations above, a \qty{5}{\volt} \qty{25}{\watt} power supply unit (PSU) \nomenclature[A]{PSU}{Power Supply Unit} (\textit{RS-25-5}) and a \qty{24}{\volt} \qty{150}{\watt} PSU (\textit{LRS-150-24}) are installed.
+        Each is able to deliver slightly more power than expected to be necessary, thus, leaving headroom for future extensibility and peaks in power demand.
         The single \qty{24}{\volt}-PSU supplying the stepper drivers and the XRS minimizes complexity and reduces costs.\par\medskip
 
         All wiring~--~where applicable~--~is routed through perforated cable ducting.
 
         \subsection{Kinematics}\label{sec:kinematics}
-            In addition to the two stepper motors driving each stage at least one endstop needs to be installed per axis.
+            In addition to the two stepper motors driving each stage, at least one endstop needs to be installed per axis.
             Despite inferior durability compared to optical or magnetic options, mechanical micro switch type endstops were chosen due to availability and simplicity by requiring no additional passive components.
             \begin{figure}[h]
                 \centering
@@ -158,29 +160,28 @@
             \end{figure}
 
             \Cref{fig:endstop pic} shows an example of one of the actual endstops used.
-            They are wired in normally closed (NC) configuration to prevent potential damage by driving the stages past there minimal position during the homing procedures in case of an accidental connection break.
+            They are wired in normally closed (NC) configuration to prevent potential damage by driving the stages past their minimal position during the homing procedures in case of an accidental connection break.
 
             \begin{figure}[h]
                 \centering
                 \includesvg[width=.9\textwidth]{electronics/pdf/octopus}
-                \caption[Top view drawing of the \textit{Octopus v1.0} PCB layout]{Top view drawing of the \textit{Octopus v1.0} PCB layout~\cite{Manual.BigTreeTechOctopus}. Highlighted are the power terminals for (1), the used motor (2) and endstop (3) connectors and the USB type C plug (4). The Motors and the main power supply share the same \qty{24}{\volt} supply and are tied together.}%
+                \caption[Top view drawing of the \textit{Octopus v1.0} PCB layout]{Top view drawing of the \textit{Octopus v1.0} PCB layout~\cite{Manual.BigTreeTechOctopus}. Highlighted are the power terminals (1), the used motor (2) and endstop (3) connectors and the USB type C plug (4). The motors and the main power supply share the same \qty{24}{\volt} supply and are tied together.}%
                 \label{fig:octopus connections}
             \end{figure}
 
-            Low level processing of the endstop signaling and stepping pulse generation takes place on dedicated peripheral hardware connected to the SBC via USB.
+            Low-level processing of the endstop signaling and stepping pulse generation takes place on dedicated peripheral hardware connected to the SBC via USB.
             Usually found in 3D-printing appliances, an \textit{Octopus v1.0} is installed to accept motion instructions from and return endstop signals to the host system.
-            \Cref{fig:octopus connections} depicts a top view diagram of the \textit{Octopus'} PCB layout and highlights the relevant connectors and terminals~\cite{Manual.BigTreeTechOctopus}.
+            \Cref{fig:octopus connections} depicts a top view diagram of the \textit{Octopus'} PCB\footnote{Printed Circuit Board\nomenclature[A]{PCB}{Printed Circuit Board}} layout and highlights the relevant connectors and terminals~\cite{Manual.BigTreeTechOctopus}.
             The power supply terminals located on the left hand side serve as power supply to the connected motor drivers, the board itself and an~--~if installed~--~heated print bed.
-            In this design, motors and the primary power supply of the board share the same voltage level of \qty{24}{\volt} (1).
+            In this design, the motors and the primary power supply of the board share the same voltage level of \qty{24}{\volt} (1).
             The two motors are connected to the first two 4-pin connectors at the top of horizontal row labeled \texttt{MOTOR0} and \texttt{MOTOR1}(2).
-            On the bottom-right located there are four dedicated endstop connectors (3).
-            Each providing a ground connection and \qty{3.3}{\volt}\footnote{Depending on the respective jumper placement \qty{5}{\volt} can be chosen as well. See~\cite{Manual.BigTreeTechOctopus} for the exact jumper location.}.
+            There are four dedicated endstop connectors (3) located on the bottom right, each providing a ground connection and \qty{3.3}{\volt}\footnote{Depending on the respective jumper placement \qty{5}{\volt} can be chosen as well. See~\cite{Manual.BigTreeTechOctopus} for the exact jumper location.}.
 
             \begin{table}[h]
                 \centering
                 \caption[\textit{Octopus} pin assignment]{\textit{Octopus} pin assignment.}
                 \label{tab:octopus pin assignments}
-                \begin{tabular}{@{}lll@{}}
+                \begin{tabular}{@{}lrr@{}}
                     \toprule
                     Function&   X-axis pin& Y-axis pin\\
                     \midrule
@@ -195,28 +196,22 @@
 
             The endstop switches are connected between ground and the input pin with the internal pull-up resistor enabled.
             The host system is connected to the board via USB type C to be found on the right-most edge of the board (4).
-            The logic level of the \texttt{Octopus} could be powered by the USB bus-power by placing the respective jumper accordingly.
-            Doing so is neither required, nor is it advisable to put unnecessary additional load on the SBC's \qty{5}{\volt} supply.
+            The logic level rails of the \textit{Octopus} could be powered by the USB \qty{5}{\volt}-bus power by placing the respective jumper accordingly.
+            Doing so is neither required, nor is it advisable, as this would put unnecessary additional load on the SBC's \qty{5}{\volt} supply.
+            The default jumper configuration lets an on-board voltage regulator handle conversion from the input voltage range down to \qty{5}{\volt} and \qty{3.3}{\volt}.
 
-            For each motor is a dedicated stepper driver of type \textit{TMC2209} placed beneath the respective connector.
-            The \textit{TMC2209} feature various modes of operation, which can be manipulated dynamically during operation.
-            The connected MCU communicates with the drivers via 1-wire UART needing a special pin assignment for each driver.
+            A dedicated stepper driver of type \textit{TMC2209} placed beneath the respective connector for each motor.
+            The \textit{TMC2209} features various modes of operation each of which can be manipulated dynamically during operation.
+            The \textit{Octopus'} microcontroller (MCU)\nomenclature[A]{MCU}{MicroController Unit} communicates with the drivers via 1-wire UART\nomenclature[A]{UART}{Universal Asynchronous Receiver-Transmitter}, needing a special pin assignment for each driver.\par\medskip
+
+            The final pin assignments are summarized in \cref{tab:octopus pin assignments}.
 
         \subsection{Raspberry Pi to X-Ray Source Interface}\label{sec:xrs interface board}
-            The most straight forward way of operating and monitoring the XRS would be connecting to its dedicated USB-B port and using there GUI tool ``12WattController''.
+            The most straightforward way of operating and monitoring the XRS would be connecting to its dedicated USB-B port and using their GUI tool ``12WattController''.
             It allows to set and monitor the tube's acceleration voltage as well as the filament current, monitoring the devices on/off state, parametrizing and activating PWM operation mode and setting up an auto-shutdown timer.
-            Unfortunately, the software only runs under \textsc{Microsoft} Windows and there are no means of accessing the control schemes programmatically.\par\medskip
+            Unfortunately, the software only runs under \textsc{Microsoft} Windows and there are no means of accessing the control schemes programmatically.
 
-            Located next to the USB-B port is a 2x5 Pin connector allowing analog control of the device and monitoring its state%
-            \footnote{%
-            Mfr. No. \textit{IPL1-105-01-L-D-RA-K} according to the XRS manual.%
-            }.
-            \Cref{tab:xrs 10pin connector specs} is taken directly from the technical user guide included with the XRS:%
-            \footnote{%
-            Unfortunately, neither the manufacturer \textsc{Moxtek}, nor the reseller \textsc{Quantum Design Europe} provide freely accessible resources besides the cited data sheets~\cites{Manual.MAGPRODataSheet.MOXTEK}{Manual.MAGPRODataSheet.QD}.
-            Therefore, this work will only provide contextual necessary transcripts of relevant parts of the included documents.%
-            }
-            \begin{table}[h]
+            \begin{table}[!h]
                 \centering
                 \caption[Pinout of the analog control connector of the XRS]{Pinout of the analog control connector of the XRS. Transcribed from the included users manual.}%
                 \label{tab:xrs 10pin connector specs}
@@ -237,24 +232,35 @@
                     \bottomrule
                 \end{tabular}
             \end{table}
-            Pins 1, 3, 5 and 9 are inputs of which pins 1 and 9 are digital controls.
-            ``Current Control'' and ``HV Control'' are set by manipulating the voltage levels on pins 3 and 5.
-            The SBC only provides pseudo-analogous control via in-build hardware PWM \textquote{available on GPIO12, GPIO13, GPIO18, GPIO19}~\cite{Manual.Documentation.RPF}.
-            PWM-control works by switching between logic-Hi and logic-Lo at a set frequency while varying the ratio between the times the signal is in Hi-state and Lo-state during one period.
-            While this is acceptable with sufficiently slow reacting systems i.e. systems exhibiting low-pass behavior such as speed-control of brushed DC-Motors or brightness control of an LED taking advantage of the refresh rate of the human visual system, achieving a stable and reliable control of the XRS by means of PWM is highly unlikely.\par\medskip
 
-            Due to time restrictions a rather crude interface board was made utilizing a two-channel digital-to-analog converter (DAC) for writing to and a two-channel analog-to-digital converter (ADC) for reading from the XRS.\@
+            Located next to the USB-B port is a 2x5 pin connector allowing analog control of the device and monitoring of its state%
+            \footnote{%
+            Mfr. No. \textit{IPL1-105-01-L-D-RA-K} according to the XRS manual.%
+            }.
+            \Cref{tab:xrs 10pin connector specs} is taken directly from the technical user guide included with the XRS:%
+            \footnote{%
+            Unfortunately, neither the manufacturer \textsc{Moxtek}, nor the reseller \textsc{Quantum Design Europe} provide freely accessible resources besides the cited data sheets~\cites{Manual.MAGPRODataSheet.MOXTEK}{Manual.MAGPRODataSheet.QD}.
+            Therefore, this work will only provide contextually necessary transcripts of relevant parts of the included documents.}
+            Pins 1, 3, 5 and 9 are inputs, of which pins 1 and 9 are digital controls.
+            Current Control and HV Control\nomenclature[A]{HV}{High Voltage} are set by manipulating the voltage levels on pins 3 and 5.
+            The SBC only provides pseudo-analogous control via built-in hardware pulse width modulation (PWM)\nomenclature[A]{PWM}{Pulse Width Modulation} \textquote{available on GPIO12, GPIO13, GPIO18, GPIO19}~\cite{Manual.Documentation.RPF}.
+            PWM-control works by switching between logic-Hi and logic-Lo at a set frequency while varying the ratio between the times the signal is in Hi-state and Lo-state during one period.
+            While this is acceptable with sufficiently slow reacting systems i.e. systems exhibiting low-pass behavior such as speed-control of brushed DC-Motors or brightness control of an LED taking advantage of the refresh rate of the human visual system, achieving a stable and reliable control of the XRS by means of PWM is highly unlikely.
+            Instead, a true analog signal is generated and fed to the \textit{XRS}' inputs.
+
             \begin{figure}[h]
                 \centering
                 \includesvg[width=.6\textwidth]{electronics/pdf/DAC_circuitry}
                 \caption[Schematic of the DAC]{Schematic of the DAC.}%
                 \label{fig:DAC schematic}
             \end{figure}
-            To generate analog signals the component \textit{TLV5618A} was used.
-            It integrates two separate output channels with \(n = \qty{12}{\bit}\) resolution, delivers peak output voltages ranging from \qtyrange{2.7}{5.5}{\volt} and is SPI programmable~\cite{Manual.DAC.TLV5618A}.
+
+            Due to time restrictions, a rather crude interface board was made, utilizing a two-channel digital-to-analog converter (DAC) for writing to the XRS and a two-channel analog-to-digital converter (ADC) for reading it.
+            To generate analog signals, the component \textit{TLV5618A} was used.
+            It integrates two separate output channels with \(n = \qty{12}{\bit}\) resolution, delivers peak output voltages ranging from \qtyrange{2.7}{5.5}{\volt} and is SPI\nomenclature[A]{SPI}{Serial Peripheral Interface} programmable~\cite{Manual.DAC.TLV5618A}.
             The schematic depicted in~\cref{fig:DAC schematic} shows its external circuitry and the configuration of its voltage reference.
             In order to prevent clipping of the output voltage, it is important to keep the reference voltage below \(\frac{V_{DD} - \qty{0.4}{\volt}}{2}\) which effectively means keeping it below half the maximum desired output voltage~\cite[p. 3]{Manual.DAC.TLV5618A}.
-            The used \textit{LT1009} delivers a sufficiently stable reference voltage of \(\approx \qty{2.385}{\volt}\) with pin 3 tied to ground (see~\cref{fig:LT1009 sim} for spice simulation analysis).
+            The utilized \textit{LT1009} delivers a sufficiently stable reference voltage of \(\approx \qty{2.385}{\volt}\) with pin 3 tied to ground (see~\cref{fig:LT1009 sim} for spice simulation analysis).
             % Although this still is slightly higher than the limits stated above, minimal clipping of the output voltage should not be of a concern.
 
             \begin{equation}
@@ -264,24 +270,16 @@
             \nomenclature[L]{\(REF\)}{Reference Voltage\nomunit{\volt}}%
             \nomenclature[L]{\(n\)}{ADC/DAC bit resolution\nomunit{1}}%
             \nomenclature[L]{\(FS\)}{Full Scale range\nomunit{\volt}}%
-
-            \Cref{eq:dac general function}, taken from the DAC's datasheet, specifies a full scale range (\(FS\)) of two times the reference voltage while the output voltage keeps capped at \(V_{DD}- \qty{0.4}{\volt}\).
-            The difference of \qty{0.17}{\volt} is expected to be clipped off of the full scale output signal.\par\medskip
-
-            % The D/A converter's resolution is given as
-
-            % \begin{equation}
-            %     Res_{DAC} = \frac{2U_{Ref}}{n - 1} \approx \qty{1.2}{\milli\volt\per\bit}
-            %     \label{eq:DAC resolution}
-            % \end{equation}
-
             \begin{align}
                 UNOB = \cint*{ U \cdot \frac{n - 1}{FS}}
                 \label{eq:UNOB}
             \end{align}
 
+            \Cref{eq:dac general function}, taken from the DAC's datasheet, specifies a full scale range (\(FS\)) of two times the reference voltage while the output voltage remains capped at \(V_{DD}- \qty{0.4}{\volt}\).
+            The difference of \qty{0.17}{\volt} is expected to be clipped off of the full scale output signal.\par\medskip
+
             Taken from~\cref{tab:xrs 10pin connector specs} HV Control and Current Control are ranging from \(U_{DAC,A} = \qtyrange{0.27}{4}{\volt}\) and \(U_{DAC,B} = \qtyrange{0.04}{4}{\volt}\).
-            These control ranges introduce upper and lower dead regions rendering a number of bits in those regions unusable (\(UNOB\), see~\cref{eq:UNOB}).
+            These control ranges introduce upper and lower dead regions, rendering a number of bits in those regions unusable (\(UNOB\), see~\cref{eq:UNOB}).
             \Cref{fig:transfer function DAC} illustrates those dead regions.
 
             \begin{figure}[h]
@@ -291,13 +289,13 @@
                 \label{fig:transfer function DAC}
             \end{figure}
 
-            The to-be-expected minor clipping of the signal at the DAC's outputs is considered not much of a concern since it will be well inside the upper (mutual) dead region.
+            The expected minor clipping of the signal at the DAC's outputs is considered negligible since it will be well inside the upper (mutual) dead region.
 
             \begin{equation}
                 R_S = \frac{U_S - U_Z}{I_Z + I_L}
                 \label{eq:LM4040 cathode current}
             \end{equation}
-            \nomenclature[L]{\(R_S\)}{Voltage reference series resistor\nomunit{\ohm}}%
+            \nomenclature[L]{\(R_S\)}{Voltage references current limiting resistor\nomunit{\ohm}}%
             \nomenclature[L]{\(U_S\)}{Supply Voltage\nomunit{\volt}}%
             \nomenclature[L]{\(U_Z\)}{Voltage across the reference voltage diode\unit{\volt}}%
             \nomenclature[L]{\(I_Z\)}{Current through reference voltage diode\nomunit{\ampere}}%
@@ -316,12 +314,12 @@
                 \label{fig:ADC schematic}
             \end{figure}
 
-            With an assumed supply voltage \(U_S\) slightly higher than nominal \qty{5}{\volt} and a maximum expected load current of \(I_L = \qty{550}{\uA}\)\footnote{Operating current of the \textit{MCP3202}.} and \(I_Z = \qty{15}{\milli\ampere}\)~\cref{eq:LM4040 cathode current} yields a current limiting resistor of \(R_S \approx \qty{6}{\ohm}\)~\cite{Manual.LM4040PrecisionMicropowerShuntVoltageReference}.
-            This value is comfortably achievable using two widely available E12 series resistors in parallel and is reflected in the two resistors \(R_4\) and \(R_5\) of \qty{12}{\ohm} each.\par\medskip
+            With an assumed supply voltage \(U_S\) slightly higher than the nominal \qty{5}{\volt}, maximum expected load current of \(I_L = \qty{550}{\uA}\)\footnote{Operating current of the \textit{MCP3202}.} and a chosen diode current of \(I_Z = \qty{15}{\milli\ampere}\)~\cref{eq:LM4040 cathode current} yields a current limiting resistor of \(R_S \approx \qty{6}{\ohm}\)~\cite{Manual.LM4040PrecisionMicropowerShuntVoltageReference}.
+            This value is readily achievable using two widely available E12 series resistors in parallel and is reflected in the two resistors \(R_4\) and \(R_5\) of \qty{12}{\ohm} each.\par\medskip
 
-            The \textit{MCP3202} does not exhibit any clipping letting the reference voltage be assumed equal the full scale voltage.
-            HV Monitors output signal has the same upper and lower boundaries as the HV Control signal, thus, decreasing resolution and increasing the dead region compared to the DAC's performance.
-            Again, in this application this is not considered problematic since there is no need to for sub-\unit{\kev} and sub-\unit{\uA} adjustability.
+            The \textit{MCP3202} does not exhibit any clipping, letting the reference voltage be assumed equal the full scale voltage.
+            The HV Monitor's output signal has the same upper and lower boundaries as the HV Control signal thus decreasing resolution and increasing the dead region compared to the DAC's performance.
+            Again, in this application this is not considered problematic, since there is no need for sub-\unit{\kev} and sub-\unit{\uA} adjustability.
 
             \Cref{tab:adc dac performance summery} summarizes the theoretical performance data of the D/A and A/D converter circuits.
             \begin{table}[t]
@@ -343,17 +341,10 @@
 
             % The resolution in terms of \unit{\keV\per\bit} and \unit{\uA\per\bit}
 
-            \begin{figure}[h]
-                \centering
-                \includesvg[width=.7\textwidth]{pictures/footage/interface_front}
-                \caption[Top view of the SBC-to-XRS interface board]{Top view of the SBC-to-XRS interface board. DAC in yellow (1), ADC in purple (2).}%
-                \label{fig:top view interface board}
-            \end{figure}\par\medskip
-
             \Cref{fig:top view interface board} shows the top view of the real-world implementation of the above.
             The yellow area~(1) comprises the DAC portion of the circuit, the purple area~(2) the ADC.
             The 10-pin headers on the left and right connect to the SBC and the XRS.
             A detailed description of their respective pin-assignment can be found in the full schematics in~\cref{fig:schematics of peripherals}.
-            The 2-pin connector on the upper-right receives~\qty{24}{\volt} to supply the XRS via pin 10 on its connector.
+            The 2-pin connector on the upper right receives~\qty{24}{\volt} to supply the XRS via pin 10 on its connector.
 
-            The Pin ordering scheme for the 10-pin connector on the rear of the XRS is shown in~\cref{fig:10 pin numbering scheme}.
+            The pin ordering scheme for the 10-pin connector on the rear of the XRS is shown in~\cref{fig:10 pin numbering scheme}.

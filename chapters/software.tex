@@ -1,27 +1,28 @@
 \chapter{Software}\label{chap:software}
     \section{Environment Preparation}\label{sec:env preperation}
-        The central component of the \textit{XRS-A} is the \textit{microDXP} manufactured by \textsc{XIA LLC}.
+        The central component of the \textit{XRS-A} is the digital pulse processor \textit{microDXP} manufactured by \textsc{XIA LLC}.
         \textsc{XIA} provides USB drivers and a GUI tool \textit{ProSpect} for Windows but no pre-compiled binaries for Linux systems.
-        The sources for the software API \textit{Handel} however are provided on their public repository on \textsc{GitHub}~\cite{Software.HandelRelease.2023} and are forked by the author of this work~\cite{Software.XraythesisHandel.2023}.
-        As stated in Handel's API documentation \textquote{Handel is a framework of several libraries that interact to create the interface Handel provides}~\cite{Manual.HandelAPIManual.Xiang}.
-        As such, all routines not part of that top-level framework are considered lower layers of Handel's API and will not be subject of this work.
-        The used detector incorporates a \textit{microDXP}-platform.
-        Thus, all non-\textit{microDXP} routines will not be discussed here as well.\par\medskip
+        The sources for the software API\nomenclature[A]{API}{Application Programming Interface} \textit{Handel} however are provided on their public repository on \textsc{GitHub}~\cite{Software.HandelRelease.2023} and are forked by the author of this work~\cite{Software.XraythesisHandel.2023}.
+        As stated in \textit{Handel}'s API documentation \textquote{Handel is a framework of several libraries that interact to create the interface Handel provides}~\cite{Manual.HandelAPIManual.Xiang}.
+        As such, all routines not part of that top-level framework are considered lower layers of \textit{Handel}'s API and will not be subject of this work.
+        The utilized detector incorporates the \textit{microDXP} as its digital pulse processor, thus, all non-\textit{microDXP} routines will not be discussed here as well.\par\medskip
 
         \subsection{Building Handel's API Libraries}\label{sec:software preperations}
             The SBC runs the latest x64 version of \textit{Raspberry Pi OS Lite}\footnote{Installed using the \textit{Raspberry Pi Imager} tool.
             Direct download available under~\cite{Software.RaspberryPiOSLite.2023}}.
             A detailed description and troubleshooting suggestions can be found on the author's repository~\cite{Software.XraythesisHandel.2023}.\par\medskip
 
-            \textit{Handel} is meant to be build using \textit{SCons}~--~\textquote{a computer software build tool} which in turn is written in python.
+            \textit{Handel} is meant to be built using \textit{SCons}~--~\textquote{a computer software build tool} which in turn is written in python.
             Thus, it is dependent on a working python environment.
-            While Raspberry Pi OS has a Python interpreter pre-installed, its version does not match SCons requirements.
-            Not only to ensure consistent and reproducible development environment but also to keep the Python environment isolated from the system a forked version of \textit{miniconda}\footnote{\textquote{A small bootstrap version of Anaconda that includes only conda, Python, the packages they both depend on, and a small number of other useful packages}}~--~\textit{miniforge}~--~is used.
+            While Raspberry Pi OS has a Python interpreter pre-installed, its version does not match \textit{SCons} requirements.
+            Not only to ensure a consistent and reproducible development environment but also to keep the Python environment isolated from the system, a forked version of \textit{miniconda}\footnote{\textquote{A small bootstrap version of Anaconda that includes only conda, Python, the packages they both depend on, and a small number of other useful packages}}~--~\textit{miniforge}~--~is used.
             As of the time of writing, Miniconda does not provide a build working on arm64 architecture.
 
-            With a working conda install set up a virtual environment is created installing the specific Python version~\num{3.9} and activated.
-            Next, the required Python packages are installed and~--~if not already bundles with the \textit{Raspberry Pi OS} install~--~the \texttt{libusb-dev} libraries.
-            \begin{lstlisting}[style=mybash, caption={[Creating conda environment and installing dependencies]Creating conda environment and installing dependencies.}, label={lst:creating conda env}]
+            With a working conda install set up, a virtual environment is created, installing a specific Python version~\num{3.9} and activated afterwards following \cref{lst:creating conda env}.
+            Next, the required Python packages are installed as well as~--~if not already bundled with the \textit{Raspberry Pi OS} install~--~the \texttt{libusb-dev} libraries.
+            \begin{lstlisting}[style=mybash,
+                caption={[Creating conda environment and installing dependencies]Creating conda environment and installing dependencies.},
+                label={lst:creating conda env}]
     # Create conda environment
     conda create -n xmagix python=3.9 pip ipykernel
     conda activate xmagix
@@ -34,7 +35,7 @@
             \end{lstlisting}
 
             The main entry point is the shell script \texttt{./build.sh}\footnote{See~\cite{Software.XraythesisHandel.2023} for a list of other/more build options.}.
-            To start the build process it needs to be made executable and executed using the commands shown in~\cref{lst:build.sh}.
+            To start the build process, it needs to be made executable and executed using the commands shown in~\cref{lst:build.sh}.
             A build log will be created in \texttt{./build.log} and the default build location is \texttt{./myapp/lib/}.
             \begin{lstlisting}[style=mybash, caption={[Executing build script]Executing build script.}, label={lst:build.sh}]
     # Make script executable
@@ -44,16 +45,22 @@
     ./build.sh
             \end{lstlisting}
         \subsection{Permissions and Preparing USB}\label{sec:permissions and preparing usb}
-            After the detector is plugged into one of the USB ports and is powered up, issue
+            After the detector is plugged into one of the USB ports and is powered up, issuing
             \begin{lstlisting}[style=mybash, numbers=none, label={lst:lsusb}]
     lsusb | grep "ID 10e9"
             \end{lstlisting}
-            to check that \textit{libusb} sees the XIA device.
+            checks that \textit{libusb} sees the XIA device.
             Next, \texttt{udev} rules need to be put in place to grant user-level access to the USB device.
-            First, check if the logged-in user is in the \texttt{plugdev} group using the command
+            The logged-in user should be part of the \texttt{plugdev} group by default.
+            If the command
             \begin{lstlisting}[style=mybash, numbers=none, label={lst:get plugdev group}]
     groups | grep "plugdev"
             \end{lstlisting}
+            checks if that is true and
+            \begin{lstlisting}[style=mybash, numbers=none, label={lst:get plugdev group}]
+    sudo usermod -a plugdev <user>
+            \end{lstlisting}
+            adds the user to the \texttt{plugdev} group if not already the case.
             Issuing
             \begin{lstlisting}[style=mybash, numbers=none, label={lst:udev}]
     sudo echo 'ACTION=="add", SUBSYSTEM=="usb", ATTR{idVendor}=="10e9", ATTRS{idProduct}=="0b01", MODE="0660", GROUP="plugdev"' | sudo tee /etc/udev/rules.d/99-xia.rules
@@ -63,26 +70,25 @@
 
     \clearpage
     \section{Detector Interface Class}\label{sec:detector interface}
-        The main language chosen to interface with the created shared object (\texttt{*.so}) libraries is Python using the same environment created in~\cref{lst:creating conda env}.
-        The class \texttt{XMagix} defined in \texttt{./myapp/xmagix.py} exposes most of the relevant functions of the Handel API and is mostly written in plain Python.
-        The only external packages loaded are \textit{Numpy} and \textit{Rich}.
-        The former to enable fast matrix manipulation and the latter to auto-timestamp and colorize logging prints to console.\par\medskip
+        The main language chosen to interface with the created shared object (\texttt{*.so}) libraries is Python, using the same environment created in~\cref{lst:creating conda env}.
+        The class \texttt{XMagix} defined in \texttt{./myapp/xmagix.py} exposes most of the relevant functions of the \textit{Handel} API and is mostly written in plain Python.
+        The only external packages loaded are \textit{Numpy} and \textit{Rich}, the former to enable fast matrix manipulation and the latter to auto-timestamp and colorize logging prints to console.\par\medskip
 
-        Furthermore, to actually develop wrapping code Pythons standard library \textit{ctypes} was used to access \textit{Handel}'s C-functions.
+        Furthermore, to actually develop wrapping code, Pythons standard library \textit{ctypes} was used to access \textit{Handel}'s C-functions.
         Following, only the most relevant methods of \texttt{XMagix} are shown.
         See~\cref{lst:xmagix class} for a full overview.\par\medskip
 
-        All of \textit{Handel}'s top-level functions are named camel case and begin with ``xia''~--~they are called hereafter xia-functions.
+        All of \textit{Handel}'s top-level functions are named camel case and begin with ``xia''~--~they shall be hereafter called xia-functions.
         The Python-wrapped methods adopt their naming scheme but omit ``xia'' e.g. \textit{Handel}'s API function \texttt{xiaInit(inifile)} is exposed as \texttt{<class object name>.init(inifile)}.
-        Any call to an xia-function takes either a value of type \texttt{c\_int()} to specify the detector channel (in this case always \texttt{0} as there is only one detector present), an ascii-encoded byte-stream representing an instruction and a reference to a predefined \textit{ctype}-variable either holding a value to set to or to receive a value retrieved by the particular xia-function.
-        \texttt{XMagix}' method \texttt{stringToBytes()} takes a \texttt{str}-object as an input and returns a byte-stream.
+        Any call to an xia-function takes either a value of type \texttt{c\_int()} to specify the detector channel (in this case always \texttt{0} as there is only one detector present), an ascii-encoded byte-stream representing an instruction and a reference to a predefined \textit{ctype}-variable either holding a value to set or to receive a value retrieved by the particular xia-function.
+        \texttt{XMagix}'s method \texttt{stringToBytes()} takes a \texttt{str}-object as an input and returns a byte-stream.
         Practical examples are shown in \crefrange{sec:init}{sec:pullMcaData}.
 
         \lstinputlisting[style=mypython, firstnumber=13, caption={[XMagix class constructor]XMagix class constructor.}, label={lst:xmagix constructor}, firstline=13, lastline=27]{software/xmagix.py}
-        The constructor of \texttt{XMagix}, as shown in~\cref{lst:xmagix constructor}, does, besides pre-setting some internal state variables, load the shared object library from the path passed to it during object creation.
+        The constructor of \texttt{XMagix}, as shown in~\cref{lst:xmagix constructor}, besides pre-setting some internal state variables, loads the shared object library from the path passed to it during object creation.
         
         \subsection{init()}\label{sec:init}
-            With the detector came a pre-defined \texttt{*.ini}-file holding values and variables pre-defined by the manufacturer and specific to that particular device.
+            With the detector came a \texttt{*.ini}-file holding values and variables pre-defined by the manufacturer and specific to that particular device.
             \textit{Handel} expects it to be loaded prior to starting up the system.
             One does not need to modify any of its values except the line defining the \texttt{device\_number}.
             \texttt{device\_number} tells \textit{Handel} which USB device to communicate with.\par\medskip
@@ -90,20 +96,22 @@
             \lstinputlisting[style=mypython, firstnumber=67, caption={[XMagix method init()]XMagix method init().}, label={lst:xmagix init}, firstline=67, lastline=72]{software/xmagix.py}
         
         \subsection{startSystem()}\label{sec:startSystem}
-            After initializing the system using the method described in~\cref{sec:init}, one can start up the system using \texttt{<class object name>.startSystem()}.
+            After initializing the system using the method described in~\cref{sec:init}, the system can be started up using \texttt{<class object name>.startSystem()}.
             No error codes printed to the console indicates a successful start-up\footnote{\texttt{4001, DXP\_MDOPEN} might indicate a wrong \texttt{device\_number}. If there is more than one USB device plugged into the SBC one might try setting \texttt{device\_number} to an integer value > \texttt{0}.}.\par\medskip
 
             \lstinputlisting[style=mypython, firstnumber=80, caption={[XMagix method startSystem()]XMagix method startSystem().}, label={lst:xmagix startSystem}, firstline=80, lastline=87]{software/xmagix.py}
 
         \subsection{setAcquisitionValues()}\label{sec:setAcquisitionValues}
             The method \texttt{setAcquisitionValues()} has two positional arguments: the name of a value to set and the desired value itself.
-            The name will be checked against a list of allowed names specified in Appendix A of \textit{Handel's programmer guide}~\cite{Manual.HandelProgrammersGuideMicroDXP.Xiang}.\par\medskip
+            The name will be checked against a list of allowed names specified in Appendix A of \textit{Handel's programmer guide}~\cite{Manual.HandelProgrammersGuideMicroDXP.Xiang} and the value stored in the volatile memory if the check returns no error.\par\medskip
+
+            This way the user is able to quickly vary different acquisition values like \texttt{gain\_trim} or any of the filter thresholds.\par\medskip
 
             \lstinputlisting[style=mypython, firstnumber=98, caption={[XMagix method setAcquisitionValues()]XMagix method setAcquisitionValues().}, label={lst:xmagix setAcquisitionValues}, firstline=98, lastline=108]{software/xmagix.py}
         
         \subsection{getAcquisitionValues()}\label{sec:getAcquisitionValues}
-            To retrieve a particular~--~or all~--~currently set acquisition value \texttt{getAcquisitionValues(<name>)} can be used.
-            The method returns a dictionary where the key-value pair reflects the specified~--~or all~--~name and value.\par\medskip
+            To retrieve a particular~--~or all~--~currently set acquisition value, \texttt{getAcquisitionValues(<name>)} can be used.
+            The method returns a dictionary where the key-value pair reflects the specified name(s) and value(s).\par\medskip
 
             \lstinputlisting[style=mypython, firstnumber=110, caption={[XMagix method getAcquisitionValues()]XMagix method getAcquisitionValues().}, label={lst:xmagix getAcquisitionValues}, firstline=110, lastline=132]{software/xmagix.py}
         
@@ -122,8 +130,8 @@
 
         \subsection{fixedRealtimeRun()}\label{sec:fixedRealtimeRun}
             To directly start a fixed realtime run, the method \texttt{fixedRealtimeRun()} takes the desired realtime in seconds as a mandatory argument.
-            The optional argument \texttt{clearMca}, if set to \texttt{True} (default), clears the internal multichannel analyzers bins prior starting the run.
-            During the data acquisition, alongside the elapsed and total time, basic statistics like output count rate (OCR) and the sum of all output events during the run (EIR) are printed to the console in intervals of \qty{1}{\second}.\par\medskip
+            The optional argument \texttt{clearMca}, if set to \texttt{True} (default), clears the internal multichannel analyzer's bins prior starting the run.
+            During the data acquisition, alongside the elapsed and total time, basic statistics like output count rate (OCR)\nomenclature[A]{OCR}{Output Count Rate} and the sum of all output events during the run (EIR)\nomenclature[A]{EIR}{Events In Run} are printed to the console in intervals of \qty{1}{\second}.\par\medskip
 
             \lstinputlisting[style=mypython, firstnumber=202, caption={[XMagix method fixedRealtimeRun()]XMagix method fixedRealtimeRun().}, label={lst:xmagix fixedRealtimeRun}, firstline=202, lastline=232]{software/xmagix.py}
 
@@ -133,7 +141,8 @@
             \lstinputlisting[style=mypython, firstnumber=234, caption={XMagix method stopRun()}, label={lst:xmagix stopRun}, firstline=234, lastline=244]{software/xmagix.py}
 
         \subsection{pullMcaData()}\label{sec:pullMcaData}
-            After data acquisition, \texttt{pullMcaData()} writes the MCA's content to a pre-defined array of length \texttt{nmca} and type \texttt{c\_ulong} and returns it as a \textit{numpy} array.
+            After a successful run the data is stores in the \textit{microDXP}'s multichannel analyzer (MCA)\nomenclature[A]{MCA}{MultiChannel Analyzer}.
+            \texttt{pullMcaData()} writes the MCA's content to a pre-defined array of length \texttt{nmca} and type \texttt{c\_ulong} and returns it as a \textit{numpy} array without clearing the MCA's content.
 
             \texttt{nmca} is the length of the MCA i.e.~the number of bins (see~\cref{sec:setAcquisitionValues} and~\cref{sec:getAcquisitionValues}).
             Since each bin can hold a maximum number of \(2^{24} - 1 = 16777215\) events, the arrays \textit{ctype} has to be sufficiently large.\par\medskip
@@ -142,7 +151,7 @@
 
     \clearpage
     \section{X-Ray Source Interface Class}\label{sec:xrs interface class}
-        Both the ADC and the DAC utilize the SPI protocol of which the \textit{Raspberry Pi 4 B} has implemented a total of seven hardware buses with two hardware chip-selects each.
+        Both the ADC and the DAC utilize the SPI protocol, of which the \textit{Raspberry Pi 4 B} has implemented a total of seven hardware buses with two hardware chip-selects each.
         With only two peripheral devices attached to the bus~--~the ADC and the DAC~--~only a single bus is needed.
         Here, the default bus \textit{SPI0} is chosen where the physical pin assignment can be seen in~\cref{fig:schematics of raspberry gpio configuration} and is tabulated in~\cref{tab:gpio assignment} for quick reference.
 
@@ -157,8 +166,9 @@
             sudo systemctl enable pigpiod.service
             sudo systemctl start pigpiod.service
         \end{lstlisting}
-        \Cref{lst:SPI0 and pigpio} utilizes any \textit{Raspberry Pi OS's} in-build tool \texttt{raspi-config} in non-interactive mode to quickly activate SPI on bus 0.
-        After that, \textit{pigpio}~--~a tool for fast GPIO usage~--~is installed and its system service enable to ensure automatic start up in case the host system was rebooted.
+        \Cref{lst:SPI0 and pigpio} utilizes any \textit{Raspberry Pi OS's} built-in tool \texttt{raspi-config} in non-interactive mode to quickly activate the SPI on bus 0.
+        After that, \textit{pigpio}, a tool for fast GPIO usage, is installed and its system service is enabled to ensure automatic start up in case the host system is rebooted.
+        From \cref{sec:electronics} and with \cref{fig:schematics of raspberry gpio configuration} the pin assignments are tabulated in \cref{tab:gpio assignment} for further reference.
 
         \begin{table}[h]
             \centering
@@ -181,8 +191,8 @@
 
         \subsection{Initializing the SPI Bus}\label{sec:init spi bus}
             The Python class \texttt{Tube} implements automatic initialization of the SPI bus and allows easy reading from and writing to the XRS.
-            While doing so it has to adhere to the SPI protocol description and timing requirements of the two different devices connected to the bus.
-            Lines 9 to 17 of the constructor set the pin modes of GPIO24 and GPIO25 responsible i.e. \texttt{Filament Ready} and \texttt{HV/Filament Enable} pins\footnote{Although the full code can be found in~\cref{lst:Tube full source}, reading and writing specific GPIO pins is considered trivial and will not be further elaborated.}.
+            While doing so, it has to adhere to the SPI protocol description and timing requirements of the two different devices connected to the bus.
+            Lines 9 to 17 of the constructor shown in \cref{lst:Tube constructor} set the pin modes of GPIO24 and GPIO25 responsible i.e. \texttt{Filament Ready} and \texttt{HV/Filament Enable} pins\footnote{Although the full code can be found in~\cref{lst:Tube full source}, reading and writing specific GPIO pins is considered trivial and will not be further elaborated.}.
             Line 19 to 24 configure the SPI modes for the DAC and the ADC respectively.
             The three arguments of \texttt{spi\_open} set the channel (the \(\overline{\texttt{CS}}\) pin the device is physically connected to), the Baud (clock speed) and the mode.
 
@@ -193,33 +203,37 @@
                 \label{fig:tlv5618a timing req}
             \end{figure}\par\medskip
 
-            Clock polarity defines the idle state of the clock, thus, the clock's logic level while \(\overline{\texttt{CS}}\) is logic high.
+            Clock polarity defines the idle state of the clock, thus, the clock's logic level while \(\overline{\texttt{CS}}\)\footnote{\texttt{CS}\nomenclature[A]{CS}{Chip Select} i.e. Chip Select is synonym with \texttt{CE}\nomenclature[A]{CE}{Chip Enable} i.e. Chip Enable.} is logic high.
             Clock phase defines when a bit is being sampled.
-            \Cref{fig:tlv5618a timing req} is taken from the DAC's datasheet and shows that the DAC is compatible with either clock polarities and samples a bit on the clocks transition to idle making it compatible with SPI modes 1 and 2~\cite{Manual.IntroductionToSPIInterface.Dhaker.SPI}.
+            \Cref{fig:tlv5618a timing req} is taken from the DAC's datasheet and shows that the DAC is compatible with either clock polarities and samples a bit on the clocks transition to idle, making it compatible with SPI modes 1 and 2~\cite{Manual.IntroductionToSPIInterface.Dhaker.SPI}.
             Further, it operates at a clock speed of \qty{20}{\mega\hertz} and is physically connected to \(\overline{\texttt{CS1}}\).
-            Line 19 in~\cref{lst:Tube constructor} shows the final composition of the necessary arguments to \texttt{spi\_open}~\cite{Manual.PigpioLibrary}.\par\medskip
+            Line 19 in~\cref{lst:Tube constructor} shows the final composition of the arguments necessary for \texttt{spi\_open}~\cite{Manual.PigpioLibrary}.\par\medskip
 
             The ADC communicates at \qty{100}{\kilo\hertz} on \(\overline{\texttt{CS0}}\) and is compatible with SPI modes 0 and 3.
             To have the clock phases in sync during debugging, SPI modes are chosen such that the clock signal idles low on both devices.
 
-            \lstinputlisting[style=mypython, firstnumber=5, caption={[\texttt{Tube} class's constructor]\texttt{Tube} class's constructor.}, label={lst:Tube constructor}, firstline=5, lastline=28]{software/thetube.py}
+            \lstinputlisting[style=mypython, firstnumber=5,
+            caption={[\texttt{Tube} class's constructor]\texttt{Tube} class's constructor.},
+            label={lst:Tube constructor}, firstline=5, lastline=28]{software/thetube.py}
 
-            To let the ADC begin sampling the analog signal at its input, it expects a single start bit and three configuration bits after which it starts to clock back 1 \texttt{NULL} bit followed by its sampling result of 12 bits length.
-            Aligned with the clock edge transitioning from idle the receive-buffer starts to fill with random bits immediately after \(\overline{\texttt{CS}}\) was pulled low.
-            Following the application information of the \textit{MCP3202} sending a total of 3 Bytes consisting of seven leading zeros, the start bit, three configuration bits and 13 \texttt{Don't Care} bits, the receive-buffer will fill with three Bytes as well.
-            Bit 0 of the last received Byte being the least significant bit (LSB) and Bit 3 of the second Byte the most significant bit (MSB) of the conversion result.
+            To let the ADC begin sampling the analog signal at its input, it expects a single start bit and three configuration bits after which it starts to clock back one \texttt{NULL} bit followed by its sampling result of 12 bits.
+            Aligned with the clock edge transitioning from idle, the receive-buffer starts to fill with random bits immediately after \(\overline{\texttt{CS}}\) is pulled low.
+            Following the application information of the \textit{MCP3202} sending a total of 3 bytes consisting of seven leading zeros, the start bit, three configuration bits and 13 \texttt{Don't Care} bits, the receive-buffer will fill with three bytes as well (see \cref{fig:adc communication protocol}), with bit 0 of the last received byte being the least significant bit (LSB) and bit 3 of the second byte the most significant bit (MSB) of the conversion result.
             \begin{figure}[h]
                 \centering
                 \includesvg[width=.8\textwidth]{electronics/datasheets/mcp3202_protocol}
-                \caption[ADC's communication protocol]{ADC's communication protocol~\cite{Manual.ADC.MCP3202}.}%
+                \caption[ADC communication protocol]{ADC communication protocol~\cite{Manual.ADC.MCP3202}.}%
                 \label{fig:adc communication protocol}
             \end{figure}
 
-            Line 24 in~\cref{lst:Tube constructor} pre-defines the three Bytes with leading zeros, start bit, single-ended mode, channel 1 and trailing ones.
-            Lines 26 to 28 initialize the two DAC-channels with \qty{0}{\volt} and pull \texttt{enpin} low disabling the XRS.
+            Line 24 in~\cref{lst:Tube constructor} pre-defines the three bytes with leading zeros, start bit, single-ended mode, channel 1 and trailing ones.
+            Lines 26 to 28 initialize the two DAC-channels with \qty{0}{\volt} and pull \texttt{enpin} low, disabling the XRS.
 
             \subsection{enable()}\label{sec:tube enable}
-                The method \texttt{enable()} is a shortcut to set \texttt{enpin} high, enabling the acceleration voltage and filament current and setting an internal state variable accordingly.
+                The method \texttt{enable()} is a shortcut to set \texttt{enpin} high, enabling the acceleration voltage, filament current and setting an internal state variable accordingly.
+                The user can use this method and \texttt{disable()} in \cref{sec:tube disable} to programmatically enable and disable the XRS prior and after each data acquisition run.\par\medskip
+
+                {\bfseries Warning: this enables the x-ray source if \texttt{HV Control} (\texttt{setHV()}) and \texttt{Current Control} (\texttt{setI()}) values are set \(> 0\)!}\par\medskip
 
                 \lstinputlisting[style=mypython, firstnumber=34, caption={[\texttt{Tube} method \texttt{enable()}]\texttt{Tube} method \texttt{enable().}}, label={lst:Tube method enable}, firstline=34, lastline=36]{software/thetube.py}
 
@@ -234,11 +248,10 @@
                 \lstinputlisting[style=mypython, firstnumber=68, caption={[\texttt{Tube} method \texttt{read()}]\texttt{Tube} method \texttt{read().}}, label={lst:Tube method read}, firstline=68, lastline=84]{software/thetube.py}
 
             \subsection{composeBytesDac()}\label{sec:composebytesdac}
-                Tube class' internal helper function \texttt{composeBytesDac()} is supposed to be invoked by user-level methods.
-                Its purpose is to pack the desired set points and configuration bits into a 2-Byte payload ready to be transmitted to the DAC.
-                Hence, it takes two mandatory arguments~--~the actual value i.e. set point and the target channel~--~and defaults two optional arguments \texttt{fast} and \texttt{pwr} to \texttt{False} and \texttt{True}.
-                The application in this work demands no high-speed output.
-                Thus, to ensure better signal integrity by reducing the stability requirements of the reference voltage, fast mode is set to False~\cite{Manual.ADC.MCP3202}.
+                Tube class's internal helper function \texttt{composeBytesDac()} shown in \cref{lst:Tube method composebytesdac} is not supposed to be invoked by user-level methods.
+                Its purpose is to pack the desired set points and configuration bits into a 2-byte payload ready to be transmitted to the DAC.
+                Hence, it takes two mandatory arguments; the actual value i.e. set point and the target channel, and defaults two optional arguments \texttt{fast} and \texttt{pwr} to \texttt{False} and \texttt{True}.
+                The application in this work demands no high-speed output, thus, to ensure better signal integrity by reducing the stability requirements of the reference voltage, fast mode is set to False~\cite{Manual.ADC.MCP3202}.
                 \texttt{pwr} sets the on/off state of the device and should normally be kept \texttt{True}.
 
                 \begin{table}[h]
@@ -257,15 +270,17 @@
                     \end{tabular}
                 \end{table}
 
-                Depending on the chosen channel i.e. keyword argument \texttt{channel} = \texttt{True/False} the channel select register bit \texttt{R1} is set 0 or 1 while keeping \texttt{R0} 0 at all times (see highlighted lines in~\cref{tab:channel select bits adc}~\cite{Manual.DAC.TLV5618A}).\par\medskip
+                Depending on the chosen channel i.e. keyword argument \texttt{channel} = \texttt{True/False}, the channel select register bit \texttt{R1} is set 0 or 1 while keeping \texttt{R0} 0 at all times (see highlighted lines in~\cref{tab:channel select bits adc}~\cite{Manual.DAC.TLV5618A}).\par\medskip
 
-                \lstinputlisting[style=mypython, firstnumber=42, caption={[\texttt{Tube} method \texttt{composeBytesDac()}]\texttt{Tube} method \texttt{composeBytesDac().}}, label={lst:Tube method composebytesdac}, firstline=42, lastline=66]{software/thetube.py}
+                \lstinputlisting[style=mypython, firstnumber=42,
+                caption={[\texttt{Tube} method \texttt{composeBytesDac()}]\texttt{Tube} method \texttt{composeBytesDac().}},
+                label={lst:Tube method composebytesdac}, firstline=42, lastline=66]{software/thetube.py}
 
             \subsection{setHV()}\label{sec:setHV}
-                A method to translate a desired acceleration voltage in \unit{\kev} to a \qty{12}{\bit} integer value to pass to the DAC's channel 0.
+                \texttt{setHV()} is a method to translate a desired acceleration voltage in \unit{\kev} to a \qty{12}{\bit} integer value to pass to the DAC's channel 0.
                 The user must input a value in a range from \qtyrange{4}{60}{\kev}.
                 Values below \qty{4}{\kev} and above \qty{60}{\kev} will be set to 0.
-                In any case, the set actual set value for the acceleration voltage is stored in a class variable \texttt{hv} for later calculations of the maximum allowed filament current.\par\medskip
+                In any case, the actual set value for the acceleration voltage is stored in a class variable \texttt{hv} for later calculations of the maximum allowed filament current.\par\medskip
 
                 \begin{align}
                     val_{hv,ctrl} = \fint*{ \frac{hv}{res_{hv,ctrl}} }
@@ -278,9 +293,8 @@
                 \lstinputlisting[style=mypython, firstnumber=86, caption={[\texttt{Tube} method \texttt{setHV()}]\texttt{Tube} method \texttt{setHV().}}, label={lst:Tube method setHV}, firstline=86, lastline=102]{software/thetube.py}
 
             \subsection{setI()}\label{sec:setI}
-                A method to translate a desired filament current in \unit{\micro\ampere} to a \qty{12}{\bit} integer value to pass to the DAC's channel 1.
-                The principle of mapping the desired current to an input value is basically the same as discussed in~\cref{sec:setHV}.
-                But, to ensure operating the XRS inside its specification limits the value of argument \(\texttt{i}\) undergoes an extra conditioning step limiting the output to an appropriate value.
+                \texttt{setI()} is a method to translate a desired filament current in \unit{\micro\ampere} to a \qty{12}{\bit} integer value to pass to the DAC's channel 1.
+                The principle of mapping the desired current to an input value is basically the same as discussed in~\cref{sec:setHV}, but to ensure operating the XRS inside its specification limits the value of argument \(\texttt{i}\) undergoes an extra conditioning step, limiting the output to an appropriate value.
 
                 \begin{align}
                     val_{i,ctrl} = \fint*{ \frac{i}{res_{i,ctrl}} }
@@ -288,10 +302,10 @@
                 \end{align}
                 \nomenclature[L]{\(val\)}{integer value transmitted to the ADC/DAC\nomunit{1}}
 
-                The XRS is designed to operate at an output power of \qty{12}{\watt}.
+                The XRS is designed to operate at a maximum output power of \qty{12}{\watt}.
                 Line 107 in~\cref{lst:Tube method setI} calculates the maximum allowed filament current according to the currently set acceleration voltage and stores it in the local variable \texttt{imax}.
-                If that filament current exceeds \qty{1000}{\uA} line 109 caps it at the XRS' specified maximum filament current.
-                Lastly, in line 114 \texttt{i} gets capped off at the value of \texttt{imax} if the user has set it above \texttt{imax}.\par\medskip
+                If that filament current exceeds \qty{1000}{\uA}, line 109 caps it at the XRS' specified maximum filament current.
+                Lastly, in line 114, \texttt{i} gets capped off at the value of \texttt{imax} if the user has set it above \texttt{imax}.\par\medskip
                 
                 \lstinputlisting[style=mypython, firstnumber=104, caption={[\texttt{Tube} method \texttt{setI()}]\texttt{Tube} method \texttt{setI().}}, label={lst:Tube method setI}, firstline=104, lastline=123]{software/thetube.py}
 
@@ -299,11 +313,11 @@
     \section{Motion System}\label{sec:motion system}
         % Due to the rise of hobby-level 3D-printing not only hardware components became readily available but firmware development as well profited of thriving communities and still does.
         Among managing other important tasks, one of any 3D-printing firmware's most crucial functions is generating precisely timed stepping pulses to drive usually three or more motors at once.
-        Since reproducing that functionality is a non-trivial task and due to  time limitations, the decision in favor of proven software is made despite it packing far more features than probably needed.
+        Since reproducing that functionality is a non-trivial task and due to time limitations, the decision in favor of proven software was made despite it packing far more features than probably needed.
         The popular 3D-printer firmware \textit{Klipper}~\cite{Software.Klipper.2023} was chosen to generate the stepping pulses.
         
-        Due to time limitations, no XMagix user interface integration was developed yet.
-        To still be able to drive the motion system, a pre-made and 3D-printing web interface \textit{Fluidd}~\cite{Software.FluiddTheKlipperUI} is used instead.
+        Due to time limitations, no XMagix user interface is yet integration.
+        To still be able to drive the motion system, a pre-made 3D-printing web interface \textit{Fluidd}~\cite{Software.FluiddTheKlipperUI} is used instead.
         
         \textit{Fluidd} itself depends on \textit{Moonraker}~\cite{Software.MoonrakerAPIWebServerForKlipper.2023}~--~an intermediate communication layer exposing the low level \textit{Klipper} commands as an API web server.\par\medskip
 
@@ -312,7 +326,7 @@
         \textit{Klipper} functions by allocating all demanding computational work to the relatively potent host processor~--~the device it is installed to~--~and shifts only the resulting I/O instructions out to the attached peripheral hardware.
         This requires that hardware to run a daughter software making it understand those instructions.
         \textit{Klipper} comes with a shell script to configure a makefile and build the required binaries.
-        In case of the used \textit{Octopus v1.0} the microcontroller architecture \texttt{LPC176x} and the processor model \texttt{LPC1769} have to be selected.
+        In the case of the used \textit{Octopus v1.0}, the microcontroller architecture \texttt{LPC176x} and the processor model \texttt{LPC1769} must be selected.
 
         \begin{lstlisting}[style=mybash, numbers=none]
     cd ~/klipper
@@ -321,7 +335,7 @@
 
         Exiting the menu, a file \texttt{\textasciitilde/klipper/.config} will be created configuring the build process initiated after a final invocation of \texttt{make}\footnote{A pre-made config file can be found in~\cref{lst:make config file} for reference.}.\par\medskip
 
-        To flash the built binary to the peripheral hardware and to correctly address it afterwards \textquote[\cite{Software.Klipper.2023}]{it is necessary to determine the serial port connected to the micro-controller}. With only the stepper driver board and the detector connected to the USB-bus, the following command prints a single output in the way like \texttt{/dev/serial/by-id/<some string>}.
+        To flash the built binary to the peripheral hardware and to correctly address it afterwards, \textquote[\cite{Software.Klipper.2023}]{it is necessary to determine the serial port connected to the micro-controller}. With only the stepper driver board and the detector connected to the USB-bus, the following command prints a single output in the way like \texttt{/dev/serial/by-id/<some string>}.
 
         \begin{lstlisting}[style=mybash, numbers=none]
     ls /dev/serial/by-id/*
@@ -336,7 +350,7 @@
 
         At start of the service \textit{Klipper} reads all parameters needed for the individual setup from the configuration file \texttt{\textasciitilde/printer\_data/config/printer.cfg}.
         The most important portion of the configuration file~--~section \texttt{[mcu]}~--~is shown in~\cref{lst:usb by id}.
-        After flashing the binary to the peripheral hardware, the command above re-issued yields a new device file location which \texttt{Klipper} has to be pointed to.
+        After flashing the binary to the peripheral hardware, the command above re-issued yields a new device file location which \texttt{Klipper} must be pointed to.
         The configuration file needs to be edited accordingly by entering it as a value for \texttt{serial}.
         % With all preliminary configurations in place, entering the IP-address of the host system into a browser of a device 
 
@@ -352,7 +366,7 @@
         The detector stage will be driven by \texttt{[stepper\_x]}, the sample stage by \texttt{[stepper\_y]}.
         Physically, there is no motor connected to \texttt{[stepper\_z]} so the entries in this section can be filled with dummy values.
 
-        Taken the detector stage as an example~\cref{lst:stepper section printer cfg} shows all necessary entries.
+        Taking the detector stage as an example~\cref{lst:stepper section printer cfg}, shows all necessary entries.
         The pin definitions are taken from~\cref{tab:octopus pin assignments} and correspond to the physical connections to the board as discussed in~\cref{sec:kinematics}.
 
         \begin{lstlisting}[style=mydjango, firstnumber=16,
@@ -376,22 +390,22 @@
         \end{lstlisting}
 
         Variables \texttt{rotation\_distance}, \texttt{gear\_ratio} and \texttt{full\_steps\_per\_rotation} define the physical setup of the effector comprising motors and gearing.
-        Here, \texttt{gear\_ratio} denotes the ratio of the last gear in the chain~--~250T attached to the slewing ring~--~to the very first gear~--~80T on the motor shaft~--~ignoring all other gearing in between.
-        To achieve the maximum precision on the drivers end a microstepping of 32 is chosen increasing the amount of full steps per revolution by a factor of 32.
+        Here, \texttt{gear\_ratio} denotes the ratio of the last gear in the chain (250T attached to the slewing ring) to the very first gear (80T on the motor shaft) ignoring all other gearing in between.
+        To achieve the maximum precision on the drivers' end, a microstepping of 32 is chosen, increasing the amount of full steps per revolution by a factor of 32.
         \texttt{rotation\_distance} is the distance in \unit{\milli\meter} traveled after one full rotation of the last gear.
         The detector stage is mechanically not capable of traveling beyond \(\approx \qty{225}{\degree}\).
-        With a safety margin the maximum allowed travel of the X-axis is capped at \qty{300}{\milli\metre} along the gears pitch diameter which translates to
+        With a safety margin, the maximum allowed travel distance of the X-axis is capped at \qty{300}{\milli\metre} along the gears' pitch diameter, which translates to
 
         \begin{equation}
             \frac{\qty{360}{\degree}}{\qty{500}{\milli\metre}} \cdot \qty{300}{\milli\metre} = \qty{216}{\degree}
             \label{eq:position max}
         \end{equation}
         
-        Since each motor is driven by a dedicated \texttt{TMC2209} stepper driver, each section defining a physical axis is accompanied by a special \texttt{tmc2209} section (see~\cref{lst:stepper tmc section} for reference).
-        The \textit{TMC2209} are capable of interpolating 256 steps between each full step regardless of the actual microstepping mode.
-        Whilst this does provide a smoother motion interpolation mode is more prone to missed steps requiring a higher motor current to counter its negative effects.
-        Additionally, the stepper drivers feature \textit{StealthChop2}~--~a \textquote{voltage-chopper based principle} to \textquote{guarantees that the motor is absolutely quiet in standstill and in slow motion}~\cite{Manual.TMC2209Datasheet} in trade for more heat generated in the motor windings while reducing torque at any given speed compared to normal operation.
-        Since the application in this work does not require exceptional quiet motion, the threshold for dynamically switching to \textit{StealthChop} is set to \qty{0}{\milli\metre\per\minute}.
+        Since each motor is driven by a dedicated \textit{TMC2209} stepper driver, each section defining a physical axis is accompanied by a special \texttt{tmc2209} section (see~\cref{lst:stepper tmc section} for reference).
+        The \textit{TMC2209} stepper drivers are capable of interpolating 256 steps between each full step regardless of the actual microstepping mode.
+        Whilst this does provide a smoother motion, interpolation mode is more prone to missed steps, requiring a higher motor current to counter its negative effects.
+        Additionally, the stepper drivers feature StealthChop2~--~a \textquote{voltage-chopper based principle} to guarantee \textquote{that the motor is absolutely quiet in standstill and in slow motion}~\cite{Manual.TMC2209Datasheet} in trade for more heat generated in the motor windings while reducing torque at any given speed compared to normal operation.
+        Since the application in this work does not require exceptionally quiet motion, the threshold for dynamically switching to StealthChop is set to \qty{0}{\milli\metre\per\minute}.
         \begin{lstlisting}[style=mydjango, firstnumber=31,
             caption={[Stepper corresponding stepper driver section of \texttt{printer.cfg}]Stepper corresponding stepper driver section of \texttt{printer.cfg}.},
             label={lst:stepper tmc section}%
@@ -407,9 +421,9 @@
     \clearpage
     \section{User Interface}\label{sec:user interface}
         As a preliminary user interface putting all software components together, a Jupyter notebook was created and hosted on the SBC itself (see \texttt{./myapp/user.ipynb} in~\cite{Software.XraythesisHandel.2023}).
-        Here, all both classes \texttt{XMagix} and \texttt{Tube} are loaded and most important functions are exposed inside individual cells separated by logical sectioning.
-        In order to have all dependencies available, the kernel inside the conda environment \texttt{xmagix} created in~\cref{sec:software preperations} has to be chosen as the executing kernel.
-        The following lines executed import the custom classes into the IPython kernel
+        Here, both classes \texttt{XMagix} and \texttt{Tube} are loaded and most important functions are exposed inside individual cells separated by logical sectioning.
+        In order to have all dependencies available, the kernel inside the conda environment \texttt{xmagix} created in~\cref{sec:software preperations} must be chosen as the executing kernel.
+        The following lines executed import the custom classes into the IPython kernel.
         \begin{lstlisting}[style=mypython, firstnumber=auto]
     from xmagix import XMagix
     from thetube import Tube
