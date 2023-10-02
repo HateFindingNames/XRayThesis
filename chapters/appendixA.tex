@@ -1,29 +1,32 @@
 \chapter{Appendix A}\label{sec:appendix a}
-    \begin{figure}[h]
-        \centering
-        \includesvg[width=.8\textwidth]{drawings/sample_stage_-_exploded}%
-        \caption[Sample stage exploded view.]{Sample stage exploded view.}%
-        \label{fig:sample stage exploded}%
-    \end{figure}
+    \include{chapters/bom}
     \newpage
     % ===================================================================================
-    \begin{figure}[h]
-        \centering
-        \includesvg[width=.8\textwidth]{drawings/sample_drive_dimetric.svg}%
-        \caption[Sample drive.]{Sample drive.}%
-        \label{fig:sample drive}%
-    \end{figure}
-    \newpage
-    % ===================================================================================
-    \begin{figure}[h]
+    \begin{figure}[ht]
         \centering
         \includegraphics[angle=90, width=.8\textwidth]{pictures/footage/non_boxed_full_build.png}
-        \caption[Photograph of the full assembly]{Photograph of the full assembly. Fused, filtered and switchable mains voltage plug (1), Raspberry Pi 4 B (2), BigTreeTech Octopus 1.1 with 2 x TMC2209 stepper drivers (3), \qty{24}{\volt} \qty{150}{\watt} PSU (4), \qty{5}{\volt} \qty{25}{\watt} PSU (5), XRS (6), detector stage drive (7), sample stage drive (8), \textit{XRS-A}detector unit (9), detector and sample stages (10).}%
+        \caption[Photograph of the full assembly]{Photograph of the full assembly. Fused, filtered and switchable mains voltage plug (1), Raspberry Pi 4 B (2), BigTreeTech Octopus 1.1 with 2 x TMC2209 stepper drivers (3), \qty{24}{\volt} \qty{150}{\watt} PSU (4), \qty{5}{\volt} \qty{25}{\watt} PSU (5), XRS (6), detector stage drive (7), sample stage drive (8), \textit{XRS-A} detector unit (9), detector and sample stages (10).}%
         \label{fig:non boxed full assembly}
     \end{figure}
     \newpage
     % ===================================================================================
-    \begin{figure}[h]
+    \begin{figure}[ht]
+        \centering
+        \includesvg[width=.8\textwidth]{drawings/sample_stage_-_exploded}%
+        \caption[Sample stage exploded view]{Sample stage exploded view.}%
+        \label{fig:sample stage exploded}%
+    \end{figure}
+    \newpage
+    % ===================================================================================
+    \begin{figure}[ht]
+        \centering
+        \includesvg[width=.8\textwidth]{drawings/sample_drive_dimetric.svg}%
+        \caption[Sample drive]{Sample drive.}%
+        \label{fig:sample drive}%
+    \end{figure}
+    \newpage
+    % ===================================================================================
+    \begin{figure}[ht]
         \centering
         \includesvg[height=.92\textheight]{electronics/pdf/xmagix_peripherals}
         \caption[Schematics of all electronic peripherals]{Schematics of all electronic peripherals.}%
@@ -31,7 +34,7 @@
     \end{figure}
     \newpage
     % ===================================================================================
-    \begin{figure}[h]
+    \begin{figure}[ht]
         \centering
         \includesvg[height=.92\textheight]{electronics/pdf/xmagix_peripherals-raspberry4b}
         \caption[Schematics of the GPIO pin assignments]{Schematics of the GPIO pin assignments.}%
@@ -39,7 +42,7 @@
     \end{figure}
     \newpage
     % ===================================================================================
-    \begin{figure}[h]
+    \begin{figure}[ht]
         \centering
         \includesvg[width=.9\textwidth]{electronics/sim/LT1009}
         \caption[Simulation of the trim-resistor value dependent behavior of the \textit{LT1009} voltage reference]{Simulation of the trim-resistor value dependent behavior of the \textit{LT1009} voltage reference. At \(R_2 \approx 0\) the value output voltage is \(\approx \qty{2.385}{\volt}\).}%
@@ -72,3 +75,5 @@
         \caption[XRS' analog control pin numbering scheme.]{XRS' analog control pin-numbering scheme.}%
         \label{fig:10 pin numbering scheme}
     \end{figure}
+    \newpage
+    % ===================================================================================
