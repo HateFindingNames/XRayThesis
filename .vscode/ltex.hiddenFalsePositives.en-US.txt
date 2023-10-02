@@ -1,0 +1,22 @@
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\QIn any case, the device does not allow exceeding a maximum power of 12 .\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Q[Set point of 70 kV and 50 ]Set point of 70 kV and 50 .\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Set point of 10 kV and 1100 ]Set point of 10 kV and 1100 .\\E$"}
+{"rule":"COMMA_PARENTHESIS_WHITESPACE","sentence":"^\\Q[Set point of 10 kV and 1100 ]Set point of 10 kV and 1100 .\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[Set point of 70 kV and 50 ]Set point of 70 kV and 50 .\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[width=.6]drawings/X-MAGIX_full_sample[Full motion system.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[width=.6]drawings/X-MAGIX_full_detector[Full motion system.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe remaining peripherals such as the interface between the SBC and the XRS are directly driven from 3.3 and 5 provided by the Raspberry Pi's GPIO-Header.\\E$"}
+{"rule":"ALLOW_TO","sentence":"^\\QIt allows to set and monitor the tube's acceleration voltage as well as the filament current, monitoring the devices on/off state, parametrizing and activating PWM operation mode and setting up an auto-shutdown timer.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\Q[width=]software/pictures/dac_transfer_function [Transfer function of the DAC showing the operational range]Transfer function of the DAC showing the operational range.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe used detector incorporates a microDXP-platform.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThus, all non-microDXP routines will not be discussed here as well.\\E$"}
+{"rule":"SMALL_NUMBER_OF","sentence":"^\\QA small bootstrap version of Anaconda that includes only conda, Python, the packages they both depend on, and a small number of other useful packages\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QA build log will be created in ./build.log and the default build location is ./myapp/lib/.\\E$"}
+{"rule":"NON_STANDARD_WORD","sentence":"^\\QFirst, check if the logged-in user is in the plugdev group using the command Issuing creates the file /etc/udev/rules.d/99-xia.rules containing a custom udev rule and restarts the udev daemon \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe class XMagix defined in ./myapp/xmagix.py exposes most of the relevant functions of the Handel API and is mostly written in plain Python.\\E$"}
+{"rule":"EN_A_VS_AN","sentence":"^\\QAny call to an xia-function takes either a value of type cint() to specify the detector channel (in this case always 0 as there is only one detector present), an ascii-encoded byte-stream representing an instruction and a reference to a predefined ctype-variable either holding a value to set to or to receive a value retrieved by the particular xia-function.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QAll of Handel's top-level functions are named camel case and begin with “xia” – they are called hereafter xia-functions.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QThe Python-wrapped methods adopt their naming scheme but omit “xia” e.g. Handel's API function xiaInit(inifile) is exposed as <class object name>.init(inifile).\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QAny call to an xia-function takes either a value of type cint() to specify the detector channel (in this case always 0 as there is only one detector present), an ascii-encoded byte-stream representing an instruction and a reference to a predefined ctype-variable either holding a value to set to or to receive a value retrieved by the particular xia-function.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QXMagix' method stringToBytes() takes a str-object as an input and returns a byte-stream.\\E$"}
+{"rule":"MORFOLOGIK_RULE_EN_US","sentence":"^\\QPractical examples are shown in sec:init sec:pullMcaData.\\E$"}

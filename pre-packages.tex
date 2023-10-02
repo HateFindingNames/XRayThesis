@@ -66,6 +66,7 @@
 % \Crefname{equation}{Gleichung}{Gleichungen}
 \creflabelformat{equation}{#2\textup{#1}#3}
 \usepackage[style=IEEE, citestyle=numeric, backend=biber, date=short]{biblatex} % Sophisticated Bibliographies in LaTeX https://www.ctan.org/pkg/biblatex
+\BiblatexSplitbibDefernumbersWarningOff
 \urlstyle{same}
 \setcounter{biburllcpenalty}{100}
 \setcounter{biburlucpenalty}{200}
@@ -79,6 +80,6 @@
 \renewcommand{\section}[1]{\FloatBarrier\Oldsection{#1}}
 \let\Oldsubsection\subsection%
 \renewcommand{\subsection}[1]{\FloatBarrier\Oldsubsection{#1}}
-\let\Oldsubsubsection\subsubsection%
-\renewcommand{\subsubsection}[1]{\FloatBarrier\Oldsubsubsection{#1}}
-\usepackage{lipsum}
+% \let\Oldsubsubsection\subsubsection%
+% \renewcommand{\subsubsection}[1]{\FloatBarrier\Oldsubsubsection{#1}}
+% \usepackage{lipsum}
