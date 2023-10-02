@@ -18,28 +18,32 @@
 % \usepackage[showframe]{geometry} % comment for live version
 % \usepackage{layout}
 % \usepackage{showframe}
-%------DRAFTING---------------------------------------------------
-\renewcommand{\lipsum}{~} % comment/uncomment to switch on/off
-%-----------------------------------------------------------------
 \begin{document}
 %-----------------------------------------------------------------
 \input{chapters/0_top}
-\clearpage\pagenumbering{Roman}
+\input{chapters/blank}
+\input{chapters/independence}
+\input{chapters/quote}
 \tableofcontents
+\clearpage
+\pagenumbering{Roman}
 \listoffigures
 \listoftables
 \lstlistoflistings
 \printnomenclature[5cm]
 %-----------------------------------------------------------------
-\clearpage\pagenumbering{arabic}
-\include{chapters/motivation}
-\include{chapters/theory}
+\clearpage
+\pagenumbering{arabic}
+% \include{chapters/motivation}
+\include{chapters/intro}
 \include{chapters/hardware}
 \include{chapters/software}
 \include{chapters/testing_and_characterization}
 \include{chapters/conclusions}
 %-----------------------------------------------------------------
 \newpage
+% \setcounter{page}{5}
+% \pagenumbering{roman}
 \appendix
 % \pagenumbering{Roman}
 \input{chapters/appendixA}
